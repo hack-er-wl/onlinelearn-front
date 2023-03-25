@@ -71,6 +71,7 @@ onMounted(async () => {
   await store.dispatch("handleQueryAssess", toRaw({courseid: course.course_id})).then(async (assesses) => {
     store.state.layoutStore.assesses = assesses;
   })
+  store.state.layoutStore.chapters = [];
   await store.dispatch("handleQueryChapter", toRaw({courseid: course.course_id})).then((chapters) => {
     store.state.layoutStore.chapters = chapters.sort((a, b) => {return a.chapter_order - b.chapter_order});
   })

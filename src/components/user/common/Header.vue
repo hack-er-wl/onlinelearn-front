@@ -44,7 +44,6 @@ import Language from "./Language.vue";
 import UserDropDown from "./UserDropDown.vue";
 import Theme from "./Theme.vue";
 import {useI18n} from "vue-i18n";
-
 const store = useStore();
 const { t } = useI18n();
 </script>

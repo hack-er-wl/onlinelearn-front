@@ -27,7 +27,23 @@ import {useStore} from "vuex";
 import TeacherEditDialog from "../../components/teacher/thome/TeacherEditDialog.vue";
 import AddCourseDialog from "../../components/teacher/thome/AddCourseDialog.vue";
 import AddTestDialog from "../../components/teacher/thome/AddTestDialog.vue";
+import {onMounted, toRaw} from "vue";
+import {getUser} from "@/api/user";
 const store = useStore();
+const route = useRoute();
+import router from "@/router";
+import {useRoute} from "vue-router";
+onMounted(async () => {
+  await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id})).then((res) => {
+    console.log(res);
+    if (res){
+
+    }else{
+      console.log(route);
+      router.push({path:route.path});
+    }
+  })
+})
 </script>
 
 <style lang="scss" scoped>

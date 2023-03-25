@@ -12,8 +12,8 @@
           ref="tstatusFormRef"
           :model="tstatusForm"
           :rules="tstatusRules">
-        <el-form-item label="手机" prop="phone">
-          <el-input prefix-icon="Iphone" v-model="tstatusForm.phone" placeholder="请输入手机号"/>
+        <el-form-item label="手机" prop="usertel">
+          <el-input prefix-icon="Iphone" v-model="tstatusForm.usertel" placeholder="请输入手机号"/>
         </el-form-item>
         <div style="display: flex;justify-content: space-between">
           <el-form-item style="width: 48%" label="讲课领域" prop="field">
@@ -25,8 +25,8 @@
                   :value="item.value"/>
             </el-select>
           </el-form-item>
-          <el-form-item style="width: 48%" label="讲课内容" prop="content">
-            <el-select style="width: 100%" suffix-icon="Reading" v-model="tstatusForm.content" placeholder="请选择讲课内容">
+          <el-form-item style="width: 48%" label="讲课内容" prop="class">
+            <el-select style="width: 100%" suffix-icon="Reading" v-model="tstatusForm.class" placeholder="请选择讲课内容">
               <el-option
                   v-for="item in contents[tstatusForm.field =='' ? 0 : tstatusForm.field == 'IT行业' ? 1 : 2]"
                   :key="item.value"
@@ -36,8 +36,8 @@
           </el-form-item>
         </div>
         <div style="display: flex;justify-content: space-between">
-          <el-form-item style="width: 30%" label="性别" prop="gender">
-            <el-select style="width: 100%" suffix-icon="Male" v-model="tstatusForm.gender" placeholder="请选择性别">
+          <el-form-item style="width: 30%" label="性别" prop="usersex">
+            <el-select style="width: 100%" suffix-icon="Male" v-model="tstatusForm.usersex" placeholder="请选择性别">
               <el-option
                   v-for="item in genders"
                   :key="item.value"
@@ -45,8 +45,8 @@
                   :value="item.value"/>
             </el-select>
           </el-form-item>
-          <el-form-item style="width: 30%" label="年龄" prop="age">
-            <el-select style="width: 100%" suffix-icon="Calendar" v-model="tstatusForm.age" itemprop="age" placeholder="请选择年龄">
+          <el-form-item style="width: 30%" label="年龄" prop="userage">
+            <el-select style="width: 100%" suffix-icon="Calendar" v-model="tstatusForm.userage" itemprop="age" placeholder="请选择年龄">
               <el-option
                   v-for="item in ages"
                   :key="item.value"
@@ -55,8 +55,8 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item style="width: 30%" label="教龄" prop="tage">
-            <el-select style="width: 100%" suffix-icon="Calendar" v-model="tstatusForm.tage" placeholder="请选择教龄">
+          <el-form-item style="width: 30%" label="教龄" prop="usertage">
+            <el-select style="width: 100%" suffix-icon="Calendar" v-model="tstatusForm.usertage" placeholder="请选择教龄">
               <el-option
                   v-for="item in tages"
                   :key="item.value"
@@ -66,9 +66,9 @@
             </el-select>
           </el-form-item>
         </div>
-        <el-form-item label="简介" prop="interest">
+        <el-form-item label="简介" prop="userbrief">
           <el-input
-              v-model="tstatusForm.interest"
+              v-model="tstatusForm.userbrief"
               :rows="15"
               type="textarea"
               placeholder="请输入你的教学经历及经验..."
@@ -84,6 +84,10 @@
 import {reactive, ref, toRaw} from "vue";
 import {useI18n} from "vue-i18n";
 import router from "@/router";
+import ButtonCard from "@/components/user/common/ButtonCard.vue";
+import {useStore} from "vuex";
+import {getUser} from "@/api/user";
+const store = useStore();
 const { t } = useI18n();
 const genders = [{value:'0',label:'男'},{value:'1',label:'女'}];
 const ages = [{value:23,label:23},{value:24,label:24},{value:25,label:25},{value:26,label:26},{value:27,label:27},{value:28,label:28},
@@ -95,26 +99,30 @@ const contents = [[{value:"请选择领域",label:"请选择领域"}],[{value:"�
 const tstatusFormRef = ref(null);
 // 表单数据
 const tstatusForm = reactive({
-  age:"",
-  tage:"",
-  gender:"",
+  userid:getUser().user_id,
+  userage:"",
+  usertage:"",
+  usersex:"",
   field:"",
-  content:"",
-  phone:"",
-  interest:""
+  class:"",
+  usertel:"",
+  userbrief:""
 });
 // 表单的校验规则
 const tstatusRules = reactive({
-  age: [{ required: true, message: t("ageError"), trigger:["blur","change"]}],
-  tage: [{ required: true, message: t("tageError"), trigger: ["blur",'change']}],
-  gender: [{ required: true, message: t("genderError"), trigger: ["blur",'change']}],
+  userage: [{ required: true, message: t("ageError"), trigger:["blur","change"]}],
+  usertage: [{ required: true, message: t("tageError"), trigger: ["blur",'change']}],
+  usersex: [{ required: true, message: t("genderError"), trigger: ["blur",'change']}],
   field: [{ required: true, message: t("fieldError"), trigger: ["blur",'change']}],
-  content: [{ required: true, message: t("contentError"), trigger:["blur",'change']}],
-  phone: [{ required: true, message: t("phoneError"), trigger: "blur" },],
-  interest:[{ required: true, message: t("interestError"), trigger: "blur" }]
+  class: [{ required: true, message: t("contentError"), trigger:["blur",'change']}],
+  usertel: [{ required: true, message: t("phoneError"), trigger: "blur" },],
+  userbrief:[{ required: true, message: t("interestError"), trigger: "blur" }]
 });
-function submit(){
+async function submit() {
   console.log(toRaw(tstatusForm));
+  await store.dispatch("handleApply", toRaw(tstatusForm)).then((res) => {
+    console.log(res);
+  })
 }
 function cancel(){
   router.push({
