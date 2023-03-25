@@ -1,0 +1,49 @@
+<template>
+  <el-card
+      :body-style="{padding: '0px'}"
+      shadow="hover"
+      class="post_card"
+      :style="{marginRight:data.isLast.value?'0px':'4px'}">
+    <img :src="require('@/assets/img/cover.png')" class="image" :style="{height:'180px',width:'100%',borderRadius:'4px'}"/>
+    <div class="tags" style="padding:3px">
+      <h5>课程名称</h5>
+      <div class="card_bottom">
+        <h6 style="color: gray">主讲老师：和大爷</h6>
+        <el-button class="like_btn" round size="small">
+          <h6 style="color: gray;margin-right: 2px">已收藏</h6>
+          <i class="bi bi-star-fill" style="color:#ff8800"/>
+        </el-button>
+      </div>
+    </div>
+  </el-card>
+</template>
+
+<script setup>
+import {useStore} from "vuex";
+import {toRefs} from "vue";
+import {defineProps} from "vue";
+const props = defineProps({
+  isLast:Boolean,
+})
+const data = toRefs(props)
+const store = useStore();
+</script>
+
+<style>
+.post_card{
+  height:15%;
+  width:19.6%;
+}
+.card_bottom {
+  margin-top: 10px;
+  line-height: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+</style>
