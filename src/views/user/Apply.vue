@@ -14,7 +14,6 @@
       </el-footer>
     </el-scrollbar>
   </el-container>
-  <PersonEditDialog v-model="store.state.layoutStore.perHide"/>
 </template>
 
 <script setup>

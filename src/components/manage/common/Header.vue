@@ -2,7 +2,7 @@
   <div class="header">
     <!-- 右侧区域-->
     <div class="header_left">
-      <el-button @click="handleChange()" link :icon="store.state.layoutStore.icon?'Expand':'Fold'"/>
+      <el-button @click="handleChange()" link :icon="store.state.managerStore.icon?'Expand':'Fold'"/>
     </div>
     <!-- 左侧区域-->
     <div class="header_right">
@@ -22,9 +22,9 @@ import {useI18n} from "vue-i18n";
 const store = useStore();
 const { t } = useI18n();
 function handleChange(){
-  store.state.layoutStore.isCollapse = !store.state.layoutStore.isCollapse;
-  store.state.layoutStore.icon = !store.state.layoutStore.icon;
-  if(store.state.layoutStore.isCollapse){
+  store.state.managerStore.isCollapse = !store.state.managerStore.isCollapse;
+  store.state.managerStore.icon = !store.state.managerStore.icon;
+  if(store.state.managerStore.isCollapse){
     document.getElementById('el-aside').style.width = "4.15%";
   }else{
     document.getElementById('el-aside').style.width = "16.4%";

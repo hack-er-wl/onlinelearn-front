@@ -18,8 +18,8 @@
             router
             :default-active="this.$router.path">
           <el-menu-item index="/home">首页</el-menu-item>
-          <el-menu-item index="/apply">讲师入住</el-menu-item>
-          <el-menu-item index="/thome">我是讲师</el-menu-item>
+          <el-menu-item :disabled="store.state.teacherStore.isTeacher" index="/apply">讲师入住</el-menu-item>
+          <el-menu-item :disabled="!store.state.teacherStore.isTeacher" index="/thome">我是讲师</el-menu-item>
         </el-menu>
       </div>
       <div class="header_center_search">

@@ -3,3 +3,6 @@ import {get, post} from "../network/request";
 export function checkTeacher(data){
     return get("teacher/check",data)
 }
+export function queryCourseTeacher(data){
+    return get("teacher/query/course",data)
+}

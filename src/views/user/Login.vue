@@ -104,6 +104,7 @@ import Theme from "../../components/user/common/Theme.vue";
 import {useI18n} from "vue-i18n";
 import useNotification from "@/hooks/useNotification";
 import {initWebSocket} from "@/api/socket";
+import {getUser} from "@/api/user";
 
 const router = useRouter();
 const store = useStore();
@@ -140,6 +141,8 @@ async function handleLogin() {
       const res = await store.dispatch("handleLogin", toRaw(loginForm));
       if (res) {
         useNotification('success','系统通知',t("signInSuccess"));
+        store.state.teacherStore.teacher = await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id}));
+        store.state.teacherStore.isTeacher = store.state.teacherStore.teacher != "";
         store.state.userStore.webSocket = initWebSocket();
         await router.push({path: "/"});
       } else {

@@ -8,16 +8,16 @@
             :src="user"/>
         <div style="margin-left: 4px">
           <div style="display:flex">
-            <h4>和大爷</h4>
-            <el-button link style="padding:2px 0 0 10px" @click="store.state.layoutStore.tperHide = true">
+            <h4>{{store.state.teacherStore.teacher.user_name}}</h4>
+            <el-button link style="padding:2px 0 0 10px" @click="store.state.teacherStore.tperHide = true">
               <el-icon size="large"><Edit/></el-icon>
             </el-button>
           </div>
           <div style="display:flex">
             <el-icon><Message /></el-icon>
-            <h6 style="color: gray;margin-left: 4px">hedaye@qq.com</h6>
+            <h6 style="color: gray;margin-left: 4px">{{store.state.teacherStore.teacher.e_mail}}</h6>
             <el-icon style="margin-left: 4px"><Iphone /></el-icon>
-            <h6 style="color: gray">18187684139</h6>
+            <h6 style="color: gray">{{store.state.teacherStore.teacher.user_tel}}</h6>
           </div>
         </div>
       </div>

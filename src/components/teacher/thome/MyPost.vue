@@ -6,7 +6,7 @@
       </div>
     </template>
     <div style="display: flex;height: 100%;flex-wrap: wrap">
-      <MyPostCard v-for="i in 3" :key="i" :isLast="i==3?true:false"/>
+      <MyPostCard v-for="(n,i) in store.state.teacherStore.postCourses" :key="i" :course="n" :isLast="i==3?true:false"/>
     </div>
     <div class="pagination">
       <el-pagination layout="prev, pager, next" :total="50" />
@@ -16,6 +16,8 @@
 
 <script setup>
 import MyPostCard from "@/components/teacher/thome/MyPostCard.vue";
+import {useStore} from "vuex";
+const store = useStore();
 </script>
 
 <style scoped>

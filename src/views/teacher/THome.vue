@@ -14,9 +14,9 @@
       </el-footer>
     </el-scrollbar>
   </el-container>
-  <TeacherEditDialog v-model="store.state.layoutStore.tperHide"/>
-  <AddCourseDialog v-model="store.state.layoutStore.addCouHide"/>
-  <AddTestDialog v-model="store.state.layoutStore.addTeHide"/>
+  <TeacherEditDialog v-model="store.state.teacherStore.tperHide"/>
+  <AddCourseDialog v-model="store.state.teacherStore.addCouHide"/>
+  <AddTestDialog v-model="store.state.teacherStore.addTeHide"/>
 </template>
 
 <script setup>
@@ -30,19 +30,10 @@ import AddTestDialog from "../../components/teacher/thome/AddTestDialog.vue";
 import {onMounted, toRaw} from "vue";
 import {getUser} from "@/api/user";
 const store = useStore();
-const route = useRoute();
-import router from "@/router";
-import {useRoute} from "vue-router";
 onMounted(async () => {
-  await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id})).then((res) => {
-    console.log(res);
-    if (res){
-
-    }else{
-      console.log(route);
-      router.push({path:route.path});
-    }
-  })
+  store.state.teacherStore.teacher = await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id}));
+  store.state.teacherStore.isTeacher = store.state.teacherStore.teacher != "";
+  store.state.teacherStore.postCourses = await store.dispatch("handleQueryCourseTeacher", toRaw({teachid: store.state.teacherStore.teacher.teach_id}));
 })
 </script>
 

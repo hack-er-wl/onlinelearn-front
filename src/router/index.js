@@ -48,7 +48,7 @@ const routes = [
   {
     path: "/apply",
     name: "apply",
-    component:() => import("../views/teacher/Apply.vue"),
+    component:() => import("../views/user/Apply.vue"),
     children:[
         {
           path: "",

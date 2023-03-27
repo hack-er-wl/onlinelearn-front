@@ -6,9 +6,6 @@ export default {
         isHide:false,
         perHide:false,//用户编辑
         pasHide:false,//修改密码
-        tpreHide:false,//讲师编辑
-        addCouHide:false,
-        addTeHide:false,
         callHide:false,
         isDot:false,
         learn_num:0,
@@ -19,8 +16,8 @@ export default {
         hotCourse:[],
         newCourse:[],
         results:[],
-        teacher:{},
         course:{},
+        teacher:{},
         chapters:[],
         recCourses:[],
         myCollect:[],

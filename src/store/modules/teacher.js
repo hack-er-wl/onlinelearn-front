@@ -1,19 +1,28 @@
-import {checkTeacher} from "@/api/teacher";
-
+import {checkTeacher, queryCourseTeacher} from "@/api/teacher";
 export default {
     state: {
-
+        tpreHide:false,//讲师编辑
+        addCouHide:false,
+        addTeHide:false,
+        teacher: {},
+        isTeacher:false,
+        postCourses:[]
     },
     actions: {
         async handleCheckTeacher({commit, dispatch}, data) {
             // 发送登录的网络请求
             try {
                 const res = await checkTeacher(data);
-                if (res.code == 200) {
-                    return res.data;
-                } else {
-                    return false;
-                }
+                return res.data;
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryCourseTeacher({commit, dispatch}, data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryCourseTeacher(data);
+                return res.data;
             } catch (error) {
                 return Promise.reject(error);
             }
