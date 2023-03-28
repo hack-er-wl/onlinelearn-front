@@ -1,7 +1,7 @@
 import {
     queryClassAll,
-    queryCourseAll,
-    queryMessageAll,
+    queryCourseAll, queryMenuAll,
+    queryMessageAll, queryRuleAll,
     querySliderAll,
     queryTeacherAll,
     queryUserAll
@@ -17,7 +17,9 @@ export default {
         classes:[],
         courses:[],
         messages:[],
-        sliders:[]
+        sliders:[],
+        menus:[],
+        rules:[]
     },
     actions:{
         async handleQueryClassAll({commit,dispatch},data){
@@ -63,6 +65,32 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryTeacherAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryMenuAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryMenuAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryRuleAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryRuleAll(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

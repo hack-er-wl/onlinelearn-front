@@ -11,12 +11,21 @@
 <script setup>
 import {useRouter} from "vue-router";
 import {useStore} from "vuex";
-import {watch} from "vue";
+import {toRaw, watch} from "vue";
 import {data} from "@/api/socket";
+import {getUser} from "@/api/user";
 const router = useRouter();
 const store = useStore();
-watch(data.notices,() => {
+watch(data.notices,async () => {
   store.state.layoutStore.isDot = true;
+  store.state.layoutStore.notices = {accept: [], no_accept: []};
+  await store.dispatch("handleQueryNotices", toRaw({userid: getUser().user_id})).then((res) => {
+    if (res.no_accept.length != 0) {
+      store.state.layoutStore.isDot = true;
+    }
+    store.state.layoutStore.notices.accept = res.accept;
+    store.state.layoutStore.notices.no_accept = res.no_accept;
+  })
 })
 </script>
 

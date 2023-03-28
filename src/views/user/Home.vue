@@ -29,7 +29,7 @@ onMounted(async () => {
   store.state.layoutStore.newCourse = [];
   store.state.layoutStore.slider = [];
   store.state.layoutStore.fields = [];
-  store.state.layoutStore.notices = [];
+  store.state.layoutStore.notices = {accept:[],no_accept:[]};
   await store.dispatch("handleSlider", toRaw({start: 0, end: 5})).then((res) => {
     store.state.layoutStore.slider = res;
   })
@@ -45,13 +45,9 @@ onMounted(async () => {
   await store.dispatch("handleQueryNotices", toRaw({userid:getUser().user_id})).then((res) => {
     if(res.no_accept.length != 0){
       store.state.layoutStore.isDot = true;
-      store.state.layoutStore.notices = res.accept;
-      for(let i in res.no_accept){
-        store.state.layoutStore.notices.push(res.no_accept[i]);
-      }
-    }else{
-      store.state.layoutStore.notices = res.accept;
     }
+    store.state.layoutStore.notices.accept = res.accept;
+    store.state.layoutStore.notices.no_accept = res.no_accept;
   })
 })
 </script>

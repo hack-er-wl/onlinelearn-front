@@ -6,7 +6,7 @@
     </el-header>
     <!--内容区域-->
     <el-scrollbar>
-      <el-main class="message_main" id="el-main">
+      <el-main id="el-main" style="background-color: rgb(242,242,245)">
         <div style="margin: 2%;width: 25%">
           <NoticeLeft/>
         </div>
@@ -26,11 +26,15 @@ import Header from "../../components/user/common/Header.vue";
 import Footer from "../../components/user/common/Footer.vue";
 import NoticeLeft from "../../components/user/notice/NoticeLeft.vue";
 import NoticeShow from "../../components/user/notice/NoticeShow.vue";
-import {onMounted} from "vue";
+import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
+import {getUser} from "@/api/user";
 const store = useStore();
-onMounted(()=>{
+onMounted(async () => {
   store.state.layoutStore.isDot = false;
+  for(let i in store.state.layoutStore.notices.no_accept){
+    await store.dispatch("handleSetAccept", toRaw({noticeid: store.state.layoutStore.notices.no_accept[i].notice_id,userid:getUser().user_id}));
+  }
 })
 </script>
 <style lang="scss" scoped>
@@ -60,18 +64,14 @@ onMounted(()=>{
     align-items: center;
     padding: 0;
   }
-  .message_main{
-    display: flex;
-    background-color: rgb(242,242,245);
-    height: 100vh;
-  }
   .el-main {
     width: 100%;
     padding:0;
+    display: flex;
+    --el-main-padding: 0;
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 25px 0 25px;
   }
 }
 .el-header {

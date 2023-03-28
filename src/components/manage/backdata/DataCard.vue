@@ -83,7 +83,6 @@ const data = toRefs(props)
   justify-content: space-between;
   align-items: center;
 }
-
 .statistic-footer .footer-item span:last-child {
   display: inline-flex;
   align-items: center;

@@ -12,6 +12,12 @@ export function queryUserAll(data){
 export function queryTeacherAll(data){
     return get("admin/query/teacher",data)
 }
+export function queryMenuAll(data){
+    return get("admin/query/menu",data)
+}
+export function queryRuleAll(data){
+    return get("teacher/query/rule",data)
+}
 export function queryMessageAll(data){
     return get("admin/query/notice",data)
 }

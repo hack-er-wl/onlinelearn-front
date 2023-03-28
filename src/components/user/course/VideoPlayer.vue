@@ -38,7 +38,7 @@ export default {
     },
     height: { // 视频播放器高度
       type: Number,
-      default: 550
+      default: 548
     },
     /*
       由于目前在最新版的Chrome浏览器（以及所有以Chromium为内核的浏览器）中，

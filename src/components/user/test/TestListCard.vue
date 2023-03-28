@@ -21,7 +21,7 @@ const data = toRefs(props)
 <style lang="scss" scoped>
 
 .test_box_card {
-  width: 95.3%;
+  width: 95.6%;
   margin:2%;
   .card-header{
     display: flex;

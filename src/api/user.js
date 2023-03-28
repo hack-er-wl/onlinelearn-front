@@ -113,5 +113,5 @@ export function queryNotices(data){
     return get("user/query/notice",data)
 }
 export function setAccept(data){
-    return post("user/query/notice/set",data)
+    return post("user/notice/set",data)
 }

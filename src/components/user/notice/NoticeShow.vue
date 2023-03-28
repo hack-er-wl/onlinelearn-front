@@ -1,8 +1,9 @@
 <template>
-  <MessageCard v-for="(n,i) in store.state.layoutStore.notices" :key="i" :notice="n"/>
+  <NoticeCard v-for="(n,i) in store.state.layoutStore.notices.no_accept" :key="i" :isNew="true" :notice="n"/>
+  <NoticeCard v-for="(n,i) in store.state.layoutStore.notices.accept" :key="i" :isNew="false" :notice="n"/>
 </template>
 <script setup>
-import MessageCard from "./NoticeCard.vue";
+import NoticeCard from "./NoticeCard.vue";
 import {useStore} from "vuex";
 const store = useStore();
 </script>

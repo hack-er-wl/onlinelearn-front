@@ -156,6 +156,11 @@ const routes = [
         path: "managemenu",
         name:'managemenu',
         component:() => import("../components/manage/menu/ManageMenu.vue")
+      },
+      {
+        path: "managerule",
+        name:'managerule',
+        component:() => import("../components/manage/rule/ManageRule.vue")
       }
     ]
   }
@@ -179,7 +184,8 @@ router.beforeEach((to, from, next) => {
           to.name == "message" || to.name == "mlogin" || to.name == "mhome" || to.name == "userdata" ||
           to.name == "coursedata" || to.name == "manageuser" || to.name == "managecourse" || to.name == "managetest" ||
           to.name == "manageteacher" || to.name == "manageslider" || to.name == "managemessage" ||
-          to.name == "managefield" || to.name == "manageclass" || to.name == "managevideo" || to.name == "managemenu"){
+          to.name == "managefield" || to.name == "manageclass" || to.name == "managevideo" || to.name == "managemenu" ||
+          to.name == "managerule"){
         next();
       }else{
         // 返回到登录页

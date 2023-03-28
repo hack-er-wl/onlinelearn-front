@@ -8,7 +8,7 @@
       <el-scrollbar>
         <el-main class="course_main" id="el-main">
           <el-container style="margin:2%">
-            <el-aside width="70%" >
+            <el-aside width="70%">
               <Videoplayer :video-url="store.state.layoutStore.videoUrl"/>
             </el-aside>
             <el-main style="margin: 0 0 0 2%">

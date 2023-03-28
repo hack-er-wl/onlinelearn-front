@@ -15,7 +15,7 @@ export function initWebSocket(){
     webSocket.onmessage = (evt) => {
         const received_msg = evt.data;
         const obj = JSON.parse(received_msg);
-        if(obj.fromusername == "系统"){
+        if(obj.fromusername == "0000000000"){
             useNotification('success','系统通知','收到系统通知!');
             data.notices.push(obj);
         }else{

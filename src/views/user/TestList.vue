@@ -77,7 +77,6 @@ const handleClick = (test) => {
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 30px 0 25px;
   }
 }
 .el-header {

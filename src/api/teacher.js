@@ -6,3 +6,6 @@ export function checkTeacher(data){
 export function queryCourseTeacher(data){
     return get("teacher/query/course",data)
 }
+export function queryRules(data){
+    return get("teacher/query/rule",data)
+}

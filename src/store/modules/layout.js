@@ -22,7 +22,7 @@ export default {
         recCourses:[],
         myCollect:[],
         assesses:[],
-        notices:[],
+        notices:{accept:[],no_accept:[]},
         tests:[],
         assessid:'',
         acceptid:'',

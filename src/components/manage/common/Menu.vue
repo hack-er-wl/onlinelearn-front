@@ -89,8 +89,12 @@
         <template #title>消息管理</template>
       </el-menu-item>
       <el-menu-item index="/mhome/managemenu">
-        <el-icon><Menu /></el-icon>
+        <el-icon><Finished /></el-icon>
         <template #title>菜单管理</template>
+      </el-menu-item>
+      <el-menu-item index="/mhome/managerule">
+        <el-icon><DocumentChecked /></el-icon>
+        <template #title>守则管理</template>
       </el-menu-item>
     </el-menu>
   </el-scrollbar>

@@ -32,7 +32,7 @@ import {getUser} from "@/api/user";
 const store = useStore();
 onMounted(async () => {
   store.state.teacherStore.teacher = await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id}));
-  store.state.teacherStore.isTeacher = store.state.teacherStore.teacher != "";
+  store.state.teacherStore.rules = await store.dispatch("handleQueryRule", toRaw({}));
   store.state.teacherStore.postCourses = await store.dispatch("handleQueryCourseTeacher", toRaw({teachid: store.state.teacherStore.teacher.teach_id}));
 })
 </script>
@@ -62,6 +62,7 @@ onMounted(async () => {
   }
   .el-main {
     width: 100%;
+    padding: 0;
   }
   .el-footer{
     --el-footer-padding:0;
