@@ -1,6 +1,6 @@
 <template>
   <!-- 内容区 -->
-  <div class="tdetail">
+  <el-container class="tdetail">
     <el-card class="tdetail_card">
       <template #header>
         <div class="tdetail_card_header">
@@ -77,14 +77,14 @@
       </el-form>
     </el-card>
     <ButtonCard btnA="确定" v-on:submit="submit" btnB="取消" v-on:cancel="cancel"/>
-  </div>
+  </el-container>
 </template>
 
 <script setup>
 import {reactive, ref, toRaw} from "vue";
 import {useI18n} from "vue-i18n";
 import router from "@/router";
-import ButtonCard from "@/components/user/common/ButtonCard.vue";
+import ButtonCard from "@/components/teacher/apply/ButtonCard.vue";
 import {useStore} from "vuex";
 import {getUser} from "@/api/user";
 const store = useStore();
@@ -134,7 +134,8 @@ function cancel(){
 
 <style lang="scss" scoped>
 .tdetail_card{
-  width: 99.8%;
+  width: 100%;
+  margin: 0 0 2% 0;
 }
 .tdetail_card_header{
   display: flex;
@@ -142,6 +143,8 @@ function cancel(){
   justify-content: space-between;
 }
 .tdetail{
-  margin: 12px 20px 12px 25px;
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
 }
 </style>

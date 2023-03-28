@@ -1,34 +1,34 @@
 <template>
-  <el-container style="margin-top: 8px;padding:0 25px 0 25px;height: 100%" class="common-layout">
+  <el-container style="margin: 2%;height: 100%" class="common-layout">
     <el-header style="display: flex;flex-direction: column">
-      <div style="display:flex;justify-content: center;margin:0 auto;">
+      <div style="display:flex;justify-content: center;margin:0 0 2% 0">
         <h2>入住资格</h2>
       </div>
-      <div style="display: flex;margin-top: 20px">
+      <div style="display: flex">
         <div>
           <h3><i class="bi bi-mortarboard-fill" style="color: red"/> 行业名师</h3>
-          <p style="font-size: 13px;color: gray">丰富的培训授课经验拥有自己擅长的领域</p>
+          <p style="font-size: 5%;color: gray">丰富的培训授课经验拥有自己擅长的领域</p>
         </div>
         <el-divider style="height: auto" direction="vertical"/>
         <div>
           <h3><i class="bi bi-book-half" style="color: red"/> 知名学者</h3>
-          <p style="font-size: 13px;color: gray">权威的教育背景，在培训行业公认的，具有影响力的专家学者</p>
+          <p style="font-size: 5%;color: gray">权威的教育背景，在培训行业公认的，具有影响力的专家学者</p>
         </div>
         <el-divider style="height: auto" direction="vertical"/>
         <div>
           <h3><i class="bi bi-person-hearts" style="color: red"/> 知识网红</h3>
-          <p style="font-size: 13px;color: gray">自媒体专家，强大的粉丝群体，对某一行业领域有深度思考和洞见</p>
+          <p style="font-size: 5%;color: gray">自媒体专家，强大的粉丝群体，对某一行业领域有深度思考和洞见</p>
         </div>
         <el-divider style="height: auto" direction="vertical"/>
         <div>
           <h3><i class="bi bi-people-fill" style="color: red"/> 实战专家</h3>
-          <p style="font-size: 13px;color: gray">国内知名企业丰富的实战经验</p>
+          <p style="font-size: 5%;color: gray">国内知名企业丰富的实战经验</p>
         </div>
       </div>
     </el-header>
-    <el-main style="margin-top: 75px;padding: 0 !important">
-        <div style="margin:20px">
-          <h3 style="display: flex;justify-content: center">申请讲师协议:</h3>
+    <el-main style="margin-top: 8%;padding: 0 !important">
+        <div>
+          <h3 style="display: flex;justify-content: center;margin:0 0 2% 0">申请讲师协议:</h3>
           <span style="font-size: 8px">
               <h4>甲方：在线教育平台（简称“甲方”）</h4>
               <h4>乙方：提交有效申请并经在线教育平台审核通过后，有权在在线教育平台制作，并在在线教育平台发布付费作品的自然人、法人、其他机构组织。</h4>

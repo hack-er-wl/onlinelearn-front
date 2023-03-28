@@ -8,16 +8,16 @@
     <el-scrollbar>
       <el-main class="test_main" id="el-main">
         <el-container>
-          <el-aside width="25%" style="padding-left: 25px;padding-right: 25px">
-            <AnswerCard/>
+          <el-aside width="25%" style="margin: 2% 2% 0 2%">
+            <AnswerCard :test="test"/>
           </el-aside>
-          <el-main style="padding: 0 !important">
-            <Paper/>
-            <ButtonCard btn-a="提交" btn-b="退出" style="margin-bottom: 15px"/>
+          <el-main style="margin-top: 2%">
+            <Paper :test="test"/>
+            <ButtonCard btn-a="提交" btn-b="退出" />
           </el-main>
-          <el-aside width="25%" style="padding-left: 25px;padding-right: 25px">
-            <TimeCard/>
-            <ProgressCard/>
+          <el-aside width="25%" style="margin: 2% 2% 0 2%">
+            <TimeCard :test="test"/>
+            <ProgressCard :test="test"/>
           </el-aside>
         </el-container>
       </el-main>
@@ -33,13 +33,18 @@ import Header from "../../components/user/common/Header.vue";
 import AnswerCard from "../../components/user/test/AnswerCard.vue";
 import Paper from "../../components/user/test/Paper.vue";
 import Footer from "../../components/user/common/Footer.vue";
-import ButtonCard from "../../components/user/common/ButtonCard.vue";
+import ButtonCard from "../../components/user/test/ButtonCard.vue";
 import TimeCard from "@/components/user/test/TimeCard.vue";
 import ProgressCard from "@/components/user/test/ProgressCard.vue";
+import {useStore} from "vuex";
+import {useRoute} from "vue-router";
+import qs from "qs";
+const store = useStore();
+const route = useRoute();
+const test = qs.parse(route.query.key);
 </script>
 <style lang="scss" scoped>
 .test_main{
-  --el-main-padding: 8px !important;
   background-color: rgb(242,242,245);
 }
 .container {
@@ -71,11 +76,10 @@ import ProgressCard from "@/components/user/test/ProgressCard.vue";
 
 .el-main {
   width: 100%;
-  padding:8px 0 0 0;
+  padding: 0;
 }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 30px 0 25px;
   }
 }
 .el-header {

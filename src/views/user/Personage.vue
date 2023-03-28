@@ -7,11 +7,11 @@
     <!-- 内容区 -->
     <el-scrollbar>
       <el-main style="background-color: rgb(242,242,245);" id="el-main">
-        <el-container style="margin-top: 8px">
-          <el-aside>
+        <el-container style="margin:2%">
+          <el-aside style="margin:0 2% 0 0">
             <PersonMenu/>
           </el-aside>
-          <el-main style="padding: 0;margin-left: 4px;margin-right: 25px;height: 100vh">
+          <el-main style="padding: 0;height: 100vh">
             <PersonShow/>
           </el-main>
         </el-container>
@@ -65,11 +65,10 @@ const store = useStore();
 
   .el-main {
     width: 100%;
-    padding:4px 0 0 0;
+    padding:0;
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 26px 0 25px;
   }
 }
 </style>

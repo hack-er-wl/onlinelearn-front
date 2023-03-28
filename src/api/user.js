@@ -8,6 +8,12 @@ export function login(data) {
     return get("user/login",data);
 }
 /**
+ * @description: 菜单
+ */
+export function handleMenu(data) {
+    return get("menu/query",data);
+}
+/**
  * @description: 获取验证码
  */
 export function code(data) {
@@ -81,6 +87,9 @@ export function queryAssess(data){
 }
 export function queryChapter(data){
     return get("user/query/chapter",data)
+}
+export function queryTests(data){
+    return get("user/query/test",data)
 }
 export function postReply(data){
     return post("user/reply",data)

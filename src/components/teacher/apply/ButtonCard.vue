@@ -25,8 +25,7 @@ function cancel(){
 </script>
 <style lang="scss" scoped>
 .button_card{
-  width: 99.8%;
-  margin:15px 0 0 0;
+  width: 100%;
   .button_card_box{
     display: flex;
     flex-wrap: wrap;

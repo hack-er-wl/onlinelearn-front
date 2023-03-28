@@ -1,8 +1,13 @@
 <template>
-    <QuestionChoice v-for="o in 7" :key="o" :index="o"/>
-    <QuestionJudge v-for="o in 4" :key="o" :index="o"/>
+    <QuestionChoice v-for="(n,i) in data.test.value.test_chooses" :key="i" :option="n" :index="i"/>
+    <QuestionJudge v-for="(n,i) in data.test.value.test_options" :key="i" :option="n" :index="i"/>
 </template>
 <script setup>
 import QuestionChoice from "./QuestionChoice.vue";
 import QuestionJudge from "./QuestionJudge.vue";
+import {defineProps, toRefs} from "vue";
+const props = defineProps({
+  test:Object
+})
+const data = toRefs(props);
 </script>

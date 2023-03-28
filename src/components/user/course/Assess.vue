@@ -8,8 +8,7 @@
             v-model="data.assess.value.assess_rate"
             disabled
             show-score
-            text-color="#ff9900"
-        />
+            text-color="#ff9900"/>
         <p style="font-size: 15px">{{data.assess.value.assess_content}}</p>
         <h6 style="color: gray;margin-top: 10px"><i class="bi bi-clock"/> {{data.assess.value.assess_time}}</h6>
       </div>
@@ -28,7 +27,7 @@
       </div>
     </div>
   </div>
-  <div v-for="(t,i) in data.assess.value.replies" :key="i" :id="'replay' + i"  style="background-color: rgb(247,247,247);border-radius: 4px;margin-left: 40px">
+  <div v-for="(t,i) in data.assess.value.replies" :key="i" :id="'replay' + i"  style="background-color: rgb(247,247,247);border-radius: 4px;margin-left: 4%">
     <Reply :reply="t"/>
   </div>
 </template>
@@ -57,6 +56,6 @@ const handleClick = () => {
   flex: auto;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0 15px 0;
+  padding:1% 0 1% 0;
 }
 </style>

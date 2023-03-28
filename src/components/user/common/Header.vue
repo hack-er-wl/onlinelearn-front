@@ -17,9 +17,7 @@
             mode="horizontal"
             router
             :default-active="this.$router.path">
-          <el-menu-item index="/home">首页</el-menu-item>
-          <el-menu-item :disabled="store.state.teacherStore.isTeacher" index="/apply">讲师入住</el-menu-item>
-          <el-menu-item :disabled="!store.state.teacherStore.isTeacher" index="/thome">我是讲师</el-menu-item>
+          <el-menu-item v-for="(n,i) in store.state.layoutStore.menus" :key="i" :index="n.menu_path">{{n.menu_name}}</el-menu-item>
         </el-menu>
       </div>
       <div class="header_center_search">
@@ -44,8 +42,13 @@ import Language from "./Language.vue";
 import UserDropDown from "./UserDropDown.vue";
 import Theme from "./Theme.vue";
 import {useI18n} from "vue-i18n";
+import {onMounted, toRaw} from "vue";
+import {getUser} from "@/api/user";
 const store = useStore();
 const { t } = useI18n();
+onMounted(async () => {
+  store.state.layoutStore.menus = await store.dispatch("handleMenu", toRaw({userid: getUser().user_id}));
+})
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +59,7 @@ const { t } = useI18n();
   width: 100%;
   flex-wrap: wrap;
   position: relative;
-  margin: 0 25px 0 25px;
+  margin: 0 2% 0 2%;
   .header_left {
     display: flex;
     align-items: center;

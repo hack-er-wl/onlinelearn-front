@@ -6,13 +6,8 @@
     </el-header>
     <!--内容区域-->
     <el-scrollbar>
-      <el-main class="message_main" id="el-main">
-        <div style="margin: 2%;width: 25%">
-          <NoticeLeft/>
-        </div>
-        <div style="margin: 2% 2% 2% 0;width: 75%">
-          <NoticeShow/>
-        </div>
+      <el-main class="test_main" id="el-main">
+        <TestListCard style="cursor: pointer" v-for="(n,i) in store.state.layoutStore.tests" :key="i" :test="n" @click="handleClick(n)"/>
       </el-main>
       <!--底部区域-->
       <el-footer>
@@ -24,17 +19,27 @@
 <script setup>
 import Header from "../../components/user/common/Header.vue";
 import Footer from "../../components/user/common/Footer.vue";
-import NoticeLeft from "../../components/user/notice/NoticeLeft.vue";
-import NoticeShow from "../../components/user/notice/NoticeShow.vue";
-import {onMounted} from "vue";
+import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
+import {useRoute, useRouter} from "vue-router";
+import TestListCard from "@/components/user/test/TestListCard.vue";
+import qs from "qs";
 const store = useStore();
-onMounted(()=>{
-  store.state.layoutStore.isDot = false;
+const route = useRoute();
+const router = useRouter();
+const course_id = route.query.key;
+onMounted(async () => {
+  store.state.layoutStore.tests = [];
+  await store.dispatch("handleQueryTests", toRaw({courseid: course_id})).then((tests) => {
+    store.state.layoutStore.tests = tests;
+  })
+  console.log(store.state.layoutStore.tests[0]);
 })
+const handleClick = (test) => {
+  router.push({path:'/test',query: {key: qs.stringify(test)}})
+}
 </script>
 <style lang="scss" scoped>
-
 .container {
   height: 100vh;
 
@@ -55,13 +60,14 @@ onMounted(()=>{
       min-height: 400px;
     }
   }
+
   .el-header {
     display: flex;
     align-items: center;
     padding: 0;
   }
-  .message_main{
-    display: flex;
+  .test_main{
+    --el-main-padding: 8px !important;
     background-color: rgb(242,242,245);
     height: 100vh;
   }
@@ -71,7 +77,7 @@ onMounted(()=>{
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 25px 0 25px;
+    margin: 0 30px 0 25px;
   }
 }
 .el-header {

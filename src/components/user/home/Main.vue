@@ -21,16 +21,12 @@ import SortTable from "./SortTable.vue";
 </script>
 <style scoped>
 .main_carousel{
-  margin-top: 8px;
-  padding-left:25px;
-  padding-right: 25px;
+  margin: 2%;
 }
 .main_sort_table{
-  margin:15px 25px 0 25px;
+  margin: 2%;
 }
 .main_show{
-  padding-left: 25px;
-  padding-right: 25px;
-  margin-bottom: 10px;
+  margin: 2%;
 }
 </style>

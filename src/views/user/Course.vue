@@ -7,19 +7,19 @@
       <!--内容区域-->
       <el-scrollbar>
         <el-main class="course_main" id="el-main">
-          <el-container style="margin-bottom: 3px">
-            <el-aside width="70%" style="margin-left: 26px;margin-right: 10px">
+          <el-container style="margin:2%">
+            <el-aside width="70%" >
               <Videoplayer :video-url="store.state.layoutStore.videoUrl"/>
             </el-aside>
-            <el-main style="padding: 0 !important;margin-right: 23px">
+            <el-main style="margin: 0 0 0 2%">
               <Chapters :course="course"/>
             </el-main>
           </el-container>
-          <div style="display: flex;margin-left: 25px;margin-right: 23px">
-            <Summary style="margin-right: 5px"/>
+          <div style="display: flex;margin: 2%">
+            <Summary style="margin-right: 2%"/>
             <Author/>
           </div>
-          <div style="margin-left: 25px;margin-right: 25px;margin-bottom: 10px">
+          <div style="margin: 2%">
             <AssessCard/>
           </div>
         </el-main>
@@ -102,20 +102,17 @@ onMounted(async () => {
   .el-header {
     display: flex;
     align-items: center;
-    padding: 0;
   }
 
   .el-main {
     width: 100%;
-    padding:8px 0 0 0;
+    padding: 0;
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 25px 0 25px;
   }
 }
 .course_main{
-  --el-main-padding: 8px !important;
   background-color: rgb(242,242,245);
 }
 .el-header {

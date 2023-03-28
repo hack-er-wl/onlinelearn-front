@@ -1,5 +1,6 @@
 export default {
     state: {
+        menus:[],
         isExpand: true,
         isReg:false,
         Hide:false,
@@ -8,7 +9,6 @@ export default {
         pasHide:false,//修改密码
         callHide:false,
         isDot:false,
-        learn_num:0,
         show:[false,true,true],
         videoUrl:'',
         slider:[],
@@ -23,6 +23,7 @@ export default {
         myCollect:[],
         assesses:[],
         notices:[],
+        tests:[],
         assessid:'',
         acceptid:'',
         isDark:

@@ -1,5 +1,5 @@
 <template>
-  <el-card class="person_box_card" shadow="hover" style="margin-left: 25px">
+  <el-card class="person_box_card" shadow="hover">
     <template #header>
       <div class="person_card_header">
         <div style="display: flex;flex-direction: column;align-items: center">

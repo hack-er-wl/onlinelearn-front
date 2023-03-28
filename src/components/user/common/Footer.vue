@@ -12,7 +12,6 @@ const store = useStore();
 .footer_box_card {
   width: 100%;
   color: gray;
-  margin: 12px 0;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,14 +1,14 @@
 <template>
   <!--讲师信息区域-->
-  <Detail style="margin:8px 25px 0 25px"/>
+  <Detail style="margin:2%"/>
   <!--中间区域-->
   <div style="display: flex">
-    <Operate style="margin:8px 4px 0 25px;width: 20%"/>
-    <WeatherCard style="margin:8px 4px 0 4px;width: 20%"/>
-    <RulesCard style="margin:8px 25px 0 4px;width: 60%"/>
+    <Operate style="margin:0 2% 0 2%;width: 20%"/>
+    <WeatherCard style="margin:0 2% 0 0;width: 30%"/>
+    <RulesCard style="margin:0 2% 0 0;width: 50%"/>
   </div>
   <!--展示区域-->
-  <MyPost style="margin:8px 25px 10px 25px"/>
+  <MyPost style="margin:2%"/>
 </template>
 <script setup>
 import Detail from "./Detail.vue";

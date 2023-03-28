@@ -8,7 +8,8 @@
     <el-scrollbar>
       <!-- 内容区域-->
       <el-main id="el-main" style="background-color: rgb(242,242,245)">
-        <ResultShow style="margin:15px 25px 10px 25px;height: 100vh"/>
+        <ResultShow style="margin: 2%;height: 100vh"/>
+        <el-pagination class="pagination" layout="prev, pager, next" :total="50" />
       </el-main>
       <!-- 底部区域 -->
       <el-footer>
@@ -54,11 +55,16 @@ import ResultShow from "../../components/user/result/ResultShow.vue";
 
   .el-main {
     width: 100%;
-    padding:4px 0 0 0;
+    padding:0;
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 26px 0 25px;
+  }
+  .pagination{
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

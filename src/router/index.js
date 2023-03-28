@@ -36,6 +36,11 @@ const routes = [
     component: () => import("../views/user/Test.vue"),
   },
   {
+    path: "/testlist",
+    name: "testlist",
+    component: () => import("../views/user/TestList.vue"),
+  },
+  {
     path: "/personage",
     name: "personage",
     component: () => import("../views/user/Personage.vue"),
@@ -146,6 +151,11 @@ const routes = [
         path: "managemessage",
         name:'managemessage',
         component:() => import("../components/manage/message/ManageMessage.vue")
+      },
+      {
+        path: "managemenu",
+        name:'managemenu',
+        component:() => import("../components/manage/menu/ManageMenu.vue")
       }
     ]
   }
@@ -163,13 +173,13 @@ router.beforeEach((to, from, next) => {
   const token = store.state.userStore.token;
   if (to.name !== "login") {
     if (!token) {
-      if(to.name == "home" || to.name == "course" || to.name == "test" || to.name == "personage" ||
+      if(to.name == "home" || to.name == "course" || to.name == "testlist" || to.name == "test" || to.name == "personage" ||
           to.name == "register" || to.name == "socket" || to.name == "apply"  || to.name == "tdeal" ||
           to.name == "tdetail" || to.name == "notfind" || to.name == "thome" || to.name == "result" ||
           to.name == "message" || to.name == "mlogin" || to.name == "mhome" || to.name == "userdata" ||
           to.name == "coursedata" || to.name == "manageuser" || to.name == "managecourse" || to.name == "managetest" ||
           to.name == "manageteacher" || to.name == "manageslider" || to.name == "managemessage" ||
-          to.name == "managefield" || to.name == "manageclass" || to.name == "managevideo"){
+          to.name == "managefield" || to.name == "manageclass" || to.name == "managevideo" || to.name == "managemenu"){
         next();
       }else{
         // 返回到登录页

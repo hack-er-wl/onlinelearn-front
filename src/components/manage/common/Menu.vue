@@ -88,6 +88,10 @@
         <el-icon><MessageBox /></el-icon>
         <template #title>消息管理</template>
       </el-menu-item>
+      <el-menu-item index="/mhome/managemenu">
+        <el-icon><Menu /></el-icon>
+        <template #title>菜单管理</template>
+      </el-menu-item>
     </el-menu>
   </el-scrollbar>
 </template>

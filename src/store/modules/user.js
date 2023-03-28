@@ -5,7 +5,7 @@ import {
     cancelSubscribeCourse,
     code,
     getSliders,
-    handleApply,
+    handleApply, handleMenu,
     login,
     postApply,
     postAssess,
@@ -24,7 +24,7 @@ import {
     queryRecommend,
     queryReply,
     querySubscribeCourse,
-    queryTeacherByCourseId,
+    queryTeacherByCourseId, queryTests,
     regist, setAccept,
     subscribeCourse,
     updatePass
@@ -74,6 +74,19 @@ export default {
                     localStorage.setItem('user',user);
                     localStorage.setItem('VUE_ADMIN_ISLOGIN','true');
                     return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleMenu({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await handleMenu(data);
+                if (res.code == 200) {
+                    return res.data;
                 } else {
                     return false;
                 }
@@ -332,6 +345,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryChapter(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryTests({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryTests(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

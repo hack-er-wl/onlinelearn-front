@@ -141,6 +141,7 @@ async function handleLogin() {
       const res = await store.dispatch("handleLogin", toRaw(loginForm));
       if (res) {
         useNotification('success','系统通知',t("signInSuccess"));
+        store.state.layoutStore.menus = await store.dispatch("handleMenu", toRaw({userid: getUser().user_id}));
         store.state.teacherStore.teacher = await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id}));
         store.state.teacherStore.isTeacher = store.state.teacherStore.teacher != "";
         store.state.userStore.webSocket = initWebSocket();

@@ -18,9 +18,6 @@
                   @click="handleClick(n)"
                   style="cursor: pointer;width: 23.8%"/>
     </div>
-   <div class="pagination">
-     <el-pagination layout="prev, pager, next" :total="50" />
-   </div>
   </div>
 </template>
 
@@ -51,10 +48,5 @@ const handleClick = async (course) => {
 </script>
 
 <style scoped>
-.pagination{
-  margin-top: 8%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 </style>

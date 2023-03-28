@@ -84,11 +84,10 @@ onMounted(async () => {
 
   .el-main {
     width: 100%;
-    padding:4px 0 0 0;
+    --el-main-padding: 0;
   }
   .el-footer{
     --el-footer-padding:0;
-    margin: 0 26px 0 25px;
   }
 }
 </style>
