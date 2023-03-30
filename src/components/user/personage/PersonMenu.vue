@@ -5,8 +5,14 @@
         <div style="display: flex;flex-direction: column;align-items: center">
           <el-avatar :size="50" style="margin-top: 8px" icon="UserFilled" :src="getUser().user_head"/>
           <div style="display:flex;margin-top: 3px;margin-right: 4px">
-            <i class="bi bi-person"/>
-            <h4 style="color: white;margin-left: 4px">{{getUser().user_name}}</h4>
+            <div style="display: flex">
+              <i class="bi bi-person"/>
+              <h4 style="color: white;margin-left: 4px">{{getUser().user_name}}</h4>
+            </div>
+            <div style="display:flex;margin-left: 4px;margin-top: 3px">
+              <el-icon><Coin /></el-icon>
+              <h6 style="color: white;margin-left: 4px">{{getUser().user_money+'￥'}}</h6>
+            </div>
           </div>
           <div style="display:flex;margin-bottom: 12px">
             <el-icon><Message /></el-icon>
@@ -22,6 +28,7 @@
       <el-button round icon="Tickets" @click="myOrder()" style="margin-left: 0 !important;margin-top: 8px">我的订单</el-button>
       <el-button round icon="Edit" @click="store.state.layoutStore.perHide = true" style="margin-left: 0 !important;margin-top: 8px">{{getUser().user_add != "" && getUser().user_like != "" ? '已经完善':'完善信息'}}</el-button>
       <el-button round icon="Edit" @click="store.state.layoutStore.pasHide = true" style="margin-left: 0 !important;margin-top: 8px">修改密码</el-button>
+      <el-button round icon="Money" @click="store.state.layoutStore.moneyHide = true" style="margin-left: 0 !important;margin-top: 8px">我要充值</el-button>
     </div>
   </el-card>
 </template>

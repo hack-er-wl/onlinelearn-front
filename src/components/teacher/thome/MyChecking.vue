@@ -2,12 +2,14 @@
   <el-card>
     <template #header>
       <div class="person_card_header">
-        <h4><i style="color:#11cef8" class="bi bi-cloud-arrow-up-fill"/> 我发布的课程</h4>
+        <h4><i style="color:#f5ae16" class="bi bi-shield-fill-exclamation"/> 正在审核</h4>
       </div>
     </template>
-    <div style="display: flex;height: 100%;flex-wrap: wrap">
-      <el-empty v-if="store.state.teacherStore.postCourses.checked == 0" :image-size="200" />
-      <MyPostCard v-else v-for="(n,i) in store.state.teacherStore.postCourses.checked" :key="i" :course="n" :isLast="i==3?true:false"/>
+    <div v-if="store.state.teacherStore.postCourses.checking == 0" class="empty">
+      <el-empty :image-size="100" description="空空如也~"/>
+    </div>
+    <div v-else style="display: flex;height: 100%;flex-wrap: wrap">
+      <MyPostCard v-for="(n,i) in store.state.teacherStore.postCourses.checking" :key="i" :course="n" :isLast="i==3?true:false"/>
     </div>
     <div class="pagination">
       <el-pagination layout="prev, pager, next" :total="50" />

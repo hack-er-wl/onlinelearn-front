@@ -69,7 +69,7 @@ const routes = [
   },{
     path: "/thome",
     name: "thome",
-    component:() => import("../views/teacher/THome.vue")
+    component:() => import("../views/teacher/Home.vue")
   },{
     path: "/result",
     name: "result",

@@ -7,11 +7,11 @@ export const data = reactive({
 export function initWebSocket(){
     const res = JSON.parse(localStorage.getItem('user'));
     const webSocket = new WebSocket("ws://localhost:8080/websocket/"+res.user_id+"/");
-//连通之后的回调事件
+    //连通之后的回调事件
     webSocket.onopen = function () {
         useNotification('success','系统通知','Websocket已连接!');
     };
-//当收到消息时
+    //当收到消息时
     webSocket.onmessage = (evt) => {
         const received_msg = evt.data;
         const obj = JSON.parse(received_msg);

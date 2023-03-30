@@ -39,9 +39,15 @@ import ProgressCard from "@/components/user/test/ProgressCard.vue";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
 import qs from "qs";
+import {onMounted} from "vue";
 const store = useStore();
 const route = useRoute();
 const test = qs.parse(route.query.key);
+onMounted(()=>{
+  store.state.userStore.score = 0;
+  store.state.userStore.done = 0;
+  store.state.userStore.time = test.use_time * 60000;
+})
 </script>
 <style lang="scss" scoped>
 .test_main{

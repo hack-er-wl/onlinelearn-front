@@ -9,6 +9,8 @@
   </div>
   <!--展示区域-->
   <MyPost style="margin:2%"/>
+  <MyCkecking style="margin:2%"/>
+  <MyCheckFail style="margin:2%"/>
 </template>
 <script setup>
 import Detail from "./Detail.vue";
@@ -16,6 +18,8 @@ import Operate from "./Operate.vue";
 import MyPost from "./MyPost.vue";
 import WeatherCard from "./WeatherCard.vue";
 import RulesCard from "./RulesCard.vue";
+import MyCkecking from "@/components/teacher/thome/MyChecking.vue";
+import MyCheckFail from "@/components/teacher/thome/MyCheckFail.vue";
 </script>
 <style scoped>
 

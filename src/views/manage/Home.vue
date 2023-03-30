@@ -14,11 +14,17 @@
          </el-scrollbar>
         </el-container>
     </el-container>
+  <EditStatus v-model="store.state.managerStore.editStatus"/>
+  <EditCheck v-model="store.state.managerStore.editCheck"/>
 </template>
 
 <script setup>
 import Menu from "../../components/manage/common/Menu.vue";
 import Header from "../../components/manage/common/Header.vue";
+import EditStatus from "@/components/manage/course/EditStatus.vue";
+import EditCheck from "@/components/manage/course/EditCheck.vue";
+import {useStore} from "vuex";
+const store = useStore();
 </script>
 
 <style lang="scss" scoped>

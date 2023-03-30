@@ -7,6 +7,7 @@ export default {
         isHide:false,
         perHide:false,//用户编辑
         pasHide:false,//修改密码
+        moneyHide:false,//充值
         callHide:false,
         isDot:false,
         show:[false,true,true],

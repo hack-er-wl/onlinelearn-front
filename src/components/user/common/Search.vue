@@ -4,7 +4,7 @@
       v-model="value"
       :fetch-suggestions="search"
       popper-class="my-autocomplete"
-      placeholder="请输入···"
+      placeholder="&#128293 请输入···"
       @select="handleSelect">
     <template #suffix>
       <el-icon style="cursor: pointer" @click="search_icon(value)">

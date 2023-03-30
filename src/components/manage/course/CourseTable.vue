@@ -7,13 +7,15 @@
       <el-table-column prop="course_status" label="课程状态" />
       <el-table-column prop="course_fee" label="课程费用" />
       <el-table-column prop="subscribe_num" label="订阅数量" />
-      <el-table-column align="right" width="180px">
+      <el-table-column prop="course_check" label="审核状态" />
+      <el-table-column align="right" width="200px">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
-          <el-button type="primary" size="small" @click="">编辑</el-button>
-          <el-button size="small" type="danger" @click="">删除</el-button>
+          <el-button type="success" size="small" @click="onCheck(scope.row)">审核</el-button>
+          <el-button type="primary" size="small" @click="onStatus(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -35,6 +37,19 @@ const filterTableData = computed(() =>
             data.course_name.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onCheck = (row)=>{
+  store.state.managerStore.editCheck = true;
+  store.state.managerStore.editCourse = row;
+  console.log(row);
+}
+const onStatus = (row)=>{
+  store.state.managerStore.editStatus = true;
+  store.state.managerStore.editCourse = row;
+  console.log(row);
+}
+const onDelete = (row)=>{
+  console.log(row);
+}
 </script>
 
 <style lang="scss" scoped>

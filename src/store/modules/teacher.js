@@ -6,7 +6,7 @@ export default {
         addTeHide:false,
         teacher: {},
         rules:[],
-        postCourses:[]
+        postCourses:{}
     },
     actions: {
         async handleCheckTeacher({commit, dispatch}, data) {

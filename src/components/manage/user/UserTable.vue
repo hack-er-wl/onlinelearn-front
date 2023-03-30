@@ -7,6 +7,7 @@
       <el-table-column prop="e_mail" label="邮箱" />
       <el-table-column prop="user_like" label="兴趣" />
       <el-table-column prop="user_add" label="地址" />
+      <el-table-column prop="user_money" label="余额" />
       <el-table-column align="right">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>

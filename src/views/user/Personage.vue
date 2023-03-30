@@ -23,6 +23,7 @@
   </el-container>
   <PersonEditDialog v-model="store.state.layoutStore.perHide"/>
   <EditPassWord v-model="store.state.layoutStore.pasHide"/>
+  <MoneyAdd v-model="store.state.layoutStore.moneyHide"/>
 </template>
 
 <script setup>
@@ -32,6 +33,7 @@ import PersonMenu from "../../components/user/personage/PersonMenu.vue";
 import PersonShow from "../../components/user/personage/PersonShow.vue";
 import {useStore} from "vuex";
 import EditPassWord from "../../components/user/personage/EditPassWord.vue";
+import MoneyAdd from "@/components/user/personage/moneyAdd.vue";
 const store = useStore();
 </script>
 
