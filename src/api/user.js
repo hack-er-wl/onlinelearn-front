@@ -91,6 +91,9 @@ export function queryChapter(data){
 export function queryTests(data){
     return get("user/query/test",data)
 }
+export function queryRanks(data){
+    return get("user/query/rank",data)
+}
 export function postReply(data){
     return post("user/reply",data)
 }

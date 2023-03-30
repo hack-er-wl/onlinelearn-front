@@ -19,7 +19,7 @@ import {
     queryCourseByCourseId,
     queryCourseByStatus,
     queryFields,
-    queryMyCollect, queryNotices,
+    queryMyCollect, queryNotices, queryRanks,
     queryRecommend,
     querySubscribeCourse,
     queryTeacherByCourseId, queryTests,
@@ -359,6 +359,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryTests(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryRanks({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryRanks(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

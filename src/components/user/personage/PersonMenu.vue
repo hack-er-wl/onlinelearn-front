@@ -42,19 +42,25 @@ function learnCenter(){
   store.state.layoutStore.show[0] = false;
   store.state.layoutStore.show[1] = true;
   store.state.layoutStore.show[2] = true;
+  store.state.layoutStore.show[3] = true;
 }
 function myCourse(){
   store.state.layoutStore.show[0] = true;
   store.state.layoutStore.show[1] = false;
   store.state.layoutStore.show[2] = true;
+  store.state.layoutStore.show[3] = true;
 }
 function myFavorite(){
   store.state.layoutStore.show[0] = true;
   store.state.layoutStore.show[1] = true;
   store.state.layoutStore.show[2] = false;
+  store.state.layoutStore.show[3] = true;
 }
 function myOrder(){
-  ElMessage({message:"订单功能预计下周实现！",type:"warning"});
+  store.state.layoutStore.show[0] = true;
+  store.state.layoutStore.show[1] = true;
+  store.state.layoutStore.show[2] = true;
+  store.state.layoutStore.show[3] = false;
 }
 </script>
 <style scoped>

@@ -7,7 +7,7 @@
     <!--内容区域-->
     <el-scrollbar>
       <el-main class="test_main" id="el-main">
-        <TestListCard style="cursor: pointer" v-for="(n,i) in store.state.layoutStore.tests" :key="i" :test="n" @click="handleClick(n)"/>
+        <TestListCard style="cursor: pointer" v-for="(n,i) in store.state.layoutStore.tests" :key="i" :test="n"/>
       </el-main>
       <!--底部区域-->
       <el-footer>
@@ -33,11 +33,7 @@ onMounted(async () => {
   await store.dispatch("handleQueryTests", toRaw({courseid: course_id})).then((tests) => {
     store.state.layoutStore.tests = tests;
   })
-  console.log(store.state.layoutStore.tests[0]);
 })
-const handleClick = (test) => {
-  router.push({path:'/test',query: {key: qs.stringify(test)}})
-}
 </script>
 <style lang="scss" scoped>
 .container {

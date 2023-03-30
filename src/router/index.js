@@ -41,6 +41,11 @@ const routes = [
     component: () => import("../views/user/TestList.vue"),
   },
   {
+    path: "/rank",
+    name: "rank",
+    component: () => import("../views/user/Rank.vue"),
+  },
+  {
     path: "/personage",
     name: "personage",
     component: () => import("../views/user/Personage.vue"),
@@ -179,7 +184,7 @@ router.beforeEach((to, from, next) => {
   if (to.name !== "login") {
     if (!token) {
       if(to.name == "home" || to.name == "course" || to.name == "testlist" || to.name == "test" || to.name == "personage" ||
-          to.name == "register" || to.name == "socket" || to.name == "apply"  || to.name == "tdeal" ||
+          to.name == "register" || to.name == "socket" || to.name == "apply"  || to.name == "tdeal" || to.name == "rank" ||
           to.name == "tdetail" || to.name == "notfind" || to.name == "thome" || to.name == "result" ||
           to.name == "message" || to.name == "mlogin" || to.name == "mhome" || to.name == "userdata" ||
           to.name == "coursedata" || to.name == "manageuser" || to.name == "managecourse" || to.name == "managetest" ||

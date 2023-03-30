@@ -10,7 +10,7 @@ export default {
         moneyHide:false,//充值
         callHide:false,
         isDot:false,
-        show:[false,true,true],
+        show:[false,true,true,true],
         videoUrl:'',
         slider:[],
         fields:[],
@@ -25,6 +25,7 @@ export default {
         assesses:[],
         notices:{accept:[],no_accept:[]},
         tests:[],
+        ranks:[],
         assessid:'',
         acceptid:'',
         isDark:
