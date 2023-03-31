@@ -2,17 +2,20 @@
   <el-card  class="table-card">
     <el-table :data="filterTableData" border>
       <el-table-column type="index" width="55px" label="编号"/>
-      <el-table-column prop="menu_id" label="菜单ID" />
-      <el-table-column prop="menu_name" label="菜单名称" />
-      <el-table-column prop="menu_path" label="菜单路径" />
-      <el-table-column prop="role" label="角色权限" />
+      <el-table-column prop="test_id" label="测试ID" />
+      <el-table-column prop="course_id" label="课程ID" />
+      <el-table-column prop="teach_id" label="讲师ID" />
+        <el-table-column prop="test_name" label="测试名称" />
+      <el-table-column prop="ques_num" label="题目总数" />
+      <el-table-column prop="test_time" label="发布时间" />
+      <el-table-column prop="use_time" label="测试时间" />
       <el-table-column align="right" width="180px">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
-          <el-button type="primary" size="small" @click="">编辑</el-button>
-          <el-button size="small" type="danger" @click="">删除</el-button>
+          <el-button type="primary" size="small" @click="onStatus(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -28,10 +31,16 @@ import {useStore} from "vuex";
 const store = useStore();
 const search = ref('');
 const filterTableData = computed(() =>
-    store.state.managerStore.menus.filter(
+    store.state.managerStore.tests.filter(
         (data) =>
             !search.value ||
-            data.menu_name.toLowerCase().includes(search.value.toLowerCase())
+            data.test_id.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onStatus = (row)=>{
+  console.log(row);
+}
+const onDelete = (row)=>{
+  console.log(row);
+}
 </script>

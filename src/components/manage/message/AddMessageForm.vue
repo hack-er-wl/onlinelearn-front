@@ -1,5 +1,5 @@
 <template>
-  <el-card class="table-card">
+  <el-card class="table-card" style="margin-bottom: 2%">
     <el-form :model="formAddMessage" style="display: flex;justify-content: space-between">
       <el-form-item label="通知内容" style="margin-top: 10px">
         <el-input v-model="formAddMessage.content" placeholder="请输入通知内容···"/>
@@ -21,9 +21,3 @@ const onSubmit = () => {
   emit('submit',formAddMessage);
 }
 </script>
-
-<style lang="scss" scoped>
-.table-card{
-  margin: 10px;
-}
-</style>

@@ -24,7 +24,18 @@ import Header from "../../components/manage/common/Header.vue";
 import EditStatus from "@/components/manage/course/EditStatus.vue";
 import EditCheck from "@/components/manage/course/EditCheck.vue";
 import {useStore} from "vuex";
+import {onMounted, toRaw} from "vue";
 const store = useStore();
+onMounted(async () => {
+    store.state.managerStore.users = [];
+    await store.dispatch("handleQueryUserAll", toRaw({})).then((users) => {
+        store.state.managerStore.users = users;
+    })
+    store.state.managerStore.teachers = [];
+    await store.dispatch("handleQueryTeacherAll", toRaw({})).then((teachers) => {
+        store.state.managerStore.teachers = teachers;
+    })
+})
 </script>
 
 <style lang="scss" scoped>
@@ -40,6 +51,7 @@ const store = useStore();
       width: 100%;
       overflow: unset;
       background-color: rgb(240,242,245);
+      padding: 2%;
     }
     .el-header {
       display: flex;

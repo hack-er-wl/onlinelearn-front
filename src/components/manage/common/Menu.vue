@@ -2,7 +2,7 @@
   <el-scrollbar>
     <el-menu
         router
-        style="height: 100vh"
+        style="height: 100vh;width: 100%"
         default-active="2"
         class="el-menu-vertical-demo"
         :unique-opened="true"

@@ -1,5 +1,5 @@
 <template>
-  <el-card class="table-card">
+  <el-card class="table-card" style="margin-bottom: 2%">
     <el-form :model="formAddSlider" style="display: flex;justify-content: space-between">
       <el-form-item label="分类名称" style="margin-top: 10px">
         <el-input v-model="formAddSlider.sliderurl" placeholder="请输入url···"/>
@@ -21,9 +21,3 @@ const onSubmit = () => {
   emit('submit',formAddSlider);
 }
 </script>
-
-<style lang="scss" scoped>
-.table-card{
-  margin: 10px;
-}
-</style>

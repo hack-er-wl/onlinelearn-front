@@ -2,12 +2,12 @@
   <el-card class="test_box_card">
     <template #header>
       <div class="card-header">
-        <h6><i class="bi bi-pencil" style="color: gray"/> {{data.test.value.test_id}}</h6>
+        <h6><i class="bi bi-pencil" style="color: gray"/> {{data.test.value.test_name}}</h6>
         <p style="font-size: 5px;color: gray">{{data.test.value.test_time}}</p>
       </div>
     </template>
     <div style="display: flex;justify-content: space-between">
-      <div>{{data.test.value.use_time}}分钟</div>
+      <div><p style="font-size: 12px;color: gray">建议用时: {{data.test.value.use_time}}分钟</p></div>
       <div><el-button :type="done?'primary':'warning'" size="small" @click="handleClick(data.test.value,done)">{{done?'查看排名':'参加考试'}}</el-button></div>
     </div>
   </el-card>

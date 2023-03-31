@@ -7,7 +7,8 @@
                 :content="n.content"
                 :foot="n.foot"
                 :color="n.color"
-                :num="n.num"/>
+                :num="n.num"
+                :margin="n.margin"/>
     </div>
     <CourseEchartCard/>
   </div>
@@ -39,7 +40,8 @@ const data = [{
   content:"所有课程数量",
   foot:"比昨天增加",
   num:24,
-  color:"rgb(238,102,102)"
+  color:"rgb(238,102,102)",
+    margin:"0"
 },
   {
     title:"所有领域",
@@ -47,26 +49,29 @@ const data = [{
     content:"所有课程领域数量",
     foot:"比昨天增加",
     num:10,
-    color:"rgb(250,200,88)"
+    color:"rgb(250,200,88)",
+      margin:"0 0 2% 2%"
   },{
     title:"所有分类",
     value:store.state.managerStore.classes.length,
     content:"所有课程分类数量",
     foot:"比昨天增加",
     num:20,
-    color:"rgb(145,204,117)"
+    color:"rgb(145,204,117)",
+        margin:"0 0 2% 2%"
   },{
     title:"其他游客",
     value:100,
     content:"其他用户数量",
     foot:"比昨天增加",
     num:5,
-    color: "rgb(84,112,198)"
+    color: "rgb(84,112,198)",
+        margin:"0 0 2% 2%"
   }]
 </script>
 
 <style scoped>
 .data{
-  height: 201vh;
+    height: 201vh;
 }
 </style>

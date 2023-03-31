@@ -36,9 +36,3 @@ const filterTableData = computed(() =>
     )
 )
 </script>
-
-<style lang="scss" scoped>
-.table-card{
-  margin: 10px;
-}
-</style>

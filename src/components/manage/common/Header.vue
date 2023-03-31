@@ -25,7 +25,7 @@ function handleChange(){
   store.state.managerStore.isCollapse = !store.state.managerStore.isCollapse;
   store.state.managerStore.icon = !store.state.managerStore.icon;
   if(store.state.managerStore.isCollapse){
-    document.getElementById('el-aside').style.width = "4.15%";
+    document.getElementById('el-aside').style.width = "5.4%";
   }else{
     document.getElementById('el-aside').style.width = "16.4%";
   }

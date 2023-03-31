@@ -1,5 +1,5 @@
 <template>
-  <el-card class="table-card">
+  <el-card class="table-card" style="margin-bottom: 2%">
     <el-form :model="formAddMenu" style="display: flex;justify-content: space-between">
       <el-form-item label="菜单名称" style="margin-top: 10px">
         <el-input v-model="formAddMenu.menuname" placeholder="请输入菜单名称···"/>
@@ -36,9 +36,3 @@ const onSubmit = () => {
   emit('submit',formAddMenu);
 }
 </script>
-
-<style lang="scss" scoped>
-.table-card{
-  margin: 10px;
-}
-</style>

@@ -47,7 +47,7 @@ import {getUser} from "@/api/user";
 const store = useStore();
 const { t } = useI18n();
 onMounted(async () => {
-  store.state.layoutStore.menus = await store.dispatch("handleMenu", toRaw({userid: getUser().user_id}));
+  store.state.layoutStore.menus = await store.dispatch("handleMenu", toRaw({role: getUser().user_role}));
 })
 </script>
 

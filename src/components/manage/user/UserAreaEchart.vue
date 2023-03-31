@@ -93,21 +93,20 @@ onMounted(()=>{
 .area_box{
   display: flex;
   height: 50vh;
-  margin-bottom: 30px;
+  margin-bottom: 2%;
   .area{
     width: 37%;
     height: 100%;
-    margin: 10px;
   }
   .rate{
     width: 30%;
     height: 100%;
-    margin: 10px;
+    margin-left: 2%;
   }
   .weather{
-    width: 28%;
+    width: 33%;
     height: 100%;
-    margin: 10px;
+    margin-left: 2%;
   }
 }
 </style>

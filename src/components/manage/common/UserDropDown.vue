@@ -3,7 +3,7 @@
     <el-dropdown trigger="click" @command="handleCommand">
       <!-- 用户名 -->
       <span class="el-dropdown-link">
-        <el-avatar :size="25" :src="user"/>
+        <el-avatar :size="25" :src="getAdmin().user_head"/>
       </span>
       <!-- 菜单项 -->
       <template #dropdown>
@@ -18,7 +18,7 @@
 <script setup>
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import user from "../../../assets/img/user.png"
+import {getAdmin} from "@/api/manager";
 
 const store = useStore();
 const router = useRouter();

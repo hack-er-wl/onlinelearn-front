@@ -7,7 +7,8 @@
                 :content="n.content"
                 :foot="n.foot"
                 :color="n.color"
-                :num="n.num"/>
+                :num="n.num"
+      :margin="n.margin"/>
     </div>
     <UserEchartCard/>
   </div>
@@ -17,25 +18,16 @@
 import DataCard from "./DataCard.vue";
 import UserEchartCard from "./UserEchartCard.vue";
 import {useStore} from "vuex";
-import {onMounted, reactive, toRaw} from "vue";
+import {reactive} from "vue";
 const store = useStore();
-onMounted(async () => {
-  store.state.managerStore.users = [];
-  await store.dispatch("handleQueryUserAll", toRaw({})).then((users) => {
-    store.state.managerStore.users = users;
-  })
-  store.state.managerStore.teachers = [];
-  await store.dispatch("handleQueryTeacherAll", toRaw({})).then((teachers) => {
-    store.state.managerStore.teachers = teachers;
-  })
-})
 const data = reactive([{
   title:"注册用户",
   value:store.state.managerStore.users.length,
   content:"所有注册用户数量",
   foot:"比昨天增加",
   num:24,
-  color:"rgb(238,102,102)"
+  color:"rgb(238,102,102)",
+    margin: "0"
 },
   {
     title:"讲师用户",
@@ -43,21 +35,24 @@ const data = reactive([{
     content:"申请并成为讲师的用户数量",
     foot:"比昨天增加",
     num:10,
-    color:"rgb(250,200,88)"
+    color:"rgb(250,200,88)",
+      margin:"0 0 2% 2%"
   },{
     title:"访问游客",
     value:1000,
     content:"访问却没有注册的用户数量",
     foot:"比昨天增加",
     num:20,
-    color:"rgb(145,204,117)"
+    color:"rgb(145,204,117)",
+        margin:"0 0 2% 2%"
   },{
     title:"其他游客",
     value:100,
     content:"其他用户数量",
     foot:"比昨天增加",
     num:5,
-    color: "rgb(84,112,198)"
+    color: "rgb(84,112,198)",
+        margin:"0 0 2% 2%"
   }])
 </script>
 

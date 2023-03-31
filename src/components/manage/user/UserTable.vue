@@ -8,6 +8,7 @@
       <el-table-column prop="user_like" label="兴趣" />
       <el-table-column prop="user_add" label="地址" />
       <el-table-column prop="user_money" label="余额" />
+        <el-table-column prop="user_role" label="角色"/>
       <el-table-column align="right">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>
@@ -38,9 +39,3 @@ const filterTableData = computed(() =>
     )
 )
 </script>
-
-<style lang="scss" scoped>
-.table-card{
-  margin: 10px;
-}
-</style>

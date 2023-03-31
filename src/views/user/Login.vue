@@ -141,7 +141,7 @@ async function handleLogin() {
       const res = await store.dispatch("handleLogin", toRaw(loginForm));
       if (res) {
         useNotification('success','系统通知',t("signInSuccess"));
-        store.state.layoutStore.menus = await store.dispatch("handleMenu", toRaw({userid: getUser().user_id}));
+        store.state.layoutStore.menus = await store.dispatch("handleMenu", toRaw({role: getUser().user_role}));
         store.state.userStore.webSocket = initWebSocket();
         await router.push({path: "/"});
       } else {

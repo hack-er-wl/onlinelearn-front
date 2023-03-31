@@ -26,7 +26,7 @@
                 :initial="{ opacity: 0, y: 100 }"
                 :enter="{ opacity: 1, y: 0, transition: { delay: 300 }}">
               <el-input
-                  v-model="loginForm.username"
+                  v-model="loginForm.email"
                   :placeholder="$t('userPlaceholder')">
                 <template #prefix>
                   <el-icon><Avatar /></el-icon>
@@ -91,9 +91,6 @@ import Theme from "../../components/user/common/Theme.vue";
 import {useI18n} from "vue-i18n";
 import useNotification from "../../hooks/useNotification";
 
-// 访问 .env配置文件中设置的变量
-console.log(process.env.VUE_APP_TOKEN_NAME);
-
 const router = useRouter();
 const store = useStore();
 const { t } = useI18n();
@@ -102,21 +99,19 @@ const loginFormRef = ref(null);
 
 // 登录的表单数据
 const loginForm = reactive({
-  username: "",
-  password: "",
-  code:""
+  email: "0000000000@qq.com",
+  password: "system",
 });
 // 登录按钮的加载loading
 const btnLogLoading = ref(false);
 
 // 登录表单的校验规则
 const loginRules = reactive({
-  username: [{ required: true, message: t("userError"), trigger: "blur" }],
+    email: [{ required: true, message: t("userError"), trigger: "blur" }],
   password: [
     { required: true, message: t("PWError"), trigger: "blur" },
     { min: 3, max: 8, message: t("PWSubError"), trigger: "blur" },
-  ],
-  code: [{ required: true, message: t("codeError"), trigger: "blur" }]
+  ]
 });
 
 //注册事件
@@ -128,10 +123,12 @@ async function handleLogin() {
       // 开启loading状态
       btnLogLoading.value = true;
       // 用通过vuex发送网络请求
-      const res = await store.dispatch("handleLogin", toRaw(loginForm));
+      const res = await store.dispatch("handleAdminLogin", toRaw(loginForm));
       if (res) {
-        useNotification('success','系统通知',t("signUpSuccess"));
-        await router.push({path: "/"});
+        useNotification('success','系统通知',t("signInSuccess"));
+        await router.push({path: "/mhome"});
+      }else {
+          btnLogLoading.value = false;
       }
     } else {
       // 校验不通过

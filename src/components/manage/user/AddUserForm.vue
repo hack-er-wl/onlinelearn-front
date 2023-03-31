@@ -1,5 +1,5 @@
 <template>
-  <el-card class="table-card">
+  <el-card class="table-card" style="margin-bottom: 2%">
     <el-form :model="formAddUser" style="display: flex;justify-content: space-between">
       <el-form-item label="用户名称" style="margin-top: 10px">
         <el-input v-model="formAddUser.username" placeholder="请输入用户名称···"/>
@@ -21,9 +21,3 @@ const onSubmit = () => {
   emit('submit',formAddUser);
 }
 </script>
-
-<style lang="scss" scoped>
-.table-card{
-  margin: 10px;
-}
-</style>

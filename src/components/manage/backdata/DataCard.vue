@@ -1,5 +1,5 @@
 <template>
-  <el-card class="box-card" :style="{backgroundColor:data.color.value}">
+  <el-card class="box-card" :style="{backgroundColor:data.color.value,margin:data.margin.value}">
     <div class="statistic-card" :style="{backgroundColor:data.color.value}">
       <el-statistic :value="data.value.value">
         <template #title>
@@ -35,19 +35,19 @@
 import {toRefs} from "vue";
 import {defineProps} from "vue";
 const props = defineProps({
-  title:String,
-  value:Number,
-  content:String,
-  foot:String,
-  num:Number,
-  color:String,
+    title:String,
+    value:Number,
+    content:String,
+    foot:String,
+    num:Number,
+    color:String,
+    margin:String
 })
 const data = toRefs(props)
 </script>
 
 <style scoped>
 .box-card{
-  margin:10px;
   height: 20vh;
   width: 25%;
   display: flex;

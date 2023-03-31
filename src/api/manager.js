@@ -1,10 +1,19 @@
 //管理员相关的网络请求
 import {get, post} from "../network/request";
+export function login(data) {
+    return get("admin/login",data);
+}
+export function getAdmin(){
+    return  JSON.parse(localStorage.getItem('admin'));
+}
 export function queryClassAll(data){
     return get("admin/query/cclass",data)
 }
 export function queryCourseAll(data){
     return get("admin/query/course",data)
+}
+export function queryTestAll(data){
+    return get("admin/query/test",data)
 }
 export function queryUserAll(data){
     return get("admin/query/user",data)
