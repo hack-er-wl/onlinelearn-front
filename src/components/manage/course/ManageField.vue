@@ -35,6 +35,5 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .data{
   height: 128.5vh;
-  width: 100%;
 }
 </style>

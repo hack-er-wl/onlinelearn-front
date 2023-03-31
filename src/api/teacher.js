@@ -9,3 +9,6 @@ export function queryCourseTeacher(data){
 export function queryRules(data){
     return get("teacher/query/rule",data)
 }
+export function querySubscriber(data){
+    return get("teacher/query/subscriber",data)
+}

@@ -9,8 +9,8 @@
 import {onMounted, toRaw} from "vue";
 import useNotification from "@/hooks/useNotification";
 import {useStore} from "vuex";
-import AddRuleForm from "@/components/manage/rule/AddRuleForm.vue";
-import RuleTable from "@/components/manage/rule/RuleTable.vue";
+import AddRuleForm from "@/components/manage/teacher/AddRuleForm.vue";
+import RuleTable from "@/components/manage/teacher/RuleTable.vue";
 const store = useStore();
 const onsubmit = async (formAddRule) => {
   const res = await store.dispatch("handleAddField", toRaw(formAddRule));

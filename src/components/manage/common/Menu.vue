@@ -36,7 +36,7 @@
       </el-menu-item>
       <el-sub-menu index="1">
         <template #title>
-          <el-icon><PieChart /></el-icon>
+            <el-icon><DataAnalysis /></el-icon>
           <span>授课管理</span>
         </template>
         <el-menu-item index="/mhome/managecourse">
@@ -62,11 +62,21 @@
         <el-icon><Document /></el-icon>
         <template #title>测试管理</template>
       </el-menu-item>
-      <el-menu-item index="/mhome/manageteacher">
-        <el-icon><Avatar /></el-icon>
-        <template #title>讲师管理</template>
-      </el-menu-item>
-      <el-sub-menu index="2">
+        <el-sub-menu index="2">
+            <template #title>
+                <el-icon><Avatar /></el-icon>
+                <span>师资管理</span>
+            </template>
+            <el-menu-item index="/mhome/manageteacher">
+                <el-icon><UserFilled /></el-icon>
+                <template #title>讲师管理</template>
+            </el-menu-item>
+            <el-menu-item index="/mhome/managerule">
+                <el-icon><List /></el-icon>
+                <template #title>守则管理</template>
+            </el-menu-item>
+        </el-sub-menu>
+      <el-sub-menu index="3">
         <template #title>
           <el-icon><Files /></el-icon>
           <span>资源管理</span>
@@ -92,10 +102,24 @@
         <el-icon><Finished /></el-icon>
         <template #title>菜单管理</template>
       </el-menu-item>
-      <el-menu-item index="/mhome/managerule">
-        <el-icon><DocumentChecked /></el-icon>
-        <template #title>守则管理</template>
-      </el-menu-item>
+        <el-sub-menu index="4">
+            <template #title>
+                <el-icon><FolderOpened /></el-icon>
+                <span>题库管理</span>
+            </template>
+            <el-menu-item index="/mhome/managechoose">
+                <template #title>
+                    <el-icon><QuestionFilled /></el-icon>
+                    <span>选择题</span>
+                </template>
+            </el-menu-item>
+            <el-menu-item index="/mhome/manageoption">
+                <template #title>
+                    <el-icon><CircleCheckFilled /></el-icon>
+                    <span>判断题</span>
+                </template>
+            </el-menu-item>
+        </el-sub-menu>
     </el-menu>
   </el-scrollbar>
 </template>

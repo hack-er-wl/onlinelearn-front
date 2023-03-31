@@ -4,7 +4,7 @@ import {
     queryMessageAll, queryRuleAll,
     querySliderAll,
     queryTeacherAll,
-    queryUserAll, login
+    queryUserAll, login, queryChooseAll, queryOptionAll
 } from "@/api/manager";
 
 export default {
@@ -17,6 +17,8 @@ export default {
         classes:[],
         courses:[],
         tests:[],
+        chooses:[],
+        options:[],
         editStatus:false,
         editCheck:false,
         editCourse:{},
@@ -75,6 +77,32 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryTestAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryChooseAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryChooseAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryOptionAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryOptionAll(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

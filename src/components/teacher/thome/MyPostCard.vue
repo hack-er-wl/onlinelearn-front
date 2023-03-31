@@ -3,7 +3,7 @@
       :body-style="{padding: '0px'}"
       shadow="hover"
       class="post_card"
-      :style="{marginRight:data.isLast.value?'0px':'4px'}">
+      :style="{margin:data.isFirst.value?data.isLast.value?'0':'0 0.3% 0 0':data.isLast.value?'0.4% 0 0 0':'0.4% 0.3% 0 0'}">
     <img :src="data.course.value.course_cover" class="image" :style="{height:'180px',width:'100%',borderRadius:'4px'}"/>
     <div class="tags" style="padding:3px">
       <h5>{{data.course.value.course_name}}</h5>
@@ -22,6 +22,7 @@ import {toRefs} from "vue";
 import {defineProps} from "vue";
 const props = defineProps({
   isLast:Boolean,
+    isFirst:Boolean,
   course:Object
 })
 const data = toRefs(props)
@@ -31,7 +32,7 @@ const store = useStore();
 <style>
 .post_card{
   height:15%;
-  width:19.6%;
+  width:24.59%;
 }
 .card_bottom {
   margin-top: 10px;

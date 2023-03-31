@@ -15,6 +15,12 @@ export function queryCourseAll(data){
 export function queryTestAll(data){
     return get("admin/query/test",data)
 }
+export function queryChooseAll(data){
+    return get("admin/query/choose",data)
+}
+export function queryOptionAll(data){
+    return get("admin/query/option",data)
+}
 export function queryUserAll(data){
     return get("admin/query/user",data)
 }

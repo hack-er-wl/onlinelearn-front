@@ -95,7 +95,7 @@ onMounted(()=>{
   height: 50vh;
   margin-bottom: 2%;
   .area{
-    width: 37%;
+    width: 40%;
     height: 100%;
   }
   .rate{
@@ -104,7 +104,7 @@ onMounted(()=>{
     margin-left: 2%;
   }
   .weather{
-    width: 33%;
+    width: 30%;
     height: 100%;
     margin-left: 2%;
   }

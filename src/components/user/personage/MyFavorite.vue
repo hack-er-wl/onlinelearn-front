@@ -5,7 +5,10 @@
         <h4><i style="color: red" class="bi bi-star-half"/> 我的收藏</h4>
       </div>
     </template>
-    <div style="display: flex;height: 100%;flex-wrap: wrap">
+      <div v-if="store.state.layoutStore.myCollect.length == 0" style="display: flex;align-items: center;justify-content: center">
+          <el-empty :image-size="200"/>
+      </div>
+    <div v-else style="display: flex;height: 100%;flex-wrap: wrap">
       <FavoriteCard v-for="(n,i) in store.state.layoutStore.myCollect"
                     :key="i"
                     :isLast="i==3?true:false"

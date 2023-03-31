@@ -71,11 +71,18 @@ const routes = [
           component:() => import("../components/teacher/apply/TDetail.vue")
         }
     ]
-  },{
+  },
+  {
     path: "/thome",
     name: "thome",
     component:() => import("../views/teacher/Home.vue")
-  },{
+  },
+  {
+    path: "/subscriber",
+    name: "subscriber",
+    component:() => import("../views/teacher/Subscriber.vue")
+  },
+  {
     path: "/result",
     name: "result",
     component:() => import("../views/user/Result.vue")
@@ -165,7 +172,17 @@ const routes = [
       {
         path: "managerule",
         name:'managerule',
-        component:() => import("../components/manage/rule/ManageRule.vue")
+        component:() => import("../components/manage/teacher/ManageRule.vue")
+      },
+      {
+        path: "managechoose",
+        name:'managechoose',
+        component:() => import("../components/manage/quesbank/ManageChoose.vue")
+      },
+      {
+        path: "manageoption",
+        name:'manageoption',
+        component:() => import("../components/manage/quesbank/ManageOption.vue")
       }
     ]
   }
@@ -190,7 +207,7 @@ router.beforeEach((to, from, next) => {
           to.name == "coursedata" || to.name == "manageuser" || to.name == "managecourse" || to.name == "managetest" ||
           to.name == "manageteacher" || to.name == "manageslider" || to.name == "managemessage" ||
           to.name == "managefield" || to.name == "manageclass" || to.name == "managevideo" || to.name == "managemenu" ||
-          to.name == "managerule"){
+          to.name == "managerule" || to.name == "managechoose" || to.name == "manageoption" || to.name == "subscriber"){
         next();
       }else{
         // 返回到登录页

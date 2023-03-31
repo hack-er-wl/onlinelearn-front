@@ -1,4 +1,4 @@
-import {checkTeacher, queryCourseTeacher, queryRules} from "@/api/teacher";
+import {checkTeacher, queryCourseTeacher, queryRules, querySubscriber} from "@/api/teacher";
 export default {
     state: {
         tpreHide:false,//讲师编辑
@@ -6,6 +6,7 @@ export default {
         addTeHide:false,
         teacher: {},
         rules:[],
+        subscribers:[],
         postCourses:{}
     },
     actions: {
@@ -35,6 +36,19 @@ export default {
             } catch (error) {
                 return Promise.reject(error);
             }
-        }
+        },
+        async handleQuerySubscriber({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await querySubscriber(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
     }
 }

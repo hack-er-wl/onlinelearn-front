@@ -21,18 +21,22 @@ import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
 const store = useStore();
 onMounted(async () => {
-  store.state.managerStore.courses = [];
-  await store.dispatch("handleQueryCourseAll", toRaw({})).then((courses) => {
-    store.state.managerStore.courses = courses;
-  })
-  store.state.managerStore.fields = [];
-  await store.dispatch("handlequeryFields", toRaw({})).then((fields) => {
-    store.state.managerStore.fields = fields;
-  })
-  store.state.managerStore.classes = [];
-  await store.dispatch("handleQueryClassAll", toRaw({})).then((classes) => {
-    store.state.managerStore.classes = classes;
-  })
+    store.state.managerStore.courses = [];
+    await store.dispatch("handleQueryCourseAll", toRaw({})).then((courses) => {
+      store.state.managerStore.courses = courses;
+    })
+    store.state.managerStore.fields = [];
+    await store.dispatch("handlequeryFields", toRaw({})).then((fields) => {
+      store.state.managerStore.fields = fields;
+    })
+    store.state.managerStore.classes = [];
+    await store.dispatch("handleQueryClassAll", toRaw({})).then((classes) => {
+      store.state.managerStore.classes = classes;
+    })
+    store.state.managerStore.tests = [];
+    await store.dispatch("handleQueryTestAll", toRaw({})).then((tests) => {
+        store.state.managerStore.tests = tests;
+    })
 })
 const data = [{
   title:"所有课程",
@@ -60,9 +64,9 @@ const data = [{
     color:"rgb(145,204,117)",
         margin:"0 0 2% 2%"
   },{
-    title:"其他游客",
-    value:100,
-    content:"其他用户数量",
+    title:"所有测试",
+    value:store.state.managerStore.tests.length,
+    content:"所有测试数量",
     foot:"比昨天增加",
     num:5,
     color: "rgb(84,112,198)",
