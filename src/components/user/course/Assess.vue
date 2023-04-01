@@ -18,8 +18,8 @@
         <el-button round size="small" style="margin-right: 10px" @click="handleClick">回复</el-button>
       </div>
       <div>
-        <el-button class="point_btn" @click="store.state.Point = !store.state.Point" link>
-          <i :class="store.state.Point?point_fill:point_no_fill" :style="{color:store.state.Point?'#ff8800':''}"/>
+        <el-button class="point_btn" @click="handleLike(data.assess.value)" link>
+          <i :id="'like'+data.assess.value.assess_id" class="bi bi-hand-thumbs-up"/>
         </el-button>
       </div>
       <div style="margin-left: 10px">
@@ -34,11 +34,10 @@
 
 <script setup>
 import {useStore} from "vuex";
-import {defineProps, toRefs} from "vue";
+import {defineProps, onMounted, toRaw, toRefs} from "vue";
 import Reply from "@/components/user/course/Reply.vue";
+import {getUser} from "@/api/user";
 const store = useStore();
-const point_no_fill ="bi bi-hand-thumbs-up";
-const point_fill = "bi bi-hand-thumbs-up-fill";
 const props = defineProps({
   assess:Object
 })
@@ -48,6 +47,38 @@ const handleClick = () => {
   store.state.layoutStore.assessid = data.assess.value.assess_id;
   store.state.layoutStore.acceptid = data.assess.value.user_id;
 }
+const handleLike = async (assess) => {
+    if (document.getElementById('like' + assess.assess_id).style.color == "rgb(255, 136, 0)") {
+        await store.dispatch("handleCancelAssessPoint", toRaw({assessid: data.assess.value.assess_id,userid:getUser().user_id})).then((res) => {
+            console.log(res);
+            if(res){
+                document.getElementById('like' + assess.assess_id).className = "bi bi-hand-thumbs-up";
+                document.getElementById('like' + assess.assess_id).style.color = "";
+                assess.assess_pointer--;
+            }
+        })
+        console.log("取消")
+    } else {
+        await store.dispatch("handleAssessPoint", toRaw({assessid: data.assess.value.assess_id, userid: getUser().user_id})).then((res) => {
+            console.log(res);
+            if (res) {
+                document.getElementById('like' + assess.assess_id).className = "bi bi-hand-thumbs-up-fill";
+                document.getElementById('like' + assess.assess_id).style.color = "#ff8800";
+                assess.assess_pointer++;
+            }
+        })
+        console.log("点赞")
+    }
+}
+onMounted(async () => {
+    await store.dispatch("handleQueryAssessPoint", toRaw({assessid: data.assess.value.assess_id,userid:getUser().user_id})).then((res) => {
+        console.log(res);
+        if(res){
+            document.getElementById('like'+res.point_id).className = "bi bi-hand-thumbs-up-fill";
+            document.getElementById('like'+res.point_id).style.color = "#ff8800";
+        }
+    })
+})
 </script>
 
 <style scoped>

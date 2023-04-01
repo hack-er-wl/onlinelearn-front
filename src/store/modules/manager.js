@@ -4,7 +4,7 @@ import {
     queryMessageAll, queryRuleAll,
     querySliderAll,
     queryTeacherAll,
-    queryUserAll, login, queryChooseAll, queryOptionAll
+    queryUserAll, login, queryChooseAll, queryOptionAll, queryChapterAll, queryBarAll, queryAvatarAll
 } from "@/api/manager";
 
 export default {
@@ -16,6 +16,8 @@ export default {
         fields:[],
         classes:[],
         courses:[],
+        chapters:[],
+        bars:[],
         tests:[],
         chooses:[],
         options:[],
@@ -24,6 +26,7 @@ export default {
         editCourse:{},
         messages:[],
         sliders:[],
+        avatars:[],
         menus:[],
         rules:[]
     },
@@ -64,6 +67,32 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryCourseAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryChapterAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryChapterAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryBarAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryBarAll(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {
@@ -181,6 +210,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await querySliderAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryAvatarAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryAvatarAll(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

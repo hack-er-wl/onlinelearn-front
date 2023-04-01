@@ -6,7 +6,7 @@
       </div>
     </template>
     <div style="display: flex;flex-direction: column;align-items: center">
-      <CourseCard v-for="i in 3" :key="i" :isLast="i==3?true:false"/>
+      <CourseCard v-for="(n,i) in store.state.layoutStore.subCourse" :key="i" :isLast="i==3?true:false" :course="n"/>
     </div>
     <div class="pagination">
       <el-pagination layout="prev, pager, next" :total="50" />
@@ -16,6 +16,17 @@
 
 <script setup>
 import CourseCard from "./CourseCard.vue"
+import {useStore} from "vuex";
+import {onMounted, toRaw} from "vue";
+import {getUser} from "@/api/user";
+const store = useStore();
+onMounted(async () => {
+    store.state.layoutStore.subCourse = [];
+    await store.dispatch("handleQueryMySubCourse", toRaw({userid:getUser().user_id})).then((res) => {
+        console.log(res);
+        store.state.layoutStore.subCourse = res;
+    })
+})
 </script>
 
 <style scoped>

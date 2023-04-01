@@ -2,16 +2,18 @@
   <el-card  class="table-card">
     <el-table :data="filterTableData" border>
       <el-table-column type="index" width="55px" label="编号"/>
-      <el-table-column prop="class_id" label="分类ID" />
-      <el-table-column prop="class_name" label="分类名称" />
-      <el-table-column prop="class_status" label="分类状态" />
-      <el-table-column align="right" width="205px">
+      <el-table-column prop="bar_id" label="小节ID" />
+      <el-table-column prop="chapter_id" label="章节ID" />
+      <el-table-column prop="bar_order" label="小节顺序" />
+      <el-table-column prop="bar_name" label="小节名称" />
+      <el-table-column prop="bar_url" label="小节地址" />
+      <el-table-column align="right" width="200px">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
-          <el-button type="primary" size="small" @click="">编辑</el-button>
-          <el-button size="small" type="danger" @click="">删除</el-button>
+          <el-button type="primary" size="small" @click="onStatus(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -27,10 +29,16 @@ import {useStore} from "vuex";
 const store = useStore();
 const search = ref('');
 const filterTableData = computed(() =>
-    store.state.managerStore.classes.filter(
+    store.state.managerStore.bars.filter(
         (data) =>
             !search.value ||
-            data.class_name.toLowerCase().includes(search.value.toLowerCase())
+            data.bar_name.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onStatus = (row)=>{
+  console.log(row);
+}
+const onDelete = (row)=>{
+  console.log(row);
+}
 </script>

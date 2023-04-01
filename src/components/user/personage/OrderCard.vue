@@ -4,26 +4,28 @@
       shadow="hover"
       class="course_card"
       style="width: 100%"
-      :style="{marginBottom:isLast.isLast.value?'0px':'4px'}">
-    <el-image :src="require('@/assets/img/cover.png')" class="image" :style="{height:'180px',width:'30%',borderRadius:'4px'}"/>
-    <div style="padding:3px;width: 100%">
-      <div style="margin-left: 8px;margin-right:8px;margin-top: 16px;display: flex;justify-content: space-between">
-        <h4>数据结构与算法</h4>
-        <el-tag>免费</el-tag>
-      </div>
-      <div style="margin-left: 8px;margin-right:8px;margin-top: 80px;display: flex;justify-content: space-between">
+      :style="{marginBottom:data.isLast.value?'0px':'4px'}">
+    <el-image :src="data.order.value.order_head" class="image" :style="{height:'117px',width:'20%',borderRadius:'4px'}"/>
+    <div style="padding:3px;width: 100%;display: flex;flex-direction: column">
+        <div style="margin-left: 8px;margin-right:8px;margin-top: 8px;display: flex;justify-content: space-between">
+            <h4>{{data.order.value.order_title}}</h4>
+            <p style="font-size: 15px;font-weight: bold;color: gray">￥{{data.order.value.order_fee}}</p>
+        </div>
+        <div style="display: flex;margin-left: 8px;margin-right:8px">
+            <p class="orderid">订单号:{{data.order.value.order_id}}</p>
+            <p class="payway">支付方式:{{data.order.value.pay_way}}</p>
+        </div>
+      <div style="margin:8px;display: flex;justify-content: space-between">
         <div class="left">
           <div style="display: flex">
-            <h6 style="color:gray;margin-right: 24px">主讲老师：和大爷</h6>
-            <h6 style="color:gray;margin-right: 24px">课程时常：2h</h6>
-            <h6 style="color:gray">已有120人学习</h6>
-          </div>
-          <div style="margin-top: 4px;width: 400px">
-            <el-progress :percentage="10" :format="(percentage) => (percentage === 10 ? '1/10' : `${percentage}%`)"/>
+              <p style="font-size:12px;color:gray;margin-right: 24px">下单时间:{{data.order.value.create_time}}</p>
+              <p style="font-size:12px;color:gray;margin-right: 24px">支付时间:{{data.order.value.pay_time}}</p>
+              <p style="font-size:12px;color:gray">支付状态:{{data.order.value.pay_status}}</p>
           </div>
         </div>
         <div class="right">
-          <el-button type="success" @click="router.push('/course')" round icon="Reading">继续学习</el-button>
+            <el-button size="small" type="warning" @click="" round icon="CloseBold">取消订单</el-button>
+            <el-button size="small" type="primary" @click="" round icon="Select">确认收货</el-button>
         </div>
       </div>
     </div>
@@ -31,15 +33,29 @@
 </template>
 
 <script setup>
-import router from "../../../router"
 import {toRefs} from "vue";
 import {defineProps} from "vue";
 const props = defineProps({
-  isLast:Boolean
+    isLast:Boolean,
+    order:Object
 })
-const isLast = toRefs(props)
+const data = toRefs(props)
 </script>
 
-<style scoped>
-
+<style lang="css" scoped>
+.orderid{
+    color: gray;
+    font-size: 12px;
+    margin: 2% 2% 2% 0;
+    border-radius: 4px;
+    width: 23%;
+}
+.payway{
+    margin: 2% 2% 2% 0;
+    font-size:12px;
+    color:gray;
+}
+.right{
+  display: flex;
+}
 </style>

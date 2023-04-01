@@ -90,6 +90,7 @@ import Language from "../../components/user/common/Language.vue";
 import Theme from "../../components/user/common/Theme.vue";
 import {useI18n} from "vue-i18n";
 import useNotification from "../../hooks/useNotification";
+import {getAdmin} from "@/api/manager";
 
 const router = useRouter();
 const store = useStore();
@@ -127,6 +128,7 @@ async function handleLogin() {
       if (res) {
         useNotification('success','系统通知',t("signInSuccess"));
         await router.push({path: "/mhome"});
+        useNotification('success','系统通知',getAdmin().user_name+"，欢迎回来！");
       }else {
           btnLogLoading.value = false;
       }

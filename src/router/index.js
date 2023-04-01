@@ -106,10 +106,14 @@ const routes = [
   {
     path: "/mhome",
     name: "mhome",
-    redirect: "/mhome/userdata",
+    redirect: "/mhome/welcome",
     component: () => import("../views/manage/Home.vue"),
     children:[
       {
+        path: "welcome",
+        name:"welcome",
+        component:() => import("../components/manage/welcome/Welcome.vue")
+      },{
         path: "userdata",
         name:"userdata",
         component:() => import("../components/manage/backdata/UserData.vue")
@@ -155,11 +159,6 @@ const routes = [
         component:() => import("../components/manage/resource/ManageSlider.vue")
       },
       {
-        path: "managevideo",
-        name:"managevideo",
-        component:() => import("../components/manage/resource/ManageVideo.vue")
-      },
-      {
         path: "managemessage",
         name:'managemessage',
         component:() => import("../components/manage/message/ManageMessage.vue")
@@ -183,6 +182,11 @@ const routes = [
         path: "manageoption",
         name:'manageoption',
         component:() => import("../components/manage/quesbank/ManageOption.vue")
+      },
+      {
+        path: "manageavatar",
+        name:'manageavatar',
+        component:() => import("../components/manage/resource/ManageAvatar.vue")
       }
     ]
   }
@@ -206,8 +210,9 @@ router.beforeEach((to, from, next) => {
           to.name == "message" || to.name == "mlogin" || to.name == "mhome" || to.name == "userdata" ||
           to.name == "coursedata" || to.name == "manageuser" || to.name == "managecourse" || to.name == "managetest" ||
           to.name == "manageteacher" || to.name == "manageslider" || to.name == "managemessage" ||
-          to.name == "managefield" || to.name == "manageclass" || to.name == "managevideo" || to.name == "managemenu" ||
-          to.name == "managerule" || to.name == "managechoose" || to.name == "manageoption" || to.name == "subscriber"){
+          to.name == "managefield" || to.name == "manageclass" ||  to.name == "managemenu" ||
+          to.name == "managerule" || to.name == "managechoose" || to.name == "manageoption" || to.name == "subscriber" ||
+          to.name == "manageavatar" || to.name == "welcome"){
         next();
       }else{
         // 返回到登录页

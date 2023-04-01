@@ -82,6 +82,24 @@ export function querySubscribeCourse(data){
 export function postAssess(data){
     return post("user/assess",data)
 }
+export function queryAssessPoint(data){
+    return get("user/query/assess/point",data)
+}
+export function queryReplyPoint(data){
+    return get("user/query/reply/point",data)
+}
+export function assessPoint(data){
+    return post("user/point/assess",data)
+}
+export function replyPoint(data){
+    return post("user/point/reply",data)
+}
+export function cancelAssessPoint(data){
+    return post("user/cancel/assess/point",data)
+}
+export function cancelReplyPoint(data){
+    return post("user/cancel/reply/point",data)
+}
 export function queryAssess(data){
     return get("user/query/assess",data)
 }
@@ -105,6 +123,12 @@ export function postApply(data){
 }
 export function queryMyCollect(data){
     return get("user/query/collect/byuid",data)
+}
+export function queryMySubCourse(data){
+    return get("user/query/subscribe/course",data)
+}
+export function queryMyOrder(data){
+    return get("user/query/order",data)
 }
 export function postUserInfo(data){
     return post("user/update",data)

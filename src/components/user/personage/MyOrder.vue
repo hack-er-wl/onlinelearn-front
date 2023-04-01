@@ -6,7 +6,7 @@
       </div>
     </template>
     <div style="display: flex;height: 100%;flex-wrap: wrap">
-      <OrderCard v-for="i in 2" :key="i"/>
+      <OrderCard v-for="(n,i) in store.state.layoutStore.myOrder" :key="i" :order="n"/>
     </div>
     <div class="pagination">
       <el-pagination layout="prev, pager, next" :total="50" />
@@ -15,12 +15,17 @@
 </template>
 
 <script setup>
-import {onMounted} from "vue";
+import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
 import OrderCard from "@/components/user/personage/OrderCard.vue";
+import {getUser} from "@/api/user";
 const store = useStore();
 onMounted(async () => {
-
+    store.state.layoutStore.recCourses = [];
+    await store.dispatch("handleQueryMyOrder", toRaw({userid:getUser().user_id})).then((res) => {
+        console.log(res);
+        store.state.layoutStore.myOrder = res;
+    })
 })
 </script>
 

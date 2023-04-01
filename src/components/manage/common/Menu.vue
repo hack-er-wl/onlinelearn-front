@@ -87,21 +87,13 @@
             <span>轮播管理</span>
           </template>
         </el-menu-item>
-        <el-menu-item index="/mhome/managevideo">
-          <template #title>
-            <el-icon><VideoCameraFilled /></el-icon>
-            <span>视频管理</span>
-          </template>
-        </el-menu-item>
+          <el-menu-item index="/mhome/manageavatar">
+              <template #title>
+                  <el-icon><CameraFilled /></el-icon>
+                  <span>头像管理</span>
+              </template>
+          </el-menu-item>
       </el-sub-menu>
-      <el-menu-item index="/mhome/managemessage">
-        <el-icon><MessageBox /></el-icon>
-        <template #title>消息管理</template>
-      </el-menu-item>
-      <el-menu-item index="/mhome/managemenu">
-        <el-icon><Finished /></el-icon>
-        <template #title>菜单管理</template>
-      </el-menu-item>
         <el-sub-menu index="4">
             <template #title>
                 <el-icon><FolderOpened /></el-icon>
@@ -120,6 +112,14 @@
                 </template>
             </el-menu-item>
         </el-sub-menu>
+      <el-menu-item index="/mhome/managemessage">
+        <el-icon><MessageBox /></el-icon>
+        <template #title>消息管理</template>
+      </el-menu-item>
+      <el-menu-item index="/mhome/managemenu">
+        <el-icon><Finished /></el-icon>
+        <template #title>菜单管理</template>
+      </el-menu-item>
     </el-menu>
   </el-scrollbar>
 </template>

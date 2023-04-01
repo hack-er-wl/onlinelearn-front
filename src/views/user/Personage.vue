@@ -8,7 +8,7 @@
     <el-scrollbar>
       <el-main style="background-color: rgb(242,242,245);" id="el-main">
         <el-container style="margin:2%">
-          <el-aside style="margin:0 2% 0 0">
+          <el-aside style="margin:0 2% 0 0" width="25%">
             <PersonMenu/>
           </el-aside>
           <el-main style="padding: 0;height: 100vh">

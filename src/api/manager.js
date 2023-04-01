@@ -12,6 +12,12 @@ export function queryClassAll(data){
 export function queryCourseAll(data){
     return get("admin/query/course",data)
 }
+export function queryChapterAll(data){
+    return get("admin/query/chapter",data)
+}
+export function queryBarAll(data){
+    return get("admin/query/bar",data)
+}
 export function queryTestAll(data){
     return get("admin/query/test",data)
 }
@@ -38,4 +44,7 @@ export function queryMessageAll(data){
 }
 export function querySliderAll(data){
     return get("admin/query/slider",data)
+}
+export function queryAvatarAll(data){
+    return get("admin/query/avatar",data)
 }

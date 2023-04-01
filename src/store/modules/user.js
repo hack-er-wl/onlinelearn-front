@@ -1,7 +1,7 @@
 import {
     addCollect,
-    addField,
-    cancelCollect,
+    addField, assessPoint, cancelAssessPoint,
+    cancelCollect, cancelReplyPoint,
     cancelSubscribeCourse,
     code,
     getSliders,
@@ -11,7 +11,7 @@ import {
     postAssess,
     postReply,
     postUserInfo,
-    queryAssess, queryChapter,
+    queryAssess, queryAssessPoint, queryChapter,
     queryClassesByStatus,
     queryCollect,
     queryCourseByClassId,
@@ -19,18 +19,17 @@ import {
     queryCourseByCourseId,
     queryCourseByStatus,
     queryFields,
-    queryMyCollect, queryNotices, queryRanks,
-    queryRecommend,
+    queryMyCollect, queryMyOrder, queryMySubCourse, queryNotices, queryRanks,
+    queryRecommend, queryReplyPoint,
     querySubscribeCourse,
     queryTeacherByCourseId, queryTests,
-    regist, setAccept,
+    regist, replyPoint, setAccept,
     subscribeCourse,
     updatePass
 } from "../../api/user";
 export default {
     state: {
         isLogin: localStorage.getItem("VUE_ADMIN_ISLOGIN") || false,
-        Point:false,
         Like:false,
         score:0,
         done:0,
@@ -329,6 +328,84 @@ export default {
                 return Promise.reject(error);
             }
         },
+        async handleQueryAssessPoint({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryAssessPoint(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryReplyPoint({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryReplyPoint(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleAssessPoint({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await assessPoint(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleReplyPoint({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await replyPoint(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleCancelAssessPoint({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await cancelAssessPoint(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleCancelReplyPoint({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await cancelReplyPoint(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
         async handleQueryAssess({ commit, dispatch},data) {
             // 发送登录的网络请求
             try {
@@ -424,6 +501,32 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryMyCollect(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryMySubCourse({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryMySubCourse(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryMyOrder({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryMyOrder(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {
