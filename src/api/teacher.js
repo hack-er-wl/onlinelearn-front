@@ -12,3 +12,6 @@ export function queryRules(data){
 export function querySubscriber(data){
     return get("teacher/query/subscriber",data)
 }
+export function postCourse(data){
+    return post("teacher/post/course",data)
+}

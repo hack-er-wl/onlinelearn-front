@@ -9,11 +9,13 @@
       <el-table-column prop="user_age" label="讲师年龄" />
       <el-table-column prop="user_tage" label="讲课年龄" />
       <el-table-column prop="user_sex" label="讲师性别" />
-      <el-table-column align="right" width="180px">
+        <el-table-column prop="check_status" label="审核状态" />
+      <el-table-column align="right" width="200px">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
+            <el-button type="success" size="small" @click="onCheck(scope.row)">审核</el-button>
           <el-button type="primary" size="small" @click="">编辑</el-button>
           <el-button size="small" type="danger" @click="">删除</el-button>
         </template>
@@ -37,4 +39,9 @@ const filterTableData = computed(() =>
             data.teach_id.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onCheck = (row)=>{
+    store.state.managerStore.checkStatus = true;
+    store.state.managerStore.editTeacher = row;
+    console.log(row);
+}
 </script>

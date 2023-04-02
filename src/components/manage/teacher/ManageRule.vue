@@ -13,7 +13,7 @@ import AddRuleForm from "@/components/manage/teacher/AddRuleForm.vue";
 import RuleTable from "@/components/manage/teacher/RuleTable.vue";
 const store = useStore();
 const onsubmit = async (formAddRule) => {
-  const res = await store.dispatch("handleAddField", toRaw(formAddRule));
+  const res = await store.dispatch("handleAddRule", toRaw(formAddRule));
   if(res){
     useNotification("success","系统通知",res.result);
     store.state.managerStore.rules = [];

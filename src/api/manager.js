@@ -36,6 +36,18 @@ export function queryTeacherAll(data){
 export function queryMenuAll(data){
     return get("admin/query/menu",data)
 }
+export function addField(data) {
+    return post("admin/post/cfield", data);
+}
+export function addRule(data) {
+    return post("admin/post/rule", data);
+}
+export function broadNotice(data) {
+    return post("admin/broad", data);
+}
+export function handleUpdateTeacher(data) {
+    return post("admin/update/teacher/status", data);
+}
 export function queryRuleAll(data){
     return get("teacher/query/rule",data)
 }

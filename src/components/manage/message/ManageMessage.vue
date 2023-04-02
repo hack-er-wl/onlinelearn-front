@@ -13,7 +13,7 @@ import AddMessageForm from "@/components/manage/message/AddMessageForm.vue";
 import MessageTable from "@/components/manage/message/MessageTable.vue";
 const store = useStore();
 const onsubmit = async (formAddMessage) => {
-  const res = await store.dispatch("handleAddField", toRaw(formAddMessage));
+  const res = await store.dispatch("handleBroadNotice", toRaw(formAddMessage));
   if(res){
     useNotification("success","系统通知",res.result);
     store.state.managerStore.messages = [];

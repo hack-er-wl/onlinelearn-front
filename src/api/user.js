@@ -37,9 +37,6 @@ export function getUser(){
 export function getSliders(data) {
     return get("user/query/slider", data);
 }
-export function addField(data) {
-    return post("admin/post/cfield", data);
-}
 export function queryFields(data){
     return get("user/query/cfield")
 }

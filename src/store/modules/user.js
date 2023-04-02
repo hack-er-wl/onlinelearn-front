@@ -133,19 +133,6 @@ export default {
                 return Promise.reject(error);
             }
         },
-        async handleAddField({ commit, dispatch},data) {
-            // 发送登录的网络请求
-            try {
-                const res = await addField(data);
-                if (res.code == 200) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } catch (error) {
-                return Promise.reject(error);
-            }
-        },
         async handlequeryFields({ commit, dispatch},data) {
             // 发送登录的网络请求
             try {

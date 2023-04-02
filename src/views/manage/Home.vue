@@ -16,6 +16,7 @@
     </el-container>
   <EditStatus v-model="store.state.managerStore.editStatus"/>
   <EditCheck v-model="store.state.managerStore.editCheck"/>
+  <CheckStatus v-model="store.state.managerStore.checkStatus"/>
 </template>
 
 <script setup>
@@ -25,6 +26,7 @@ import EditStatus from "@/components/manage/course/EditStatus.vue";
 import EditCheck from "@/components/manage/course/EditCheck.vue";
 import {useStore} from "vuex";
 import {onMounted, toRaw} from "vue";
+import CheckStatus from "@/components/manage/teacher/CheckStatus.vue";
 const store = useStore();
 onMounted(async () => {
     store.state.managerStore.users = [];

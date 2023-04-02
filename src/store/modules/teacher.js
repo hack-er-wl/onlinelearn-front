@@ -1,10 +1,12 @@
-import {checkTeacher, queryCourseTeacher, queryRules, querySubscriber} from "@/api/teacher";
+import {checkTeacher, postCourse, queryCourseTeacher, queryRules, querySubscriber} from "@/api/teacher";
 export default {
     state: {
         tpreHide:false,//讲师编辑
         addCouHide:false,
         addTeHide:false,
+        course_url:"",
         teacher: {},
+        classes:[],
         rules:[],
         subscribers:[],
         postCourses:{}
@@ -50,5 +52,18 @@ export default {
                 return Promise.reject(error);
             }
         },
+        async handlePostCourse({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await postCourse(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
     }
 }

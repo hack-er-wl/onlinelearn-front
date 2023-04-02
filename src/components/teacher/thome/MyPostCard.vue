@@ -9,8 +9,10 @@
       <h5>{{data.course.value.course_name}}</h5>
       <div class="card_bottom">
         <el-tag type="info"><el-icon><User /></el-icon>{{data.course.value.subscribe_num}}人订阅</el-tag>
-        <el-tag type="warning">{{data.course.value.course_status == 0 ? '热门':'非热门'}}</el-tag>
-        <el-tag :type="data.course.value.course_fee == 0 ? '':'danger'">{{data.course.value.course_fee == 0 ? "免费":data.course.value.course_fee + "￥"}}</el-tag>
+        <div style="display: flex">
+            <el-tag type="warning">{{data.course.value.course_status == 0 ? '热门':'非热门'}}</el-tag>
+            <el-tag style="margin-left: 4px" :type="data.course.value.course_fee == 0 ? '':'danger'">{{data.course.value.course_fee == 0 ? "免费":data.course.value.course_fee + "￥"}}</el-tag>
+        </div>
       </div>
     </div>
   </el-card>

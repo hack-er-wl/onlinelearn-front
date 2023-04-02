@@ -1,10 +1,21 @@
 import {
-    queryClassAll, queryTestAll,
-    queryCourseAll, queryMenuAll,
-    queryMessageAll, queryRuleAll,
+    queryClassAll,
+    queryTestAll,
+    queryCourseAll,
+    queryMenuAll,
+    queryMessageAll,
+    queryRuleAll,
     querySliderAll,
     queryTeacherAll,
-    queryUserAll, login, queryChooseAll, queryOptionAll, queryChapterAll, queryBarAll, queryAvatarAll
+    queryUserAll,
+    login,
+    queryChooseAll,
+    queryOptionAll,
+    queryChapterAll,
+    queryBarAll,
+    queryAvatarAll,
+    addField,
+    broadNotice, handleUpdateTeacher, addRule
 } from "@/api/manager";
 
 export default {
@@ -23,7 +34,9 @@ export default {
         options:[],
         editStatus:false,
         editCheck:false,
+        checkStatus:false,
         editCourse:{},
+        editTeacher:{},
         messages:[],
         sliders:[],
         avatars:[],
@@ -231,6 +244,58 @@ export default {
             } catch (error) {
                 return Promise.reject(error);
             }
-        }
+        },
+        async handleAddField({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await addField(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleAddRule({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await addRule(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleBroadNotice({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await broadNotice(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateTeacher({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await handleUpdateTeacher(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
     }
 }

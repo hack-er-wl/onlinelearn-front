@@ -20,6 +20,12 @@ import UserEchartCard from "./UserEchartCard.vue";
 import {useStore} from "vuex";
 import {reactive} from "vue";
 const store = useStore();
+let nums = 0;
+for(let i in store.state.managerStore.users){
+    if(store.state.managerStore.users[i].user_role == 0){
+        nums++;
+    }
+}
 const data = reactive([{
   title:"注册用户",
   value:store.state.managerStore.users.length,
@@ -46,11 +52,11 @@ const data = reactive([{
     color:"rgb(145,204,117)",
         margin:"0 0 2% 2%"
   },{
-    title:"其他游客",
-    value:100,
-    content:"其他用户数量",
+    title:"管理用户",
+    value:nums,
+    content:"管理员用户的数量",
     foot:"比昨天增加",
-    num:5,
+    num:1,
     color: "rgb(84,112,198)",
         margin:"0 0 2% 2%"
   }])

@@ -1,58 +1,31 @@
 <template>
   <el-dialog title="发布课程">
-    <el-form>
-      <div style="display: flex">
-        <el-form-item style="width: 60%;margin-right: 5px" label="昵称">
-          <el-input prefix-icon="User" v-model="nick" placeholder="请输入昵称"/>
+    <el-form :model="courseForm" ref="courseFormRef" :rules="courseFormRules">
+      <div style="display: flex;justify-content: space-between">
+        <el-form-item style="width: 50%;margin-right: 5px" label="课程名称" prop="coursename">
+          <el-input prefix-icon="User" v-model="courseForm.coursename" placeholder="请输入课程名称···"/>
         </el-form-item>
-        <el-form-item style="width: 40%" label="年龄">
-          <el-select style="width: 100%" suffix-icon="Calendar" v-model="age" placeholder="请选择年龄">
-            <el-option
-                v-for="item in ages"
-                :key="item.value"
-                :label="item.label+10"
-                :value="item.value+10"
-            />
-          </el-select>
+          <el-form-item style="width: 40%" label="课程分类" prop="courseid">
+              <el-select style="width: 100%" suffix-icon="Calendar" v-model="courseForm.classid" placeholder="请选择课程分类">
+                  <el-option
+                          v-for="item in store.state.teacherStore.classes"
+                          :key="item.value"
+                          :label="item.value"
+                          :value="item.classid"
+                  />
+              </el-select>
+          </el-form-item>
+      </div>
+      <div style="display: flex;justify-content: space-between">
+        <el-form-item style="width: 50%;margin-right: 5px" label="课程费用" prop="coursefee">
+          <el-input prefix-icon="Iphone" v-model="courseForm.coursefee" placeholder="请输入课程费用···"/>
+        </el-form-item>
+        <el-form-item style="width: 40%" label="课程封面" prop="coursecover">
+          <UploadCard/>
         </el-form-item>
       </div>
-      <div style="display: flex">
-        <el-form-item style="width: 50%;margin-right: 5px" label="手机">
-          <el-input prefix-icon="Iphone" v-model="phone" placeholder="请输入手机号"/>
-        </el-form-item>
-        <el-form-item style="width: 50%" label="邮箱">
-          <el-input prefix-icon="Message" v-model="phone" placeholder="请输入邮箱"/>
-        </el-form-item>
-      </div>
-      <div style="display: flex">
-        <el-form-item style="width: 60%;margin-right: 5px" label="性别">
-          <el-select style="width: 100%" suffix-icon="Male" v-model="gender" placeholder="请选择性别">
-            <el-option
-                v-for="item in genders"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item style="width: 40%" label="教龄">
-          <el-select style="width: 100%" suffix-icon="Calendar" v-model="tage" placeholder="请选择教龄">
-            <el-option
-                v-for="item in tages"
-                :key="item.value"
-                :label="item.label-10"
-                :value="item.value-10"
-            />
-          </el-select>
-        </el-form-item>
-      </div>
-      <el-form-item label="兴趣">
-        <el-input
-            v-model="interest"
-            :rows="2"
-            type="textarea"
-            placeholder="请输入兴趣"
-        />
+      <el-form-item label="课程简介" prop="coursebrief">
+        <el-input v-model="courseForm.coursebrief" :rows="2" type="textarea" placeholder="请输入课程简介···"/>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -65,29 +38,61 @@
 </template>
 <script setup>
 import {useStore} from "vuex";
-import {ref} from "vue";
+import {onMounted, reactive, ref, toRaw} from "vue";
 import { useI18n } from "vue-i18n";
 import useNotification from "@/hooks/useNotification";
+import UploadCard from "@/components/teacher/thome/UploadCard.vue";
+const courseFormRef = ref(null);
 const { t } = useI18n();
 const store = useStore();
-const genders = [{value:'0',label:'男'},{value:'1',label:'女'}];
-const gender = ref('');
-const ages = [{value:13,label:13},{value:14,label:14},{value:15,label:15},{value:16,label:16},{value:17,label:17},{value:18,label:18},
-  {value:19,label:19},{value:20,label:20},{value:21,label:21},{value:22,label:22},{value:23,label:23}];
-const tages = [{value:13,label:13},{value:14,label:14},{value:15,label:15},{value:16,label:16},{value:17,label:17},{value:18,label:18},
-  {value:19,label:19},{value:20,label:20},{value:21,label:21},{value:22,label:22},{value:23,label:23}];
-const age = ref('');
-const tage = ref('');
-const nick = ref('');
-const phone = ref('');
-const interest = ref('');
-
-function postAssessConfirm(){
-  useNotification('success','系统通知',t("editSuccess"));
+const courseForm = reactive({
+    classid:"",
+    teachid:"",
+    coursename:"",
+    coursefee:"",
+    coursecover:"",
+    coursebrief:""
+})
+const courseFormRules = reactive({
+    classid: [{ required: true, message: "选择入课程分类", trigger: ["blur",'change']}],
+    coursename: [{ required: true, message: "请输入课程名称", trigger: "blur" }],
+    coursefee: [{ required: true, message: "请输入课程费用", trigger: "blur" }],
+    coursebrief: [{ required: true, message: "请输入课程简介", trigger: "blur" }],
+});
+async function postAssessConfirm() {
+    courseForm.teachid = store.state.teacherStore.teacher.teach_id;
+    courseForm.coursecover = store.state.teacherStore.course_url;
+    await courseFormRef.value.validate(async (valid, fields) => {
+        if (valid) {
+            await store.dispatch("handlePostCourse", toRaw(courseForm)).then((res)=>{
+                if(res){
+                    useNotification('success', '系统通知', "课程发布成功！");
+                    store.state.teacherStore.addCouHide = false;
+                    location.reload();
+                }else{
+                    useNotification('success', '系统通知',"课程发布失败！");
+                }
+            })
+        } else {
+            console.log(fields);
+        }
+    });
 }
 function postAssessCancel(){
   useNotification('success','系统通知',t("editCancel"));
 }
+onMounted(async () => {
+    await store.dispatch("handleQueryClassAll", toRaw({status: 0})).then((res) => {
+        if (res) {
+            for (let i in res) {
+                store.state.teacherStore.classes.push({
+                    value: res[i].class_name,
+                    classid: res[i].class_id,
+                })
+            }
+        }
+    })
+})
 </script>
 <style scoped>
 .dialog-footer button:first-child {
