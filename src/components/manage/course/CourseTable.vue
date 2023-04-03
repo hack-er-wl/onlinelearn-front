@@ -6,6 +6,11 @@
       <el-table-column prop="course_name" label="课程名称" />
       <el-table-column prop="course_status" label="课程状态" />
       <el-table-column prop="course_fee" label="课程费用" />
+      <el-table-column prop="course_cover" label="课程封面">
+          <template #default="scope">
+              <el-image :src="scope.row.course_cover"/>
+          </template>
+      </el-table-column>
       <el-table-column prop="subscribe_num" label="订阅数量" />
       <el-table-column prop="course_check" label="审核状态" />
       <el-table-column align="right" width="200px">

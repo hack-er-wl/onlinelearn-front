@@ -3,6 +3,11 @@ CourseTable.vue<template>
     <el-table :data="filterTableData" border>
       <el-table-column type="index" width="55px" label="编号"/>
       <el-table-column prop="slider_id" label="轮播ID" />
+        <el-table-column prop="slider_url" label="轮播图片">
+            <template #default="scope">
+                <el-image :src="scope.row.slider_url"/>
+            </template>
+        </el-table-column>
       <el-table-column prop="slider_url" label="轮播地址" />
       <el-table-column align="right" width="180px">
         <template #header>

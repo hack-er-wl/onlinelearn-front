@@ -17,8 +17,8 @@
 import { useStore } from "vuex";
 import Language from "../../user/common/Language.vue";
 import UserDropDown from "../../manage/common/UserDropDown.vue";
-import Theme from "../../user/common/Theme.vue";
 import {useI18n} from "vue-i18n";
+import Theme from "@/components/manage/common/Theme.vue";
 const store = useStore();
 const { t } = useI18n();
 function handleChange(){

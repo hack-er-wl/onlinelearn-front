@@ -48,6 +48,9 @@ export function broadNotice(data) {
 export function handleUpdateTeacher(data) {
     return post("admin/update/teacher/status", data);
 }
+export function handleUpdateCourse(data) {
+    return post("admin/update/course/check", data);
+}
 export function queryRuleAll(data){
     return get("teacher/query/rule",data)
 }

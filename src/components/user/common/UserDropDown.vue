@@ -25,7 +25,7 @@ import { useRouter } from "vue-router";
 import {getUser} from "@/api/user";
 import WebSocketDialog from "./WebSocketDialog.vue";
 import header from "@/assets/img/user.png"
-const is_login = localStorage.getItem('VUE_ADMIN_ISLOGIN') != null ? true:false
+const is_login = localStorage.getItem('VUE_USER_ISLOGIN') != null ? true:false
 const user = getUser() ? getUser().user_head : header
 const store = useStore();
 const router = useRouter();

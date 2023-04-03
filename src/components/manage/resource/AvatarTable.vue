@@ -2,8 +2,13 @@ CourseTable.vue<template>
   <el-card  class="table-card">
     <el-table :data="filterTableData" border>
       <el-table-column type="index" width="55px" label="编号"/>
-      <el-table-column prop="avatar_id" label="轮播ID" />
-      <el-table-column prop="avatar_url" label="轮播地址" />
+      <el-table-column prop="avatar_id" label="头像ID" />
+        <el-table-column prop="avatar_url" label="头像图片" width="85%">
+            <template #default="scope">
+                <el-image :src="scope.row.avatar_url"/>
+            </template>
+        </el-table-column>
+      <el-table-column prop="avatar_url" label="头像地址" />
       <el-table-column align="right" width="180px">
         <template #header>
           <el-input v-model="search" size="small" placeholder="请输入···"/>

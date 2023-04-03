@@ -7,7 +7,7 @@
         <el-input disabled :placeholder="store.state.managerStore.editCourse.course_id" style="width: 150px"/>
       </el-form-item>
       <el-form-item label="状态码">
-        <el-select v-model="editForm.code" class="m-2" placeholder="请选择状态码(1:通过,2:不通过)">
+        <el-select v-model="editForm.code" class="m-2" placeholder="请选择状态码(0:审核中1:通过,2:不通过)">
           <el-option
               v-for="item in options"
               :key="item.value"
@@ -38,18 +38,30 @@ const { t } = useI18n();
 const store = useStore();
 const editFormRef = ref('');
 const editForm = reactive({
-  code:"",
+    courseid:"",
+    code:"",
 });
 const editRules = reactive({
   code: [{ required: true, message: "请选择状态码", trigger: ["blur",'change']}],
 });
-const options = [{label:1,value:1},{label:2,value:2}]
+const options = [{label:0,value:0},{label:1,value:1},{label:2,value:2}]
 async function postAssessConfirm() {
-  console.log(editForm.code);
-  if(editForm.code == ""){
+    editForm.courseid = store.state.managerStore.editCourse.course_id;
+  if(editForm.code === ""){
     ElMessage({message: "状态码不能为空", type: 'warning'});
   }else{
-    useNotification('success', '系统通知', t("editSuccess"));
+      await store.dispatch("handleUpdateCourse", toRaw(editForm)).then(async (res) => {
+          if (res) {
+              useNotification('success', '系统通知', t("editSuccess"));
+              store.state.managerStore.editCheck = false;
+              store.state.managerStore.courses = [];
+              await store.dispatch("handleQueryCourseAll", toRaw({})).then((courses) => {
+                  store.state.managerStore.courses = courses;
+              })
+          }else{
+              useNotification('success', '系统通知', res.result);
+          }
+      });
   }
 }
 function postAssessCancel(){

@@ -15,11 +15,12 @@ import {
     queryBarAll,
     queryAvatarAll,
     addField,
-    broadNotice, handleUpdateTeacher, addRule
+    broadNotice, handleUpdateTeacher, addRule, handleUpdateCourse
 } from "@/api/manager";
 
 export default {
     state: {
+        isLogin:localStorage.getItem("VUE_ADMIN_ISLOGIN") || false,
         isCollapse:false,
         icon:false,
         users:[],
@@ -41,7 +42,27 @@ export default {
         sliders:[],
         avatars:[],
         menus:[],
-        rules:[]
+        rules:[],
+        adminIsDark: localStorage.getItem("vueuse-admin-color-scheme") == "dark" ? true : false || false,
+    },
+    mutations:{
+        setAdminIsDark(state, theme) {
+            localStorage.setItem("vueuse-admin-color-scheme",theme ?"auto":"light");
+            state.adminIsDark = theme;
+        },
+        // 设置登录状态
+        setAdminLoginState(state, flag) {
+            state.isLogin = flag;
+            localStorage.setItem("VUE_ADMIN_ISLOGIN",flag);
+        },
+        mlogout(state) {
+            state.isLogin = false;
+            localStorage.removeItem("VUE_ADMIN_ISLOGIN");
+            state.token = "";
+            localStorage.removeItem(process.env.VUE_APP_TOKEN_NAME);
+            localStorage.removeItem("admin");
+            if(state.webSocket != null) state.webSocket.close();
+        }
     },
     actions:{
         // 处理登录的业务逻辑
@@ -51,7 +72,7 @@ export default {
                 const res = await login(data);
                 if (res.code == 200) {
                     //commit("setTooken", res.list.token);
-                    commit("setLoginState",true);
+                    commit("setAdminLoginState",true);
                     let admin = JSON.stringify(res.data);
                     localStorage.setItem('admin',admin);
                     localStorage.setItem('VUE_ADMIN_ISLOGIN','true');
@@ -288,6 +309,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await handleUpdateTeacher(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateCourse({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await handleUpdateCourse(data);
                 if (res.code == 200) {
                     return true;
                 } else {

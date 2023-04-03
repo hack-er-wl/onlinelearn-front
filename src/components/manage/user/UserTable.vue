@@ -4,6 +4,11 @@
       <el-table-column type="index" width="55px" label="编号"/>
       <el-table-column prop="user_id" label="用户ID" />
       <el-table-column prop="user_name" label="昵称" />
+        <el-table-column prop="user_head" label="用户头像">
+            <template #default="scope">
+                <el-image :src="scope.row.user_head"/>
+            </template>
+        </el-table-column>
       <el-table-column prop="e_mail" label="邮箱" />
       <el-table-column prop="user_like" label="兴趣" />
       <el-table-column prop="user_add" label="地址" />

@@ -87,10 +87,10 @@ import { reactive, ref, toRaw } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import Language from "../../components/user/common/Language.vue";
-import Theme from "../../components/user/common/Theme.vue";
 import {useI18n} from "vue-i18n";
 import useNotification from "../../hooks/useNotification";
 import {getAdmin} from "@/api/manager";
+import Theme from "@/components/manage/common/Theme.vue";
 
 const router = useRouter();
 const store = useStore();

@@ -30,8 +30,7 @@ export default {
         ranks:[],
         assessid:'',
         acceptid:'',
-        isDark:
-            localStorage.getItem("vueuse-color-scheme") == "dark" ? true : false || false,},
+        isDark: localStorage.getItem("vueuse-color-scheme") == "dark" ? true : false || false,},
     mutations: {
         updateIsExpand(state, flag) {
             state.isExpand = flag;

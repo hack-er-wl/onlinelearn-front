@@ -5,7 +5,7 @@ import {get, post} from "../network/request";
  * @description: 用户登录
  */
 export function login(data) {
-    return get("user/login",data);
+    return post("user/login",data);
 }
 /**
  * @description: 菜单

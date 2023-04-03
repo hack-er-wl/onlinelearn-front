@@ -29,7 +29,7 @@ import {
 } from "../../api/user";
 export default {
     state: {
-        isLogin: localStorage.getItem("VUE_ADMIN_ISLOGIN") || false,
+        isLogin: localStorage.getItem("VUE_USER_ISLOGIN") || false,
         Like:false,
         score:0,
         done:0,
@@ -49,12 +49,12 @@ export default {
         // 设置登录状态
         setLoginState(state, flag) {
             state.isLogin = flag;
-            localStorage.setItem("VUE_ADMIN_ISLOGIN",flag);
+            localStorage.setItem("VUE_USER_ISLOGIN",flag);
         },
         // 处理退出登录
         logout(state) {
             state.isLogin = false;
-            localStorage.removeItem("VUE_ADMIN_ISLOGIN");
+            localStorage.removeItem("VUE_USER_ISLOGIN");
             state.token = "";
             localStorage.removeItem(process.env.VUE_APP_TOKEN_NAME);
             localStorage.removeItem("user");
@@ -68,11 +68,10 @@ export default {
             try {
                 const res = await login(data);
                 if (res.code == 200) {
-                    //commit("setTooken", res.list.token);
                     commit("setLoginState",true);
                     let user = JSON.stringify(res.data);
                     localStorage.setItem('user',user);
-                    localStorage.setItem('VUE_ADMIN_ISLOGIN','true');
+                    localStorage.setItem('VUE_USER_ISLOGIN','true');
                     return true;
                 } else {
                     return false;

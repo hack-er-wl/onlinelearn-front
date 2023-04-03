@@ -24,7 +24,7 @@ const store = useStore();
 const router = useRouter();
 
 function handleCommand() {
-  store.commit("logout");
+  store.commit("mlogout");
   router.push("/mlogin");
 }
 </script>

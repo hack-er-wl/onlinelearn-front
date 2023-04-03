@@ -12,8 +12,7 @@ service.interceptors.request.use(
     function (config) {
         // 在发送请求之前给 header 设置 token
         if (!config.url.includes("/login")) {
-            config.headers[process.env.VUE_APP_AJAX_HEADER_AUTH_NAME] =
-                localStorage.getItem(process.env.VUE_APP_TOKEN_NAME);
+            config.headers.set("token",localStorage.getItem("token"));
         }
         return config;
     },
@@ -28,6 +27,22 @@ service.interceptors.response.use(
     function (response) {
         if (response.data.code !== 200) {
             useNotification('error','系统通知',response.data.result);
+        }
+        if(response.config.url.includes("/login")){
+            localStorage.setItem("token",response.headers.token);
+        }
+        if(response.headers['missed-token']){
+            if(response.config.url.includes("admin")){
+                location.href = '/mlogin';
+                localStorage.removeItem("VUE_ADMIN_ISLOGIN");
+                localStorage.removeItem(process.env.VUE_APP_TOKEN_NAME);
+                localStorage.removeItem("admin");
+            }else{
+                location.href = '/login';
+                localStorage.removeItem("VUE_USER_ISLOGIN");
+                localStorage.removeItem(process.env.VUE_APP_TOKEN_NAME);
+                localStorage.removeItem("user");
+            }
         }
         // 对响应数据做点什么
         return response.data;
