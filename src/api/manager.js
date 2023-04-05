@@ -39,6 +39,9 @@ export function queryMenuAll(data){
 export function addField(data) {
     return post("admin/post/cfield", data);
 }
+export function queryFields(data){
+    return get("admin/query/cfield")
+}
 export function addRule(data) {
     return post("admin/post/rule", data);
 }

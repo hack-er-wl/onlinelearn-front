@@ -82,6 +82,7 @@ function postAssessCancel(){
   useNotification('success','系统通知',t("editCancel"));
 }
 onMounted(async () => {
+    store.state.teacherStore.classes = [];
     await store.dispatch("handleQueryClassAll", toRaw({status: 0})).then((res) => {
         if (res) {
             for (let i in res) {

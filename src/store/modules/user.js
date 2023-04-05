@@ -18,7 +18,7 @@ import {
     queryCourseByClassName,
     queryCourseByCourseId,
     queryCourseByStatus,
-    queryFields,
+    queryFields, queryMessage,
     queryMyCollect, queryMyOrder, queryMySubCourse, queryNotices, queryRanks,
     queryRecommend, queryReplyPoint,
     querySubscribeCourse,
@@ -552,6 +552,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryNotices(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryMessageUser({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryMessage(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

@@ -136,6 +136,9 @@ export function updatePass(data){
 export function queryNotices(data){
     return get("user/query/notice",data)
 }
+export function queryMessage(data){
+    return get("user/query/message",data)
+}
 export function setAccept(data){
     return post("user/notice/set",data)
 }

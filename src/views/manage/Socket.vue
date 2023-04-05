@@ -45,7 +45,7 @@ function send(){
     setMessageInnerHTML_Me(this.message,time);
     const message = {
       "message": this.message,
-      "username": document.getElementById('name').innerText,
+      "username": '0000000001',
       "to": fromusername,
       "time": time
     };
@@ -56,14 +56,14 @@ function send(){
 }
 
 function setMessageInnerHTML_Me(message,time) {
-  document.getElementById("show").innerHTML += "<div style='display: flex;flex-direction: row-reverse;margin-top: 5px'><span class='el-avatar el-avatar--circle' data-v-0839fafa style='--el-avatar-size:32px'><img src='/img/user.116c3e63.png' style='object-fit: cover'></span><p style='margin-right: 5px;padding: 4px;background-color: rgb(150,236,96);border-radius: 4px'>"+message+"</p><p style='margin-right: 5px;padding: 4px;color: gray;font-size: 1px'>" + time + "</p></div>";
+  document.getElementById("show").innerHTML += "<div style='display: flex;flex-direction: row-reverse;margin-top: 5px'><span class='el-avatar el-avatar--circle' data-v-0839fafa style='--el-avatar-size:32px'><img src='" + call + "' style='object-fit: cover'></span><p style='margin-right: 5px;padding: 4px;background-color: rgb(150,236,96);border-radius: 4px'>"+message+"</p><p style='margin-right: 5px;padding: 4px;color: gray;font-size: 1px'>" + time + "</p></div>";
   document.getElementById("input").value = "";
 }
-function setMessageInnerHTML_Other(message,time) {
-  document.getElementById("show").innerHTML += "<div style='display: flex;margin-top: 5px'> <span class='el-avatar el-avatar--circle' data-v-0839fafa style='--el-avatar-size:32px'><img src='/img/user_1.687accbf.png' style='object-fit: cover'></span> <p style='margin-left: 5px;padding: 4px;background-color: rgb(255,255,255);border-radius: 4px'>"+message+"</p><p style='margin-right: 5px;padding: 4px;color: gray;font-size: 1px'>" + time + "</p></div>";
+function setMessageInnerHTML_Other(message,time,head) {
+  document.getElementById("show").innerHTML += "<div style='display: flex;margin-top: 5px'> <span class='el-avatar el-avatar--circle' data-v-0839fafa style='--el-avatar-size:32px'><img src='" + head +"' style='object-fit: cover'></span> <p style='margin-left: 5px;padding: 4px;background-color: rgb(255,255,255);border-radius: 4px'>"+message+"</p><p style='margin-right: 5px;padding: 4px;color: gray;font-size: 1px'>" + time + "</p></div>";
 }
 function  openWebSocket(){
-  webSocket = new WebSocket("ws://localhost:8080/websocket/" + document.getElementById("name").innerText+"/")
+  webSocket = new WebSocket("ws://localhost:8080/websocket/0000000001")
   if (webSocket) {
     //连通之后的回调事件
     webSocket.onopen = function () {
@@ -73,8 +73,8 @@ function  openWebSocket(){
     webSocket.onmessage = function (evt) {
       const received_msg = evt.data;
       const obj = JSON.parse(received_msg);
-      if(obj.fromusername != "系统"){
-        setMessageInnerHTML_Other(obj.textMessage,obj.time);
+      if(obj.fromusername != "0000000001"){
+        setMessageInnerHTML_Other(obj.textMessage,obj.time,obj.head);
         fromusername = obj.fromusername;
         console.log(fromusername);
         ElMessage({message:obj.fromusername + "对" + obj.tousername + "说：" + obj.textMessage,type:"warning"});

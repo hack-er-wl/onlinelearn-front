@@ -5,7 +5,7 @@
         <el-avatar
             class="mr-3"
             :size="50"
-            :src="user"/>
+            :src="store.state.teacherStore.teacher.user_head"/>
         <div style="margin-left: 4px">
           <div style="display:flex">
             <h4>{{store.state.teacherStore.teacher.user_name}}</h4>

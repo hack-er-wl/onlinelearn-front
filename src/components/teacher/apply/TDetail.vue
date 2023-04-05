@@ -87,6 +87,7 @@ import router from "@/router";
 import ButtonCard from "@/components/teacher/apply/ButtonCard.vue";
 import {useStore} from "vuex";
 import {getUser} from "@/api/user";
+import useNotification from "@/hooks/useNotification";
 const store = useStore();
 const { t } = useI18n();
 const genders = [{value:'0',label:'男'},{value:'1',label:'女'}];
@@ -99,7 +100,7 @@ const contents = [[{value:"请选择领域",label:"请选择领域"}],[{value:"�
 const tstatusFormRef = ref(null);
 // 表单数据
 const tstatusForm = reactive({
-  userid:getUser().user_id,
+  userid:"",
   userage:"",
   usertage:"",
   usersex:"",
@@ -119,9 +120,15 @@ const tstatusRules = reactive({
   userbrief:[{ required: true, message: t("interestError"), trigger: "blur" }]
 });
 async function submit() {
+  tstatusForm.userid = getUser().user_id;
   console.log(toRaw(tstatusForm));
   await store.dispatch("handleApply", toRaw(tstatusForm)).then((res) => {
-    console.log(res);
+    if(res){
+        useNotification('success','系统通知','入住成功,请等待资质审核!');
+        router.push({path:'/home'});
+    }else{
+        useNotification('error','系统通知','入住失败!');
+    }
   })
 }
 function cancel(){

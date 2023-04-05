@@ -15,7 +15,7 @@ import {
     queryBarAll,
     queryAvatarAll,
     addField,
-    broadNotice, handleUpdateTeacher, addRule, handleUpdateCourse
+    broadNotice, handleUpdateTeacher, addRule, handleUpdateCourse, queryFields
 } from "@/api/manager";
 
 export default {
@@ -244,6 +244,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await querySliderAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handlequeryFieldsAll({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await queryFields(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

@@ -26,7 +26,7 @@ const onsubmit = async (formAddField) => {
 }
 onMounted(async () => {
   store.state.managerStore.fields = [];
-  await store.dispatch("handlequeryFields", toRaw({})).then((fields) => {
+  await store.dispatch("handlequeryFieldsAll", toRaw({})).then((fields) => {
     store.state.managerStore.fields = fields;
   })
 })
