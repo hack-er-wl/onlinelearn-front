@@ -1,13 +1,26 @@
-import {checkTeacher, postCourse, queryCourseTeacher, queryRules, querySubscriber} from "@/api/teacher";
+import {
+    checkTeacher,
+    postBar,
+    postChapter,
+    postCourse,
+    queryCourseTeacher,
+    queryRules,
+    querySubscriber
+} from "@/api/teacher";
+import {queryChapter} from "@/api/user";
 export default {
     state: {
         tpreHide:false,//讲师编辑
         addCouHide:false,
         addTeHide:false,
+        addChapHide:false,
+        addBarHide:false,
         course_url:"",
+        video_url:"",
         teacher: {},
         classes:[],
         rules:[],
+        courseChapter:[],
         subscribers:[],
         postCourses:{}
     },
@@ -56,6 +69,32 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await postCourse(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handlePostChapter({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await postChapter(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handlePostBar({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await postBar(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

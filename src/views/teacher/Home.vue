@@ -17,6 +17,8 @@
   <TeacherEditDialog v-model="store.state.teacherStore.tperHide"/>
   <AddCourseDialog v-model="store.state.teacherStore.addCouHide"/>
   <AddTestDialog v-model="store.state.teacherStore.addTeHide"/>
+  <AddChapterDialog v-model="store.state.teacherStore.addChapHide"/>
+  <AddBarDialog v-model="store.state.teacherStore.addBarHide"/>
 </template>
 
 <script setup>
@@ -29,6 +31,8 @@ import AddCourseDialog from "../../components/teacher/thome/AddCourseDialog.vue"
 import AddTestDialog from "../../components/teacher/thome/AddTestDialog.vue";
 import {onMounted, toRaw} from "vue";
 import {getUser} from "@/api/user";
+import AddChapterDialog from "@/components/teacher/thome/AddChapterDialog.vue";
+import AddBarDialog from "@/components/teacher/thome/AddBarDialog.vue";
 const store = useStore();
 onMounted(async () => {
   store.state.teacherStore.teacher = await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id}));

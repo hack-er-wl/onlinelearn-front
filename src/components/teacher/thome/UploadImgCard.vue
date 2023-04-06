@@ -1,10 +1,8 @@
 <template>
-    <el-upload v-model:file-list="fileList"
-            class="upload-demo"
-            action="/api/teacher/upload/img"
-            multiple
-            :on-success="handleSuccess"
-            :limit="1">
+    <el-upload ref="uploadRef"
+               class="upload-demo"
+               action="/api/teacher/upload/img"
+               :on-success="handleSuccess">
         <el-button icon="UploadFilled">上传封面</el-button>
     </el-upload>
 </template>
@@ -12,7 +10,7 @@
 import { ref } from 'vue'
 import {useStore} from "vuex";
 const store = useStore();
-const fileList = ref([])
+const uploadRef = ref(null)
 const handleSuccess = (res)=>{
     store.state.teacherStore.course_url = res;
 }
