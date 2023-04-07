@@ -9,10 +9,9 @@
       <el-main class="test_main" id="el-main">
         <div style="display: flex;justify-content: space-between">
           <p style="margin:2% 2% 0 2.8%;color: gray">排名 / 昵称</p>
-          <p style="margin:2% 2% 0 0;color: gray">用时</p>
           <p style="margin:2% 3.5% 0 0;color: gray">分数</p>
         </div>
-        <RankCard style="cursor: pointer" v-for="(n,i) in user" :key="i" :index="i+1" :user="n"/>
+        <RankCard style="cursor: pointer" v-for="(n,i) in store.state.userStore.rank" :key="i" :index="i+1" :user="n"/>
       </el-main>
       <!--底部区域-->
       <el-footer>
@@ -24,22 +23,24 @@
 <script setup>
 import Header from "../../components/user/common/Header.vue";
 import Footer from "../../components/user/common/Footer.vue";
-import {onMounted} from "vue";
+import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
 import {useRoute, useRouter} from "vue-router";
 import RankCard from "@/components/user/rank/RankCard.vue";
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
-const user = [{user_name:'admin',score:80,use_time:'15'},{user_name:'root',score:85,use_time:'16'}].sort((a,b)=>{return b.score-a.score});
+const test_id = route.query.key;
 onMounted(async () => {
-
+    store.state.userStore.rank = [];
+    await store.dispatch("handleQueryRank", toRaw({testid: test_id})).then((rank) => {
+        store.state.userStore.rank = rank.sort((a, b) => {return b.score - a.score});
+    })
 })
 </script>
 <style lang="scss" scoped>
 .container {
   height: 100vh;
-
   .el-aside {
     transition: width 0.3s ease-out;
 

@@ -8,21 +8,23 @@
     </template>
     <div style="display: flex;justify-content: space-between">
       <div><p style="font-size: 12px;color: gray">建议用时: {{data.test.value.use_time}}分钟</p></div>
-      <div><el-button :type="done?'primary':'warning'" size="small" @click="handleClick(data.test.value,done)">{{done?'查看排名':'参加考试'}}</el-button></div>
+      <div><el-button :type="data.test.value.participate?'primary':'warning'" size="small" @click="handleClick(data.test.value,data.test.value.participate)">{{data.test.value.participate?'查看排名':'参加考试'}}</el-button></div>
     </div>
   </el-card>
 </template>
 <script setup>
-import {toRefs} from "vue";
+import {onMounted, toRaw, toRefs} from "vue";
 import {defineProps} from "vue"
 import qs from "qs";
 import {useRouter} from "vue-router";
+import {useStore} from "vuex";
 const router = useRouter();
-const done = true;
+const store = useStore();;
 const props = defineProps({
   test:Object
 })
 const data = toRefs(props)
+console.log(data.test.value.participate)
 const handleClick = (test,done) => {
   if(!done)
     router.push({path:'/test',query: {key: qs.stringify(test)}})

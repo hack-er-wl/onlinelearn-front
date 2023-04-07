@@ -1,11 +1,13 @@
 <template>
   <el-card class="test_box_card">
     <div class="card-header">
-      <div style="display: flex">
+      <div style="display: flex;justify-content: space-between">
         <h4 :style="data.index.value == 1 ? {color: 'red'}:{color: 'yellow'}">{{data.index.value}}</h4>
-        <h6 style="margin-left: 15px">{{data.user.value.user_name}}</h6>
+        <div style="display: flex;margin-left: 15px;align-items: center">
+            <el-image style="width: 25px;height: 25px;border-radius: 50%" :src="data.user.value.user_head"/>
+            <h6 style="margin-left: 5px">{{data.user.value.user_name}}</h6>
+        </div>
       </div>
-      <p style="font-size: 5px;color: gray">{{data.user.value.use_time}}</p>
       <p style="font-size: 5px;color: gray">{{data.user.value.score}}</p>
     </div>
   </el-card>

@@ -21,3 +21,15 @@ export function postChapter(data){
 export function postBar(data){
     return post("teacher/post/course/bar",data)
 }
+export function postTest(data){
+    return post("teacher/post/test",data)
+}
+export function postChoose(data){
+    return post("teacher/post/choose",data)
+}
+export function postOption(data){
+    return post("teacher/post/option",data)
+}
+export function queryTestByTeacher(data){
+    return post("teacher/query/test",data)
+}

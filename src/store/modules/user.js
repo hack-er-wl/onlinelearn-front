@@ -1,12 +1,11 @@
 import {
-    addCollect,
-    addField, assessPoint, cancelAssessPoint,
+    addCollect, assessPoint, cancelAssessPoint,
     cancelCollect, cancelReplyPoint,
-    cancelSubscribeCourse,
+    cancelSubscribeCourse, chargeMoney,
     code,
     getSliders,
     handleMenu,
-    login,
+    login, participateTest,
     postApply,
     postAssess,
     postReply,
@@ -19,17 +18,18 @@ import {
     queryCourseByCourseId,
     queryCourseByStatus,
     queryFields, queryMessage,
-    queryMyCollect, queryMyOrder, queryMySubCourse, queryNotices, queryRanks,
+    queryMyCollect, queryMyOrder, queryMySubCourse, queryNotices, queryRank,
     queryRecommend, queryReplyPoint,
     querySubscribeCourse,
     queryTeacherByCourseId, queryTests,
     regist, replyPoint, setAccept,
     subscribeCourse,
-    updatePass
+    updatePass, updateUser
 } from "../../api/user";
 export default {
     state: {
         isLogin: localStorage.getItem("VUE_USER_ISLOGIN") || false,
+        rank:[],
         Like:false,
         score:0,
         done:0,
@@ -149,6 +149,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryClassesByStatus(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateUser({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await updateUser(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {
@@ -431,10 +444,36 @@ export default {
                 return Promise.reject(error);
             }
         },
-        async handleQueryRanks({ commit, dispatch},data) {
+        async handleQueryRank({ commit, dispatch},data) {
             // 发送登录的网络请求
             try {
-                const res = await queryRanks(data);
+                const res = await queryRank(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleChargeMoney({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await chargeMoney(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleParticipateTest({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await participateTest(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

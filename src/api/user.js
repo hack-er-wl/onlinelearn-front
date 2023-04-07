@@ -40,6 +40,9 @@ export function getSliders(data) {
 export function queryFields(data){
     return get("user/query/cfield")
 }
+export function updateUser(data){
+    return get("user/update/after/charge",data)
+}
 export function queryClassesByStatus(data){
     return get("user/query/cclass/status",data)
 }
@@ -106,8 +109,14 @@ export function queryChapter(data){
 export function queryTests(data){
     return get("user/query/test",data)
 }
-export function queryRanks(data){
+export function queryRank(data){
     return get("user/query/rank",data)
+}
+export function chargeMoney(data){
+    return post("user/charge/money",data)
+}
+export function participateTest(data){
+    return post("user/participate/test",data)
 }
 export function postReply(data){
     return post("user/reply",data)

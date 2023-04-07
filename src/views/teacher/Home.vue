@@ -19,6 +19,8 @@
   <AddTestDialog v-model="store.state.teacherStore.addTeHide"/>
   <AddChapterDialog v-model="store.state.teacherStore.addChapHide"/>
   <AddBarDialog v-model="store.state.teacherStore.addBarHide"/>
+  <AddChooseDialog v-model="store.state.teacherStore.addChoose"/>
+  <AddOptionDialog v-model="store.state.teacherStore.addOption"/>
 </template>
 
 <script setup>
@@ -33,6 +35,8 @@ import {onMounted, toRaw} from "vue";
 import {getUser} from "@/api/user";
 import AddChapterDialog from "@/components/teacher/thome/AddChapterDialog.vue";
 import AddBarDialog from "@/components/teacher/thome/AddBarDialog.vue";
+import AddChooseDialog from "@/components/teacher/thome/AddChooseDialog.vue";
+import AddOptionDialog from "@/components/teacher/thome/AddOptionDialog.vue";
 const store = useStore();
 onMounted(async () => {
   store.state.teacherStore.teacher = await store.dispatch("handleCheckTeacher", toRaw({userid: getUser().user_id}));

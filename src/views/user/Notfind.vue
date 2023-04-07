@@ -7,8 +7,8 @@
         </template>
         <template #extra>
           <div class="goback">
-            <el-button type="warning" @Click="goBack">返回</el-button>
-            <el-button type="primary" @Click="goHome">首页</el-button>
+            <el-button type="warning" @Click="goBack()">返回</el-button>
+            <el-button type="primary" @Click="goHome()">首页</el-button>
           </div>
         </template>
       </el-result>

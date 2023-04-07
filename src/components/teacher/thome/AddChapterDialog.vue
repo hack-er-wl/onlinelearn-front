@@ -3,14 +3,14 @@
     <el-form :model="chapterForm" ref="chapterFormRef" :rules="chapterFormRules">
       <div style="display: flex;justify-content: space-between">
         <el-form-item style="width: 50%;margin-right: 5px" label="章节名称" prop="chaptername">
-          <el-input prefix-icon="User" v-model="chapterForm.chaptername" placeholder="请输入章节名称···"/>
+          <el-input prefix-icon="Edit" v-model="chapterForm.chaptername" placeholder="请输入章节名称···"/>
         </el-form-item>
         <el-form-item label="章节顺序" prop="chapterorder">
-            <el-input prefix-icon="User" v-model="chapterForm.chapterorder" placeholder="请输入章节顺序···"/>
+            <el-input prefix-icon="DataLine" v-model="chapterForm.chapterorder" placeholder="请输入章节顺序···"/>
         </el-form-item>
       </div>
         <el-form-item label="课程名称" prop="courseid">
-            <el-select style="width: 100%" suffix-icon="Calendar" v-model="chapterForm.courseid" placeholder="请选择课程名称···">
+            <el-select style="width: 100%" suffix-icon="Folder" v-model="chapterForm.courseid" placeholder="请选择课程名称···">
                 <el-option
                         v-for="item in store.state.teacherStore.postCourses.checked"
                         :key="item.course_id"

@@ -1,19 +1,16 @@
 <template>
   <el-dialog title="发布测试">
     <el-form :model="testForm" ref="testFormRef" :rules="testFormRules">
-        <el-form-item label="测试名称" prop="testname">
-            <el-input prefix-icon="User" v-model="testForm.testname" placeholder="请输入测试名称···"/>
-        </el-form-item>
       <div style="display: flex;justify-content: space-between">
-          <el-form-item style="width: 50%;margin-right: 5px" label="题目总数" prop="quesnum">
-              <el-input prefix-icon="Iphone" v-model="testForm.quesnum" placeholder="请输入题目总数···"/>
+          <el-form-item style="width: 50%;margin-right: 5px" label="测试名称" prop="testname">
+              <el-input prefix-icon="Document" v-model="testForm.testname" placeholder="请输入测试名称···"/>
           </el-form-item>
-          <el-form-item style="width: 50%" label="考试用时" prop="usetime">
-              <el-input prefix-icon="Message" v-model="testForm.usetime" placeholder="请输入考试用时···"/>
+          <el-form-item label="考试用时" prop="usetime">
+              <el-input prefix-icon="AlarmClock" v-model="testForm.usetime" placeholder="请输入考试用时···"/>
           </el-form-item>
       </div>
         <el-form-item label="课程名称" prop="courseid">
-            <el-select style="width: 100%" suffix-icon="Calendar" v-model="testForm.courseid" placeholder="请选择课程名称···">
+            <el-select style="width: 100%" suffix-icon="Folder" v-model="testForm.courseid" placeholder="请选择课程名称···">
                 <el-option
                         v-for="item in store.state.teacherStore.postCourses.checked"
                         :key="item.course_id"
@@ -41,29 +38,39 @@ const store = useStore();
 const testFormRef = ref(null);
 const testForm = reactive({
     testname:"",
-    quesnum:"",
     usetime:"",
     courseid:"",
     teachid:""
 })
 const testFormRules = reactive({
     testname: [{ required: true, message: "请输入测试名称", trigger: "blur" }],
-    quesnum: [{ required: true, message: "请输入题目总数", trigger: "blur" }],
     usetime: [{ required: true, message: "请输入考试用时", trigger: "blur" }],
     courseid:[{ required: true, message: "请选择课程", trigger: ["blur",'change']}]
 });
 
-function postAssessConfirm(){
+async function postAssessConfirm() {
     testForm.teachid = store.state.teacherStore.teacher.teach_id;
     console.log(toRaw(testForm));
+    await testFormRef.value.validate(async (valid, fields) => {
+        if (valid) {
+            await store.dispatch("handlePostTest", toRaw(testForm)).then((res) => {
+                if (res) {
+                    useNotification('success', '系统通知', "测试发布成功！");
+                    store.state.teacherStore.addTeHide = false;
+                } else {
+                    useNotification('success', '系统通知', "测试发布失败！");
+                }
+            })
+        } else {
+            console.log(fields);
+        }
+    });
 }
 function postAssessCancel(){
     store.state.teacherStore.addTeHide = false;
     testForm.teachid = "";
     testForm.usetime = "";
-    testForm.quesnum = "";
     testForm.testname = "";
-    testForm.courseid = "";
     useNotification('error','系统通知',t("editCancel"));
 }
 </script>

@@ -35,7 +35,16 @@ const editRules = reactive({
 });
 async function postAssessConfirm() {
   if(editForm.money != ""){
-    useNotification('success', '系统通知', t("editSuccess"));
+      await store.dispatch("handleChargeMoney", toRaw({userid: getUser().user_id,usermoney:editForm.money})).then(async (res) => {
+          if (res) {
+              useNotification('success', '系统通知', t("editSuccess"));
+              store.state.layoutStore.moneyHide = false;
+              let user = await store.dispatch("handleUpdateUser", toRaw({userid: getUser().user_id}));
+              localStorage.setItem('user',JSON.stringify(user));
+          } else {
+              useNotification('error', '系统通知', "操作失败");
+          }
+      })
   }else{
     ElMessage({message: "金额不能为空", type: 'warning'});
   }

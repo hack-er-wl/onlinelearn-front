@@ -13,7 +13,7 @@
           </el-aside>
           <el-main style="margin-top: 2%">
             <Paper :test="test"/>
-            <ButtonCard btn-a="提交" btn-b="退出" />
+            <ButtonCard @submit="handleSubmit" @cancel="handleCancel" btn-a="提交" btn-b="退出" />
           </el-main>
           <el-aside width="25%" style="margin: 2% 2% 0 2%">
             <TimeCard :test="test"/>
@@ -37,12 +37,32 @@ import ButtonCard from "../../components/user/test/ButtonCard.vue";
 import TimeCard from "@/components/user/test/TimeCard.vue";
 import ProgressCard from "@/components/user/test/ProgressCard.vue";
 import {useStore} from "vuex";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import qs from "qs";
-import {onMounted} from "vue";
+import {onMounted, toRaw} from "vue";
+import useNotification from "@/hooks/useNotification";
+import {getUser} from "@/api/user";
 const store = useStore();
 const route = useRoute();
+const router = useRouter();
 const test = qs.parse(route.query.key);
+const handleSubmit = async () => {
+    if (store.state.userStore.done == test.ques_num) {
+        await store.dispatch("handleParticipateTest", toRaw({userid:getUser().user_id,testid:test.test_id,score:store.state.userStore.score})).then((res) => {
+            if (res) {
+                useNotification('success', '系统通知', "测试成功！");
+                router.go(-1);
+            } else {
+                useNotification('success', '系统通知', "测试失败！");
+            }
+        })
+    }
+}
+const handleCancel = ()=>{
+    store.state.userStore.score = 0;
+    store.state.userStore.done = 0;
+    router.go(-1);
+}
 onMounted(()=>{
   store.state.userStore.score = 0;
   store.state.userStore.done = 0;

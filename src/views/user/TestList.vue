@@ -23,14 +23,14 @@ import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
 import {useRoute, useRouter} from "vue-router";
 import TestListCard from "@/components/user/test/TestListCard.vue";
-import qs from "qs";
+import {getUser} from "@/api/user";
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
 const course_id = route.query.key;
 onMounted(async () => {
   store.state.layoutStore.tests = [];
-  await store.dispatch("handleQueryTests", toRaw({courseid: course_id})).then((tests) => {
+  await store.dispatch("handleQueryTests", toRaw({courseid: course_id,userid:getUser().user_id})).then((tests) => {
     store.state.layoutStore.tests = tests;
   })
 })

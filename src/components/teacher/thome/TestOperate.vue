@@ -7,6 +7,8 @@
     </template>
     <div class="operate">
       <el-button type="primary" plain round @click="store.state.teacherStore.addTeHide = true">发布测试</el-button>
+      <el-button type="primary" plain round style="margin-top: 8px"  @click="store.state.teacherStore.addChoose = true">发布选择题</el-button>
+      <el-button type="primary" plain round style="margin-top: 8px"  @click="store.state.teacherStore.addOption = true">发布判断题</el-button>
     </div>
   </el-card>
 </template>

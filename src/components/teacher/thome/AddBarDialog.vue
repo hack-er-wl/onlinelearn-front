@@ -3,15 +3,15 @@
     <el-form :model="barForm" ref="barFormRef" :rules="barFormRules">
       <div style="display: flex;justify-content: space-between">
         <el-form-item style="width: 50%;margin-right: 5px" label="小节名称" prop="barname">
-          <el-input prefix-icon="User" v-model="barForm.barname" placeholder="请输入小节名称···"/>
+          <el-input prefix-icon="Edit" v-model="barForm.barname" placeholder="请输入小节名称···"/>
         </el-form-item>
           <el-form-item label="小节顺序" prop="barorder">
-              <el-input prefix-icon="User" v-model="barForm.barorder" placeholder="请输入章节顺序···"/>
+              <el-input prefix-icon="DataLine" v-model="barForm.barorder" placeholder="请输入章节顺序···"/>
           </el-form-item>
       </div>
       <div style="display: flex;justify-content: space-between">
           <el-form-item label="课程名称" prop="courseid">
-              <el-select @change="handleChange" style="width: 100%" suffix-icon="Calendar" v-model="barForm.courseid" placeholder="请选择课程名称···">
+              <el-select @change="handleChange" style="width: 100%" suffix-icon="Folder" v-model="barForm.courseid" placeholder="请选择课程名称···">
                   <el-option
                           v-for="item in store.state.teacherStore.postCourses.checked"
                           :key="item.course_id"
@@ -25,7 +25,7 @@
           </el-form-item>
       </div>
         <el-form-item label="章节名称" prop="chapterid">
-            <el-select style="width: 100%" suffix-icon="Calendar" v-model="barForm.chapterid" placeholder="请选择章节名称···">
+            <el-select style="width: 100%" suffix-icon="Folder" v-model="barForm.chapterid" placeholder="请选择章节名称···">
                 <el-option
                         v-for="item in store.state.teacherStore.courseChapter"
                         :key="item.chapter_id"
