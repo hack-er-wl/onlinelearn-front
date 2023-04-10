@@ -2,7 +2,7 @@
   <el-card class="table-card" style="margin-bottom: 2%">
     <el-form :model="formAddField" style="display: flex;justify-content: space-between">
       <el-form-item label="领域名称" style="margin-top: 10px">
-        <el-input v-model="formAddField.fieldname" placeholder="请输入领域···"/>
+        <el-input v-model="formAddField.fieldname" placeholder="请输入领域名称···"/>
       </el-form-item>
       <el-form-item style="margin-top: 10px">
         <el-button type="primary" @click="onSubmit">添加领域</el-button>
@@ -15,7 +15,7 @@
 import {reactive} from "vue";
 const emit = defineEmits(['submit']);
 const formAddField = reactive({
-  fieldname: "设计",
+  fieldname: "",
 })
 const onSubmit = () => {
   emit('submit',formAddField);

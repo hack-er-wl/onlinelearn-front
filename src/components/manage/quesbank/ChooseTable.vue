@@ -30,6 +30,7 @@ TestTable.vue<template>
 <script setup>
 import {computed, ref} from "vue";
 import {useStore} from "vuex";
+import {ElMessage} from "element-plus";
 const store = useStore();
 const search = ref('');
 const filterTableData = computed(() =>
@@ -43,6 +44,7 @@ const onStatus = (row)=>{
   console.log(row);
 }
 const onDelete = (row)=>{
+  ElMessage({message:'请谨慎执行删除操作!',type:'error'});
   console.log(row);
 }
 </script>
