@@ -8,7 +8,7 @@
             <i class="bi bi-fire" style="color: red"/>
           </h4>
         </span>
-        <span style="color: gray">
+        <span style="color: gray;cursor: pointer" @click="handleClickMore">
           更多<el-icon color="blue"><ArrowRightBold /></el-icon>
         </span>
       </div>
@@ -32,11 +32,19 @@ import Card from "./Card.vue";
 import {useStore} from "vuex";
 import {useRouter} from "vue-router";
 import qs from "qs";
+import {toRaw} from "vue";
 const store = useStore();
 const router = useRouter();
 const handleClick = (course)=>{
   store.state.layoutStore.assesses = [];
   router.push({path: '/course', query: {key: qs.stringify(course)}})
+}
+const handleClickMore = async () => {
+    store.state.layoutStore.results = [];
+    await store.dispatch("handlequeryCourseByStatus", toRaw({status: 0,length: -1})).then((res) => {
+        store.state.layoutStore.results = res;
+    })
+    await router.push({path: '/result', query: {key: '热门课程', value: '更多'}});
 }
 </script>
 

@@ -29,6 +29,7 @@ import {toRaw} from "vue";
 const store = useStore();
 const my_router = useRouter();
 async function handleClick(field_name,t) {
+    store.state.layoutStore.results = [];
   await store.dispatch("handlequeryCourseByClassId", toRaw({classid: t.class_id})).then((res) => {
     store.state.layoutStore.results = res;
   })

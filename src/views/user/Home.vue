@@ -36,10 +36,10 @@ onMounted(async () => {
   await store.dispatch("handlequeryFields", toRaw({})).then(async (fields) => {
     store.state.layoutStore.fields = fields;
   });
-  await store.dispatch("handlequeryCourseByStatus", toRaw({status: 0})).then((res) => {
+  await store.dispatch("handlequeryCourseByStatus", toRaw({status: 0,length: 4})).then((res) => {
     store.state.layoutStore.hotCourse = res;
   })
-  await store.dispatch("handlequeryCourseByStatus", toRaw({status: 1})).then((res) => {
+  await store.dispatch("handlequeryCourseByStatus", toRaw({status: 1,length: 4})).then((res) => {
     store.state.layoutStore.newCourse = res;
   })
   await store.dispatch("handleQueryNotices", toRaw({userid:getUser().user_id})).then((res) => {
