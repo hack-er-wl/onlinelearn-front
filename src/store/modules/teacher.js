@@ -5,7 +5,7 @@ import {
     postCourse, postOption, postTest,
     queryCourseTeacher,
     queryRules,
-    querySubscriber, queryTestByTeacher
+    querySubscriber, queryTestByTeacher, updateTeacher
 } from "@/api/teacher";
 export default {
     state: {
@@ -71,6 +71,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await postCourse(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateTeacherInfo({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await updateTeacher(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

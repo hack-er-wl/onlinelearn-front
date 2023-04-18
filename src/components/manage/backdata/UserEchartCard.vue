@@ -11,7 +11,15 @@
 <script setup>
 import {initChart} from "../../../api/echart";
 import {onMounted} from "vue";
+import {useStore} from "vuex";
+const store = useStore();
 onMounted(()=>{
+    let nums = 0;
+    for(let i in store.state.managerStore.users){
+        if(store.state.managerStore.users[i].user_role == 0){
+            nums++;
+        }
+    }
   const option_pie = {
     title:{
       text:"用户占比",
@@ -41,10 +49,10 @@ onMounted(()=>{
           }
         },
         data: [
-          { value: 1000, name: '注册用户' },
-          { value: 500, name: '讲师用户' },
-          { value: 1000, name: '访客用户' },
-          { value: 100, name: '其他用户' },
+          { value: store.state.managerStore.users.length, name: '注册用户' },
+          { value: store.state.managerStore.teachers.length, name: '讲师用户' },
+          { value: 10, name: '访客用户' },
+          { value: nums, name: '其他用户' },
         ]
       }
     ]
@@ -85,13 +93,13 @@ onMounted(()=>{
     series: [
       {
         name:"昨日数据",
-        data: [900, 490, 800, 75],
+        data: [2, 3, 5, 2],
         type: 'line',
         stack: 'x'
       },
       {
         name:"今日数据",
-        data: [100, 10, 200, 25],
+        data: [6, 3, 10, 2],
         type: 'line',
         stack: 'x'
       }

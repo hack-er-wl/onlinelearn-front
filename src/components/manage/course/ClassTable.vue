@@ -34,8 +34,10 @@ const filterTableData = computed(() =>
             data.class_name.toLowerCase().includes(search.value.toLowerCase())
     )
 )
-const handleEdit = (field)=>{
-    console.log(field);
+const handleEdit = (row)=>{
+    store.state.managerStore.editClassStatus = true;
+    store.state.managerStore.editClass = row;
+    console.log(row);
 }
 const handleDelete = (field)=>{
     ElMessage({message:'请谨慎执行删除操作!',type:'error'});

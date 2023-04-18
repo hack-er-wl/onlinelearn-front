@@ -19,8 +19,8 @@
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
-          <el-button type="primary" size="small" @click="">编辑</el-button>
-          <el-button size="small" type="danger" @click="">删除</el-button>
+          <el-button type="primary" size="small" @click="onStatus(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -33,6 +33,7 @@
 <script setup>
 import {computed, ref} from "vue";
 import {useStore} from "vuex";
+import {ElMessage} from "element-plus";
 const store = useStore();
 
 const search = ref('');
@@ -43,4 +44,12 @@ const filterTableData = computed(() =>
             data.user_name.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onStatus = (row)=>{
+    ElMessage({message:'由于用户信息由用户发布，请联系该用户进行调整!',type:'warning'});
+    console.log(row);
+}
+const onDelete = (row)=>{
+    ElMessage({message:'请谨慎执行删除操作!',type:'error'});
+    console.log(row);
+}
 </script>

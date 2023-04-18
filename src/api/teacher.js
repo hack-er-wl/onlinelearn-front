@@ -15,6 +15,9 @@ export function querySubscriber(data){
 export function postCourse(data){
     return post("teacher/post/course",data)
 }
+export function updateTeacher(data){
+    return post("teacher/update",data)
+}
 export function postChapter(data){
     return post("teacher/post/course/chapter",data)
 }

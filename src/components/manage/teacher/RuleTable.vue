@@ -9,8 +9,8 @@
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
-          <el-button type="primary" size="small" @click="">编辑</el-button>
-          <el-button size="small" type="danger" @click="">删除</el-button>
+          <el-button type="primary" size="small" @click="onEdit(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -21,8 +21,11 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import {computed, ref, toRaw} from "vue";
 import {useStore} from "vuex";
+import {ElMessage, ElMessageBox} from "element-plus";
+import useNotification from "@/hooks/useNotification";
+import {handleUpdateRule} from "@/api/manager";
 const store = useStore();
 const search = ref('');
 const filterTableData = computed(() =>
@@ -32,4 +35,36 @@ const filterTableData = computed(() =>
             data.rule_content.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onEdit = async (row) => {
+    store.state.managerStore.isEditRule = true;
+    store.state.managerStore.editRule = row;
+    console.log(row);
+}
+const onDelete = async (row) => {
+    ElMessageBox.confirm(
+        '请谨慎执行删除操作，该过程不可逆！',
+        '提醒', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',}
+    ).then(async () => {
+        await store.dispatch("handleDeleteRule", toRaw({ruleid: row.rule_id})).then(async (res) => {
+            if (res) {
+                ElMessage({type: 'success', message: '删除成功',})
+                store.state.managerStore.rules = [];
+                await store.dispatch("handleQueryRuleAll", toRaw({})).then((rules) => {
+                    store.state.managerStore.rules = rules;
+                })
+            } else {
+                ElMessage({type: 'error', message: res.result,})
+            }
+        });
+    }).catch(async () => {
+        ElMessage({
+            type: 'error',
+            message: '删除取消',
+        })
+    })
+    console.log(row);
+}
 </script>

@@ -11,11 +11,14 @@ import useNotification from "@/hooks/useNotification";
 import {useStore} from "vuex";
 import AddRuleForm from "@/components/manage/teacher/AddRuleForm.vue";
 import RuleTable from "@/components/manage/teacher/RuleTable.vue";
+import {useI18n} from "vue-i18n";
 const store = useStore();
+const { t } = useI18n();
 const onsubmit = async (formAddRule) => {
   const res = await store.dispatch("handleAddRule", toRaw(formAddRule));
   if(res){
-    useNotification("success","系统通知",res.result);
+    useNotification("success","系统通知",t("editSuccess"));
+    formAddRule.rulecontent = "";
     store.state.managerStore.rules = [];
     await store.dispatch("handleQueryRuleAll", toRaw({})).then((rules) => {
       store.state.managerStore.rules = rules;

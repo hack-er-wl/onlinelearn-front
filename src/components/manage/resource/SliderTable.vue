@@ -14,7 +14,6 @@ CourseTable.vue<template>
           <el-input v-model="search" size="small" placeholder="请输入···"/>
         </template>
         <template #default="scope">
-          <el-button type="primary" size="small" @click="onEdit(scope.row)">编辑</el-button>
           <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -38,9 +37,6 @@ const filterTableData = computed(() =>
             data.slider_id.toLowerCase().includes(search.value.toLowerCase())
     )
 )
-const onEdit = (row)=>{
-    console.log(row);
-}
 const onDelete = (row)=>{
     ElMessage({message:'请谨慎执行删除操作!',type:'error'});
     console.log(row);

@@ -14,7 +14,7 @@
       <div style="margin-left: 8px;margin-right:8px;margin-top: 65px;display: flex;justify-content: space-between">
         <div class="left">
           <div style="display: flex">
-            <h6 style="color:gray;margin-right: 24px">主讲老师：和大爷</h6>
+            <h6 style="color:gray;margin-right: 24px">主讲老师：{{data.course.value.teach_name}}</h6>
             <h6 style="color:gray;margin-right: 24px">课程时常：2h</h6>
             <h6 style="color:gray">已有{{data.course.value.subscribe_num}}人学习</h6>
           </div>

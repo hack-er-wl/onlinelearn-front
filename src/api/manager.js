@@ -39,6 +39,15 @@ export function queryMenuAll(data){
 export function addField(data) {
     return post("admin/post/cfield", data);
 }
+export function addMenu(data) {
+    return post("admin/insert/menu", data);
+}
+export function addSlider(data) {
+    return post("admin/insert/slider", data);
+}
+export function addAvatar(data) {
+    return post("admin/insert/avatar", data);
+}
 export function queryFields(data){
     return get("admin/query/cfield")
 }
@@ -54,8 +63,20 @@ export function handleUpdateTeacher(data) {
 export function handleUpdateCourse(data) {
     return post("admin/update/course/check", data);
 }
+export function handleUpdateCourseStatus(data) {
+    return post("admin/update/course/status", data);
+}
+export function handleUpdateClass(data) {
+    return post("admin/update/class/status", data);
+}
+export function handleUpdateRule(data) {
+    return post("admin/update/rule", data);
+}
+export function handleDeleteRule(data) {
+    return post("admin/delete/rule", data);
+}
 export function queryRuleAll(data){
-    return get("teacher/query/rule",data)
+    return get("admin/query/rule",data)
 }
 export function queryMessageAll(data){
     return get("admin/query/notice",data)

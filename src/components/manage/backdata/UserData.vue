@@ -45,7 +45,7 @@ const data = reactive([{
       margin:"0 0 2% 2%"
   },{
     title:"访问游客",
-    value:1000,
+    value:10,
     content:"访问却没有注册的用户数量",
     foot:"比昨天增加",
     num:20,

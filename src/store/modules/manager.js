@@ -15,7 +15,13 @@ import {
     queryBarAll,
     queryAvatarAll,
     addField,
-    broadNotice, handleUpdateTeacher, addRule, handleUpdateCourse, queryFields
+    broadNotice,
+    handleUpdateTeacher,
+    addRule,
+    handleUpdateCourse,
+    queryFields,
+    handleUpdateClass,
+    handleUpdateCourseStatus, handleDeleteRule, handleUpdateRule, addSlider, addAvatar, addMenu
 } from "@/api/manager";
 
 export default {
@@ -34,15 +40,21 @@ export default {
         chooses:[],
         options:[],
         editStatus:false,
+        isEditRule:false,
+        editClassStatus:false,
         editCheck:false,
         checkStatus:false,
         editCourse:{},
+        editClass:{},
         editTeacher:{},
+        editRule:{},
         messages:[],
         sliders:[],
         avatars:[],
         menus:[],
         rules:[],
+        sliderUrl:"",
+        avatarUrl:"",
         adminIsDark: localStorage.getItem("vueuse-admin-color-scheme") == "dark" ? true : false || false,
     },
     mutations:{
@@ -292,6 +304,45 @@ export default {
                 return Promise.reject(error);
             }
         },
+        async handleAddMenu({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await addMenu(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleAddSlider({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await addSlider(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleAddAvatar({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await addAvatar(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
         async handleAddRule({ commit, dispatch},data) {
             // 发送登录的网络请求
             try {
@@ -332,9 +383,61 @@ export default {
             }
         },
         async handleUpdateCourse({ commit, dispatch},data) {
-            // 发送登录的网络请求
+            // 发送登录的网络请求,审核课程
             try {
                 const res = await handleUpdateCourse(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateCourseStatus({ commit, dispatch},data) {
+            // 发送登录的网络请求,更新状态
+            try {
+                const res = await handleUpdateCourseStatus(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateClass({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await handleUpdateClass(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleUpdateRule({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await handleUpdateRule(data);
+                if (res.code == 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleDeleteRule({ commit, dispatch},data) {
+            // 发送登录的网络请求
+            try {
+                const res = await handleDeleteRule(data);
                 if (res.code == 200) {
                     return true;
                 } else {

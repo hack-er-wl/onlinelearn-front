@@ -34,6 +34,7 @@ const filterTableData = computed(() =>
     )
 )
 const handleEdit = (field)=>{
+    ElMessage({message:'请谨慎执行编辑操作!',type:'warning'});
     console.log(field);
 }
 const handleDelete = (field)=>{

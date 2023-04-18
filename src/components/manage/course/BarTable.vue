@@ -37,6 +37,7 @@ const filterTableData = computed(() =>
     )
 )
 const onStatus = (row)=>{
+  ElMessage({message:'由于小节内容由讲师发布，请联系该讲师进行调整!',type:'warning'});
   console.log(row);
 }
 const onDelete = (row)=>{

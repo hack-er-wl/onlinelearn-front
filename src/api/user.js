@@ -11,7 +11,7 @@ export function login(data) {
  * @description: 菜单
  */
 export function handleMenu(data) {
-    return get("menu/query",data);
+    return get("user/query/menu",data);
 }
 /**
  * @description: 获取验证码

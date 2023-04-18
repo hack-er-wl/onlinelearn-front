@@ -1,11 +1,8 @@
 <template>
   <el-card class="table-card" style="margin-bottom: 2%">
-    <el-form :model="formAddSlider" style="display: flex;justify-content: space-between">
-      <el-form-item label="图片地址" style="margin-top: 10px">
-        <el-input v-model="formAddSlider.sliderurl" placeholder="请输入url···"/>
-      </el-form-item>
-      <el-form-item style="margin-top: 10px">
-        <el-button type="primary" @click="onSubmit">添加图片</el-button>
+    <el-form :model="formAddSlider" style="display: flex">
+      <el-form-item label="上传轮播图">
+          <UploadImgCard :type="'slider'"/>
       </el-form-item>
     </el-form>
   </el-card>
@@ -13,11 +10,13 @@
 
 <script setup>
 import {reactive} from "vue";
-const emit = defineEmits(['submit']);
+import UploadImgCard from "@/components/manage/resource/UploadImgCard.vue";
 const formAddSlider = reactive({
   sliderurl: "",
 })
-const onSubmit = () => {
-  emit('submit',formAddSlider);
-}
 </script>
+<style scoped lang="css">
+.el-form-item{
+    margin-bottom: 0;
+}
+</style>

@@ -30,7 +30,6 @@
   </el-card>
 </template>
 <script setup>
-import user from "../../../assets/img/user.png";
 import {useStore} from "vuex";
 const store = useStore();
 </script>

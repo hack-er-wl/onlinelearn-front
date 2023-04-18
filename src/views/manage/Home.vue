@@ -17,6 +17,8 @@
   <EditStatus v-model="store.state.managerStore.editStatus"/>
   <EditCheck v-model="store.state.managerStore.editCheck"/>
   <CheckStatus v-model="store.state.managerStore.checkStatus"/>
+  <EditClassStatus v-model="store.state.managerStore.editClassStatus"/>
+  <EditRule v-model="store.state.managerStore.isEditRule"/>
 </template>
 
 <script setup>
@@ -27,6 +29,8 @@ import EditCheck from "@/components/manage/course/EditCheck.vue";
 import {useStore} from "vuex";
 import {onMounted, toRaw} from "vue";
 import CheckStatus from "@/components/manage/teacher/CheckStatus.vue";
+import EditFieldStatus from "@/components/manage/course/EditClassStatus.vue";
+import EditRule from "@/components/manage/teacher/EditRule.vue";
 const store = useStore();
 onMounted(async () => {
     store.state.managerStore.users = [];

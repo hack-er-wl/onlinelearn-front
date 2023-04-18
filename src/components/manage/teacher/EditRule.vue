@@ -1,22 +1,14 @@
 <template>
-  <el-dialog title="课程状态">
+  <el-dialog title="编辑守则">
     <el-form ref="editFormRef"
              :model="editForm"
              :rules="editRules">
-      <el-form-item label="课程ID">
-        <el-input disabled :placeholder="store.state.managerStore.editCourse.course_id" style="width: 150px"/>
+      <el-form-item label="守则ID">
+        <el-input disabled :placeholder="store.state.managerStore.editRule.rule_id" style="width: 50%"/>
       </el-form-item>
-      <el-form-item label="状态码">
-        <el-select v-model="editForm.code" class="m-2" placeholder="请选择状态码(0:热门,1:最新,2:普通)">
-          <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-              suffix-icon="Key"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="守则内容">
+            <el-input v-model="editForm.rulecontent" :placeholder="store.state.managerStore.editRule.rule_content"/>
+        </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -37,28 +29,27 @@ const { t } = useI18n();
 const store = useStore();
 const editFormRef = ref('');
 const editForm = reactive({
-    courseid:"",
-    code:"",
+    ruleid:"",
+    rulecontent:"",
 });
 const editRules = reactive({
-  code: [{ required: true, message: "请选择状态码", trigger: ["blur",'change']}],
+    rulecontent: [{ required: true, message: "请输入内容", trigger: "blur"}],
 });
-const options = [{label:0,value:0},{label:1,value:1},{label:2,value:2}]
 async function postAssessConfirm() {
   if(editForm.code != ""){
-      editForm.courseid = store.state.managerStore.editCourse.course_id;
+      editForm.ruleid = store.state.managerStore.editRule.rule_id;
       if(editForm.code === ""){
           ElMessage({message: "状态码不能为空", type: 'warning'});
       }else{
-          await store.dispatch("handleUpdateCourseStatus", toRaw(editForm)).then(async (res) => {
+          await store.dispatch("handleUpdateRule", toRaw(editForm)).then(async (res) => {
               if (res) {
                   useNotification('success', '系统通知', t("editSuccess"));
-                  store.state.managerStore.editStatus = false;
-                  store.state.managerStore.courses = [];
-                  await store.dispatch("handleQueryCourseAll", toRaw({})).then((courses) => {
-                      store.state.managerStore.courses = courses;
+                  store.state.managerStore.isEditRule = false;
+                  store.state.managerStore.rules = [];
+                  await store.dispatch("handleQueryRuleAll", toRaw({})).then((rules) => {
+                      store.state.managerStore.rules = rules;
                   })
-              }else{
+              } else {
                   useNotification('success', '系统通知', res.result);
               }
           });

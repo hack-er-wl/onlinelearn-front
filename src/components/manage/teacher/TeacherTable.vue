@@ -16,8 +16,8 @@
         </template>
         <template #default="scope">
             <el-button type="success" size="small" @click="onCheck(scope.row)">审核</el-button>
-          <el-button type="primary" size="small" @click="">编辑</el-button>
-          <el-button size="small" type="danger" @click="">删除</el-button>
+          <el-button type="primary" size="small" @click="onStatus(scope.row)">编辑</el-button>
+          <el-button size="small" type="danger" @click="onDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -30,6 +30,7 @@
 <script setup>
 import {computed, ref} from "vue";
 import {useStore} from "vuex";
+import {ElMessage} from "element-plus";
 const store = useStore();
 const search = ref('');
 const filterTableData = computed(() =>
@@ -39,9 +40,17 @@ const filterTableData = computed(() =>
             data.teach_id.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+const onStatus = (row)=>{
+    ElMessage({message:'请联系该讲师进行调整!',type:'warning'});
+    console.log(row);
+}
 const onCheck = (row)=>{
     store.state.managerStore.checkStatus = true;
     store.state.managerStore.editTeacher = row;
+    console.log(row);
+}
+const onDelete = (row)=>{
+    ElMessage({message:'请谨慎执行删除操作!',type:'error'});
     console.log(row);
 }
 </script>

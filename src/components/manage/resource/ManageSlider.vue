@@ -1,6 +1,6 @@
 <template>
   <div class="data">
-    <AddSliderForm v-on:submit="onsubmit"/>
+    <AddSliderForm/>
     <SliderTable/>
   </div>
 </template>
@@ -12,18 +12,6 @@ import SliderTable from "@/components/manage/resource/SliderTable.vue";
 import AddSliderForm from "@/components/manage/resource/AddSliderForm.vue";
 import useNotification from "@/hooks/useNotification";
 const store = useStore();
-const onsubmit = async (formAddSlider) => {
-  const res = await store.dispatch("handleAddField", toRaw(formAddSlider));
-  if(res){
-    useNotification("success","系统通知",res.result);
-    store.state.managerStore.sliders = [];
-    await store.dispatch("handleQuerySliderAll", toRaw({})).then((sliders) => {
-      store.state.managerStore.sliders = sliders;
-    })
-  }else{
-    useNotification("error","系统通知",res.result);
-  }
-}
 onMounted(async () => {
   store.state.managerStore.sliders = [];
   await store.dispatch("handleQuerySliderAll", toRaw({})).then((sliders) => {

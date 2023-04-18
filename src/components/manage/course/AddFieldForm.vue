@@ -1,7 +1,7 @@
 <template>
   <el-card class="table-card" style="margin-bottom: 2%">
-    <el-form :model="formAddField" style="display: flex;justify-content: space-between">
-      <el-form-item label="领域名称" style="margin-top: 10px">
+    <el-form :model="formAddField" ref="formAddFieldRef" :rules="formAddFieldRules" style="display: flex;justify-content: space-between">
+      <el-form-item prop="fieldname" label="领域名称" style="margin-top: 10px">
         <el-input v-model="formAddField.fieldname" placeholder="请输入领域名称···"/>
       </el-form-item>
       <el-form-item style="margin-top: 10px">
@@ -12,12 +12,22 @@
 </template>
 
 <script setup>
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
+const formAddFieldRef = ref(null);
 const emit = defineEmits(['submit']);
 const formAddField = reactive({
   fieldname: "",
 })
-const onSubmit = () => {
-  emit('submit',formAddField);
+const formAddFieldRules = reactive({
+    fieldname: [{ required: true, message: "请输入领域名称", trigger: "blur" }],
+});
+const onSubmit = async () => {
+    await formAddFieldRef.value.validate(async (valid, fields) => {
+        if(valid) {
+            emit('submit', formAddField);
+        }else {
+            console.log(fields)
+        }
+    })
 }
 </script>

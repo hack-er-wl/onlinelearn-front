@@ -72,7 +72,7 @@ onMounted(async () => {
                         item.color +
                         '"></span>';
                     if (item.seriesIndex == 0) {
-                        result += '昨日用户' + '<b>' + item.value + '</b>' + '<br>';
+                        result += '昨日数据：' + '<b>' + item.value + '</b>' + '<br>';
                     }
                     if (item.seriesIndex == 1) {
                         result += '今日增加：' + '<b>' + item.value + '</b>';
@@ -183,12 +183,12 @@ onMounted(async () => {
         tooltip: {},
         radar: {
             indicator: [
-                {name: 'Sales', max: 6500},
-                {name: 'Administration', max: 16000},
-                {name: 'Information Technology', max: 30000},
-                {name: 'Customer Support', max: 38000},
-                {name: 'Development', max: 52000},
-                {name: 'Marketing', max: 25000}
+                {name: 'Sales'},
+                {name: 'Administration'},
+                {name: 'Information Technology'},
+                {name: 'Customer Support'},
+                {name: 'Development'},
+                {name: 'Marketing'}
             ]
         },
         series: [
@@ -197,11 +197,11 @@ onMounted(async () => {
                 type: 'radar',
                 data: [
                     {
-                        value: [4200, 3000, 20000, 35000, 50000, 18000],
+                        value: [42, 30, 20, 35, 50, 180],
                         name: 'Allocated Budget'
                     },
                     {
-                        value: [5000, 14000, 28000, 26000, 42000, 21000],
+                        value: [50, 140, 28, 26, 42, 21],
                         name: 'Actual Spending'
                     }
                 ]
