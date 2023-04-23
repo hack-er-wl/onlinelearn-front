@@ -21,7 +21,7 @@ import {
     handleUpdateCourse,
     queryFields,
     handleUpdateClass,
-    handleUpdateCourseStatus, handleDeleteRule, handleUpdateRule, addSlider, addAvatar, addMenu
+    handleUpdateCourseStatus, handleDeleteRule, handleUpdateRule, addSlider, addAvatar, addMenu, queryOrderAll
 } from "@/api/manager";
 
 export default {
@@ -53,6 +53,7 @@ export default {
         avatars:[],
         menus:[],
         rules:[],
+        orders:[],
         sliderUrl:"",
         avatarUrl:"",
         adminIsDark: localStorage.getItem("vueuse-admin-color-scheme") == "dark" ? true : false || false,
@@ -152,6 +153,19 @@ export default {
             // 发送登录的网络请求
             try {
                 const res = await queryTestAll(data);
+                if (res.code == 200) {
+                    return res.data;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        async handleQueryOrderAll({commit,dispatch},data){
+            // 发送登录的网络请求
+            try {
+                const res = await queryOrderAll(data);
                 if (res.code == 200) {
                     return res.data;
                 } else {

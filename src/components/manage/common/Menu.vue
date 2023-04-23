@@ -120,6 +120,10 @@
         <el-icon><Finished /></el-icon>
         <template #title>菜单管理</template>
       </el-menu-item>
+        <el-menu-item index="/mhome/manageorder">
+            <el-icon><Ticket /></el-icon>
+            <template #title>订单管理</template>
+        </el-menu-item>
     </el-menu>
   </el-scrollbar>
 </template>

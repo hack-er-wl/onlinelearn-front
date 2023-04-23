@@ -187,6 +187,11 @@ const routes = [
         path: "manageavatar",
         name:'manageavatar',
         component:() => import("../components/manage/resource/ManageAvatar.vue")
+      },
+      {
+        path: "manageorder",
+        name:'manageorder',
+        component:() => import("../components/manage/order/ManageOrder.vue")
       }
     ]
   }
@@ -212,7 +217,7 @@ router.beforeEach((to, from, next) => {
           to.name == "manageteacher" || to.name == "manageslider" || to.name == "managemessage" ||
           to.name == "managefield" || to.name == "manageclass" ||  to.name == "managemenu" ||
           to.name == "managerule" || to.name == "managechoose" || to.name == "manageoption" || to.name == "subscriber" ||
-          to.name == "manageavatar" || to.name == "welcome"){
+          to.name == "manageavatar" || to.name == "welcome" || to.name == "manageorder"){
         next();
       }else{
         // 返回到登录页

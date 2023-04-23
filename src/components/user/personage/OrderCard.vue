@@ -4,7 +4,7 @@
       shadow="hover"
       class="course_card"
       style="width: 100%"
-      :style="{marginBottom:data.isLast.value?'0px':'4px'}">
+      :style="{marginBottom:data.isLast.value?'0px':'1.4%'}">
     <el-image :src="data.order.value.order_head" class="image" :style="{height:'117px',width:'20%',borderRadius:'4px'}"/>
     <div style="padding:3px;width: 100%;display: flex;flex-direction: column">
         <div style="margin-left: 8px;margin-right:8px;margin-top: 8px;display: flex;justify-content: space-between">

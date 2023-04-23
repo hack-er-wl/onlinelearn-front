@@ -11,7 +11,7 @@
           <el-aside style="margin:0 2% 0 0" width="25%">
             <PersonMenu/>
           </el-aside>
-          <el-main style="padding: 0;height: 100vh">
+          <el-main style="padding: 0;height: 100vh;overflow: hidden">
             <PersonShow/>
           </el-main>
         </el-container>

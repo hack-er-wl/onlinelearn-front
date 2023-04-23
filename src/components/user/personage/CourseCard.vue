@@ -4,7 +4,7 @@
       shadow="hover"
       class="course_card"
       style="width: 100%"
-      :style="{marginBottom:data.isLast.value?'0px':'4px'}">
+      :style="{marginBottom:data.isLast.value?'0px':'1.4%'}">
     <el-image :src="data.course.value.course_cover" class="image" :style="{height:'150px',width:'30%',borderRadius:'4px'}"/>
     <div style="padding:3px;width: 100%">
       <div style="margin-left: 8px;margin-right:8px;margin-top: 16px;display: flex;justify-content: space-between">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="right">
-          <el-button type="success" @click="router.push('/course')" round icon="Reading">继续学习</el-button>
+          <el-button type="success" @click="handleClick(data.course.value)" round icon="Reading">继续学习</el-button>
         </div>
       </div>
     </div>
@@ -34,11 +34,19 @@
 import router from "../../../router"
 import {toRefs} from "vue";
 import {defineProps} from "vue";
+import qs from "qs";
+import {useStore} from "vuex";
+const store = useStore();
 const props = defineProps({
     isLast:Boolean,
     course:Object
 })
 const data = toRefs(props)
+const handleClick = (course)=>{
+    console.log(course);
+    store.state.layoutStore.assesses = [];
+    router.push({path: '/course', query: {key: qs.stringify(course)}})
+}
 </script>
 
 <style scoped>

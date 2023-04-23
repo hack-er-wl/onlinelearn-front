@@ -42,7 +42,7 @@
             store.state.layoutStore.course = result;
           })
         } else {
-          useNotification('success', '系统通知', t("addCourseFailed"));
+          useNotification('error', '系统通知', t("addCourseFailed"));
         }
       })
     }else{

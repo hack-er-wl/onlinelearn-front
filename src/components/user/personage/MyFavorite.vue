@@ -11,9 +11,10 @@
     <div v-else style="display: flex;height: 100%;flex-wrap: wrap">
       <FavoriteCard v-for="(n,i) in store.state.layoutStore.myCollect"
                     :key="i"
-                    :isLast="i==3?true:false"
+                    :isLast="(i+1) % 4 == 0 ? true:false"
+                    :isFirst="(i+1) <= 4 ? true : false"
                     :course="n"
-                    @click="router.push('/course')"
+                    @click="handleClick(n)"
                     style="cursor: pointer"/>
     </div>
     <div class="pagination">
@@ -24,11 +25,13 @@
 
 <script setup>
 import FavoriteCard from "./FavoriteCard.vue";
-import router from "../../../router";
 import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
 import {getUser} from "@/api/user";
+import qs from "qs";
+import {useRouter} from "vue-router";
 const store = useStore();
+const router = useRouter();
 onMounted(async () => {
   store.state.layoutStore.recCourses = [];
   await store.dispatch("handleQueryMyCollect", toRaw({userid:getUser().user_id})).then((res) => {
@@ -36,6 +39,11 @@ onMounted(async () => {
     store.state.layoutStore.myCollect = res;
   })
 })
+const handleClick = (course)=>{
+    console.log(course);
+    store.state.layoutStore.assesses = [];
+    router.push({path: '/course', query: {key: qs.stringify(course)}})
+}
 </script>
 
 <style scoped>

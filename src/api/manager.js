@@ -21,6 +21,9 @@ export function queryBarAll(data){
 export function queryTestAll(data){
     return get("admin/query/test",data)
 }
+export function queryOrderAll(data){
+    return get("admin/query/order",data)
+}
 export function queryChooseAll(data){
     return get("admin/query/choose",data)
 }

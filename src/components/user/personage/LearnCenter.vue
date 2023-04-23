@@ -7,7 +7,8 @@
       </div>
     </template>
     <div style="display: flex;height: 100%;flex-wrap: wrap">
-      <Card v-for="(n,i) in store.state.layoutStore.recCourses" :key="i"
+      <Card v-for="(n,i) in store.state.layoutStore.recCourses"
+            :key="i"
             :isLast="(i+1) % 4 == 0 ? true:false"
             :isFirst="(i+1) <= 4 ? true : false"
             @click="handleClick(n)"
@@ -26,10 +27,11 @@ import router from "../../../router";
 import {onMounted, toRaw} from "vue";
 import {useStore} from "vuex";
 import qs from "qs";
+import {getUser} from "@/api/user";
 const store = useStore();
 const handleChange = async () => {
   store.state.layoutStore.recCourses = [];
-  await store.dispatch("handleRecommend", toRaw({})).then((res) => {
+  await store.dispatch("handleRecommend", toRaw({userid:getUser().user_id})).then((res) => {
     store.state.layoutStore.recCourses = res;
   })
 }
@@ -39,7 +41,7 @@ const handleClick = (course) => {
 }
 onMounted(async () => {
   store.state.layoutStore.recCourses = [];
-  await store.dispatch("handleRecommend", toRaw({})).then((res) => {
+  await store.dispatch("handleRecommend", toRaw({userid:getUser().user_id})).then((res) => {
     console.log(res);
     store.state.layoutStore.recCourses = res;
   })
